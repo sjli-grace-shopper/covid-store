@@ -1,7 +1,7 @@
-'use strict'
-
 const db = require('../server/db')
-const {User, Product, Review, Order} = require('../server/db/models')
+
+const {User, Product, Review, Order, LineItem} = require('../server/db/models')
+const {users, products, orders, lineItems, reviews} = require('./seedData')
 
 async function seed() {
   await db.sync({force: true})
@@ -16,29 +16,51 @@ async function seed() {
   console.log(`seeded successfully`)
 }
 
-// We've separated the `seed` function from the `runSeed` function.
-// This way we can isolate the error handling and exit trapping.
-// The `seed` function is concerned only with modifying the database.
-async function runSeed() {
-  console.log('seeding...')
+const seed = async () => {
   try {
-    await seed()
+    await db.sync({force: true})
+
+    // seed your database here!
+    await Promise.all(
+      users.map(user => {
+        return User.create(user)
+      })
+    )
+    await Promise.all(
+      products.map(product => {
+        return Product.create(product)
+      })
+    )
+    await Promise.all(
+      reviews.map(review => {
+        return Review.create(review)
+      })
+    )
+    await Promise.all(
+      orders.map(order => {
+        return Order.create(order)
+      })
+    )
+    await Promise.all(
+      lineItems.map(lineItem => {
+        return LineItem.create(lineItem)
+      })
+    )
   } catch (err) {
-    console.error(err)
-    process.exitCode = 1
-  } finally {
-    console.log('closing db connection')
-    await db.close()
-    console.log('db connection closed')
+    console.log(err)
   }
 }
-
-// Execute the `seed` function, IF we ran this module directly (`node seed`).
-// `Async` functions always return a promise, so we can use `catch` to handle
-// any errors that might occur inside of `seed`.
-if (module === require.main) {
-  runSeed()
-}
-
-// we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed
+
+if (require.main === module) {
+  seed()
+    .then(() => {
+      console.log('Seeding success!')
+      db.close()
+    })
+    .catch(err => {
+      console.error('Oh no! Something went wrong!')
+      console.error(err)
+      db.close()
+    })
+}

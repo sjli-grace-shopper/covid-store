@@ -2,6 +2,7 @@ const User = require('./user')
 const Product = require('./product')
 const Review = require('./review')
 const Order = require('./order')
+const LineItem = require('./lineItem')
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:

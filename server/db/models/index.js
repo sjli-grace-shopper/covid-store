@@ -6,6 +6,10 @@ const User = require('./user')
  *
  *    BlogPost.belongsTo(User)
  */
+Product.hasMany(Review, {as: 'review'})
+Order.belongsTo(User, {as: 'user'})
+Review.belongsTo(User, {as: 'user'})
+Review.belongsTo(Product, {as: 'product'})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -14,5 +18,8 @@ const User = require('./user')
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User
+  User,
+  Product,
+  Review,
+  Order
 }

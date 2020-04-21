@@ -7,7 +7,7 @@ const Products = db.define('products', {
     allowNull: false
   },
   category: {
-    type: Sequelize.TEXT
+    type: Sequelize.ENUM('toilet-paper', 'sanitation', 'facemask', 'gloves')
   },
   description: {
     type: Sequelize.TEXT

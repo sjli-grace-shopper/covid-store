@@ -1,5 +1,5 @@
 const db = require('../server/db')
-const {User, Product, Review, Order} = require('../server/db/models')
+const {User, Product, Review, Order, LineItem} = require('../server/db/models')
 
 const users = [
   {
@@ -139,41 +139,57 @@ const products = [
 const reviews = [
   {
     rating: 3,
+    userId: 1,
+    productId: 1,
     reviewText:
       'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah face mask.'
   },
   {
     rating: 4,
+    userId: 2,
+    productId: 3,
     reviewText:
       'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah soap.'
   },
   {
     rating: 5,
+    userId: 3,
+    productId: 2,
     reviewText:
       'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah toilet paper.'
   },
   {
     rating: 3,
+    userId: 4,
+    productId: 4,
     reviewText:
       'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah hand sanitizer.'
   },
   {
     rating: 2,
+    userId: 4,
+    productId: 5,
     reviewText:
       'face mask blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah.'
   },
   {
     rating: 4,
+    userId: 3,
+    productId: 6,
     reviewText:
       'hand sanitizer blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah.'
   },
   {
     rating: 2,
+    userId: 2,
+    productId: 4,
     reviewText:
       'soap blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah.'
   },
   {
     rating: 4,
+    userId: 1,
+    productId: 2,
     reviewText:
       'soap blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah face mask.'
   }
@@ -182,35 +198,40 @@ const reviews = [
 const orders = [
   {
     status: 'PROCESSING',
-    items: []
+    userId: 1
   },
   {
     status: 'PROCESSING',
-    items: []
+    userId: 2
   },
   {
     status: 'CREATED',
-    items: []
+    userId: 3
   },
   {
     status: 'CREATED',
-    items: []
+    userId: 4
+  }
+]
+
+const lineItems = [
+  {
+    orderId: 1,
+    productId: 1,
+    quantity: 5,
+    price: 2.99
   },
   {
-    status: 'COMPLETED',
-    items: []
+    orderId: 1,
+    productId: 2,
+    quantity: 1,
+    price: 5.99
   },
   {
-    status: 'COMPLETED',
-    items: []
-  },
-  {
-    status: 'CANCELLED',
-    items: []
-  },
-  {
-    status: 'CANCELLED',
-    items: []
+    orderId: 1,
+    productId: 3,
+    quantity: 7,
+    price: 1.99
   }
 ]
 
@@ -237,6 +258,11 @@ const seed = async () => {
     await Promise.all(
       orders.map(order => {
         return Order.create(order)
+      })
+    )
+    await Promise.all(
+      lineItems.map(lineItem => {
+        return LineItem.create(lineItem)
       })
     )
   } catch (err) {

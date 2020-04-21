@@ -214,58 +214,46 @@ const orders = [
   }
 ]
 
-function seed() {
-  let createdUsers, createdProducts, createdReviews
+const seed = async () => {
+  try {
+    await db.sync({force: true})
 
-  // create products
-  return Promise.all(products.map(product => Product.create(product)))
-    .then(result => {
-      createdProducts = result
-      // create users
-      return Promise.all(users.map(user => User.create(user)))
-    })
-    .then(result => {
-      createdUsers = result
-      // create reviews
-      for (var i = 0; i < reviews.length; i++) {
-        reviews[i].userId = createdUsers[i].id
-        reviews[i].productsId = createdProducts[i].id
-      }
-      return Promise.all(reviews.map(review => Review.create(review)))
-    })
-    .then(result => {
-      createdReviews = result
-      // create orders
-      for (var i = 0; i < orders.length; i++) {
-        orders[i].userId = createdUsers[i].id
-        orders[i].items = [
-          {
-            product: createdProducts[i],
-            price: createdProducts[i].price,
-            quantity: i + 1
-          }
-        ]
-      }
-      return Promise.all(orders.map(order => Order.create(order)))
-    })
+    // seed your database here!
+    await Promise.all(
+      users.map(user => {
+        return User.create(user)
+      })
+    )
+    await Promise.all(
+      products.map(product => {
+        return Product.create(product)
+      })
+    )
+    await Promise.all(
+      reviews.map(review => {
+        return Review.create(review)
+      })
+    )
+    await Promise.all(
+      orders.map(order => {
+        return Order.create(order)
+      })
+    )
+  } catch (err) {
+    console.log(err)
+  }
 }
+module.exports = seed
 
-const main = () => {
-  console.log('Syncing db...')
-  db
-    .sync({force: true})
+if (require.main === module) {
+  seed()
     .then(() => {
-      console.log('Seeding databse...')
-      return seed()
+      console.log('Seeding success!')
+      db.close()
     })
     .catch(err => {
-      console.log('Error while seeding')
-      console.log(err.stack)
-    })
-    .then(() => {
+      console.error('Oh no! Something went wrong!')
+      console.error(err)
       db.close()
-      return null
     })
 }
-
-main()

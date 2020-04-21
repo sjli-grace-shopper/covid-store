@@ -20,7 +20,7 @@ const Products = db.define('products', {
     }
   },
   imageUrl: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
+    type: Sequelize.STRING,
     validate: {
       isUrl: true
     },

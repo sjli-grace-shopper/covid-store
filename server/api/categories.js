@@ -1,4 +1,4 @@
 const router = require('express').Router()
-import {Order} from '../db/models'
+import {Category} from '../db/models'
 
 module.exports = router

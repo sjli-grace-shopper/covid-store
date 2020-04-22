@@ -6,9 +6,6 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  category: {
-    type: Sequelize.ENUM('toilet-paper', 'sanitation', 'facemask', 'gloves')
-  },
   description: {
     type: Sequelize.TEXT
   },

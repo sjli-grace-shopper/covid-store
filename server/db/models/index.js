@@ -3,6 +3,7 @@ const Product = require('./product')
 const Review = require('./review')
 const Order = require('./order')
 const LineItem = require('./lineItem')
+const Category = require('./Category')
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
@@ -21,6 +22,10 @@ User.hasMany(Review)
 // define one to many association between orders and users
 Order.belongsTo(User)
 User.hasMany(Order)
+
+// define one to many association between products and categories
+Product.belongsTo(Category)
+Category.hasMany(Product)
 
 // define many-to-many association between orders and products using LineItem and through table
 Order.belongsToMany(Product, {through: LineItem})

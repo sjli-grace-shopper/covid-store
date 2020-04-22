@@ -1,7 +1,22 @@
 const db = require('../server/db')
 
-const {User, Product, Review, Order, LineItem} = require('../server/db/models')
-const {users, products, orders, lineItems, reviews} = require('./seedData')
+const {
+  User,
+  Product,
+  Review,
+  Order,
+  LineItem,
+  Category
+} = require('../server/db/models')
+
+const {
+  users,
+  products,
+  orders,
+  lineItems,
+  reviews,
+  categories
+} = require('./bulkSeed')
 
 const seed = async () => {
   try {
@@ -11,6 +26,11 @@ const seed = async () => {
     await Promise.all(
       users.map(user => {
         return User.create(user)
+      })
+    )
+    await Promise.all(
+      categories.map(category => {
+        return Category.create(category)
       })
     )
     await Promise.all(

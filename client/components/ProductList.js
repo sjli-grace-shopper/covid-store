@@ -3,23 +3,30 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {fetchProducts} from '../store/reducers/productReducer'
 
-const AllProducts = props => {
-  return (
-    <div className="allProducts">
-      {props.products.map(product => {
-        return (
-          <div key={product.id} className="product">
-            <Link to={`/products/${product.id}`}>
-              <img className="product-img" src={product.imageUrl} />
-              <h3>{product.name}</h3>
-            </Link>
-            <p>{product.price} USD</p>
-          </div>
-        )
-      })}
-    </div>
-  )
+class ProductList extends React.Component {
+  componentDidMount() {
+    this.props.getProducts()
+  }
+
+  render() {
+    return (
+      <div className="productList">
+        {this.props.products.map(product => {
+          return (
+            <div key={product.id} className="product">
+              <Link to={`/products/${product.id}`}>
+                <img className="product-img" src={product.imageUrl} />
+                <h3>{product.name}</h3>
+              </Link>
+              <p>{product.price} USD</p>
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => {
@@ -27,5 +34,9 @@ const mapStateToProps = state => {
     products: state.products.productList
   }
 }
-
-export default connect(mapStateToProps)(AllProducts)
+const mapDispatchToProps = dispatch => {
+  return {
+    getProducts: () => dispatch(fetchProducts())
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList)

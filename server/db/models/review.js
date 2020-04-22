@@ -14,8 +14,8 @@ const Review = db.define('review', {
     allowNull: false,
     validate: {
       len: {
-        args: 50,
-        msg: 'Review text must be atleast 50 characters in length'
+        args: 20,
+        msg: 'Review text must be at least 20 characters in length'
       }
     }
   }

@@ -202,11 +202,11 @@ const orders = [
     userId: 2
   },
   {
-    status: 'CREATED',
+    status: 'IN_CART',
     userId: 3
   },
   {
-    status: 'CREATED',
+    status: 'IN_CART',
     userId: 4
   }
 ]
@@ -232,4 +232,11 @@ const lineItems = [
   }
 ]
 
-module.exports = {users, products, orders, lineItems, reviews}
+const categories = [
+  {name: 'masks'},
+  {name: 'toilet_paper'},
+  {name: 'sanatizer'},
+  {name: 'gloves'}
+]
+
+module.exports = {users, products, orders, lineItems, reviews, categories}

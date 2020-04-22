@@ -4,7 +4,7 @@ import axios from 'axios'
  * INITIAL STATE
  */
 const initialState = {
-  allProducts: [],
+  productList: [],
   isFetching: false
 }
 
@@ -36,7 +36,7 @@ export const createReview = () => {}
 export function fetchProducts() {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/`)
+      const {data} = await axios.get(`/api/products`)
       dispatch(getProducts(data))
     } catch (err) {
       console.error(err)
@@ -54,7 +54,7 @@ export const addReview = () => async dispatch => {}
 export default function productReducer(state = initialState, action) {
   switch (action.type) {
     case GET_PRODUCTS:
-      return {...state, allProducts: action.products, isFetching: true}
+      return {...state, productList: action.products, isFetching: true}
     default:
       return state
   }

@@ -1,10 +1,10 @@
 const router = require('express').Router()
-import {Category, Product, Review, User} from '../db/models'
+const {Category, Product, Review, User} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
-      include: [{all: true}, {model: Review, include: [User]}]
+      include: [{model: Review, include: [User]}]
     })
     res.json(products)
   } catch (err) {
@@ -23,11 +23,7 @@ router.post('/', async (req, res, next) => {
       quantity
     })
     const product = await Product.findByPk(newProduct.id, {
-      include: [
-        {all: true},
-        {model: Category},
-        {model: Review, include: [User]}
-      ]
+      include: [{model: Category}, {model: Review, include: [User]}]
     })
     res.status(201).json(product)
   } catch (err) {

@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
 router.get('/account', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.user.id, {
-      include: [{all: true}, {model: Order, include: [{all: true}]}]
+      include: [{model: Order, include: [{all: true}]}]
     })
     res.json(user)
   } catch (err) {

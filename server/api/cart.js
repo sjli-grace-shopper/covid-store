@@ -4,13 +4,17 @@ const {Category, LineItem, Order, Product} = require('../db/models')
 // GET /api/cart
 router.get('/', async (req, res, next) => {
   try {
+    console.log('REQUSER*****', req.user)
     if (req.user) {
       const order = await Order.findOne({
         where: {userId: req.user.id, status: 'IN_CART'},
         include: [{model: Product, include: [Category]}]
       })
       res.json(order)
-    } else res.json(req.session.cart)
+    } else {
+      console.log('NO REQ USER', req.session)
+      res.json(req.session.cart)
+    }
   } catch (err) {
     next(err)
   }

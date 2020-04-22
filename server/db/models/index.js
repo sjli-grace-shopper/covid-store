@@ -19,9 +19,13 @@ User.hasMany(Order)
 Product.belongsTo(Category)
 Category.hasMany(Product)
 
-// define many-to-many association between users and products using Review through table
-User.belongsToMany(Product, {through: Review})
-Product.belongsToMany(User, {through: Review})
+// define one-to-many association between reviews and products
+Review.belongsTo(Product)
+Product.hasMany(Review)
+
+// define one-to-many association between reviews and users
+Review.belongsTo(User)
+User.hasMany(Review)
 
 // define many-to-many association between orders and products using LineItem through table
 Order.belongsToMany(Product, {through: LineItem})

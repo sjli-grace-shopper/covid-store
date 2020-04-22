@@ -11,14 +11,6 @@ const Category = require('./Category')
  *    BlogPost.belongsTo(User)
  */
 
-// define one to many association between reviews and products
-Review.belongsTo(Product)
-Product.hasMany(Review)
-
-// define one to many association between reivews and users
-Review.belongsTo(User)
-User.hasMany(Review)
-
 // define one to many association between orders and users
 Order.belongsTo(User)
 User.hasMany(Order)
@@ -27,7 +19,11 @@ User.hasMany(Order)
 Product.belongsTo(Category)
 Category.hasMany(Product)
 
-// define many-to-many association between orders and products using LineItem and through table
+// define many-to-many association between users and products using Review through table
+User.belongsToMany(Product, {through: Review})
+Product.belongsToMany(User, {through: Review})
+
+// define many-to-many association between orders and products using LineItem through table
 Order.belongsToMany(Product, {through: LineItem})
 Product.belongsToMany(Order, {through: LineItem})
 
@@ -42,5 +38,6 @@ module.exports = {
   Product,
   Review,
   Order,
-  LineItem
+  LineItem,
+  Category
 }

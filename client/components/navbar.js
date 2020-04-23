@@ -8,7 +8,6 @@ import ProductList from './ProductList'
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
     <h1>COVID-19 STORE</h1>
-    {/* <Router> */}
     <nav>
       {isLoggedIn ? (
         <div>
@@ -26,20 +25,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </div>
       )}
     </nav>
-    {/* <main>
-				<Switch>
-					<Route exact path='/'>
-						Welcome to the COVID-19 Store
-					</Route>{' '}
-					/>
-					 <Route exact path="/products" component={ProductList} />
-					<Route>
-						<h2>Page Not Found</h2>
-					</Route>
-				</Switch>
-			</main> */}
+
     <hr />
-    {/* </Router> */}
   </div>
 )
 

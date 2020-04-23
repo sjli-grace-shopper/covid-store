@@ -1,7 +1,7 @@
 // Add To Cart Button component
 import React, {useState, useEffect, Fragment} from 'react'
-import {connect} from 'react-redux'
-import {Link, withRouter} from 'react-router-dom'
+import {connect, useDispatch, useSelector} from 'react-redux'
+import {Link} from 'react-router-dom'
 import Rating from '@material-ui/lab/Rating'
 import {makeStyles} from '@material-ui/core/styles'
 import axios from 'axios'
@@ -21,24 +21,38 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export const SingleProduct = props => {
-  const {user, getProducts, productList} = props
+  const classes = useStyles()
+
+  const user = useSelector(state => state.user)
+  const productList = useSelector(state => state.products.productList)
+
+  const dispatch = useDispatch()
+  const getProducts = () => {
+    dispatch(fetchProducts())
+  }
+
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const fetchData = async () => {
-      await getProducts()
-      if (Object.keys(productList).length > 0) {
-        setProducts(productList)
-        setIsLoading(false)
-      }
-    }
-    fetchData()
+    getProducts()
   }, [])
+  if (!user) {
+    console.log('OR user is not logged in')
+  }
+  if (!productList) {
+    console.log('productList is loading')
+  }
 
-  const classes = useStyles()
-  // const rating = product.reviews.length ? product.reviews.reduce((a, c) => a + c) / product.reviews.length : 0;
-  // console.log('RATING', rating);
+  const product = products.find(
+    product => product.id === props.match.params.productId
+  )
+
+  const rating = product.reviews.length
+    ? product.reviews.reduce((a, c) => a + c) / product.reviews.length
+    : 0
+  console.log('RATING', rating)
+
   if (Object.keys(products).length > 0)
     return (
       <Fragment className="single-product">
@@ -77,18 +91,4 @@ export const SingleProduct = props => {
   else return <div>hello</div>
 }
 
-const mapState = (state, ownProps) => {
-  // 	// const id = +ownProps.match.params.productId;
-  // 	// const getProduct = state.products.productList.find(product => product.id === id);
-  return {
-    productList: state.products.productList,
-    // 		product: getProduct,
-    user: state.user
-  }
-}
-
-const mapDispatch = dispatch => ({
-  getProducts: () => dispatch(fetchProducts())
-})
-
-export default withRouter(connect(mapState, mapDispatch)(SingleProduct))
+export default SingleProduct

@@ -12,6 +12,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:productId', async (req, res, next) => {
+  try {
+    const product = await Product.findByPk(req.params.productId, {
+      include: [{model: Review, include: [User]}]
+    })
+    res.json(product)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const {name, description, price, imageUrl, quantity} = req.body

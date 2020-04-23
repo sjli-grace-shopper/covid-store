@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import ProductList from './ProductList'
+import ProductForm from './ProductForm'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>

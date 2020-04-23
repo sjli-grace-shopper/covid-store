@@ -4,35 +4,40 @@ const users = [
     lastName: 'Hekkert',
     address: '34362 Orin Way',
     email: 'rhekkert0@dot.gov',
-    password: 'rLJzu3VBG'
+    password: 'rLJzu3VBG',
+    isAdmin: true
   },
   {
     firstName: 'Mike',
     lastName: 'Juett',
     address: '8911 Sauthoff Trail',
     email: 'mjuett1@wix.com',
-    password: 'PI3QGcUz'
+    password: 'PI3QGcUz',
+    isAdmin: true
   },
   {
     firstName: 'Viki',
     lastName: 'Burburough',
     address: '09 Arkansas Plaza',
     email: 'vburburough2@archive.org',
-    password: 'Wt7PRg'
+    password: 'Wt7PRg',
+    isAdmin: true
   },
   {
     firstName: 'Boyce',
     lastName: 'Eldershaw',
     address: '7861 Dunning Crossing',
     email: 'beldershaw3@networkadvertising.org',
-    password: 'PPzWeUXsr0U'
+    password: 'PPzWeUXsr0U',
+    isAdmin: true
   },
   {
     firstName: 'Shaylah',
     lastName: 'Mitten',
     address: '3595 Donald Center',
     email: 'smitten4@columbia.edu',
-    password: 'rhfT343dQq'
+    password: 'rhfT343dQq',
+    isAdmin: true
   },
   {
     firstName: 'Winthrop',

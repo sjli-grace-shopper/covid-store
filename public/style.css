@@ -20,6 +20,10 @@ form div {
   display: inline-block;
 }
 
+#cart-content {
+  display: flex;
+  flex-direction: row;
+}
 /* ----- SINGLE PRODUCT ----- */
 
 div.single-product {

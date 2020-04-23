@@ -7,8 +7,7 @@ const LineItem = db.define('line_item', {
     allowNull: false
   },
   price: {
-    type: Sequelize.DOUBLE,
-    allowNull: false
+    type: Sequelize.DOUBLE
   }
 })
 

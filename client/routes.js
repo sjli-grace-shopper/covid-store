@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
+import {me} from './store'
 import {
   Home,
   Login,
@@ -9,9 +10,9 @@ import {
   ProductList,
   Signup,
   SingleProduct,
-  UserHome
+  UserHome,
+  Cart
 } from './components'
-import {me, fetchAccount} from './store'
 
 /**
  * COMPONENT
@@ -29,6 +30,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/cart" component={Cart} />
         <Route exact path="/products" component={ProductList} />
         <Route
           exact
@@ -66,7 +68,6 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
-      dispatch(fetchAccount())
     }
   }
 }

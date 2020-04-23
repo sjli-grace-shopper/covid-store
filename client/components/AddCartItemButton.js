@@ -9,11 +9,7 @@ import {addCartItem, editCart} from '../store/reducers/cartReducer'
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    '& > *': {
-      margin: theme.spacing(1)
-    }
+    flexDirection: 'row'
   },
   minusBtn: {
     flex: 0.5
@@ -36,7 +32,7 @@ const AddCartItemButton = props => {
   }
 
   const handleDecreaseQty = () => {
-    setPurchaseQty(purchaseQty - 1)
+    if (purchaseQty > 0) setPurchaseQty(purchaseQty - 1)
   }
 
   const handleAddItems = evt => {
@@ -55,16 +51,28 @@ const AddCartItemButton = props => {
 
   return (
     <div className={classes.root}>
-      <ButtonGroup color="primary" aria-label="outlined primary button group">
-        <Button onClick={handleDecreaseQty} className={classes.minusBtn}>
+      <ButtonGroup aria-label="outlined primary button group">
+        <Button
+          onClick={handleDecreaseQty}
+          className={`${classes.minusBtn} num-button`}
+        >
           -
         </Button>
         <Button className={classes.numBtn}>{purchaseQty}</Button>
-        <Button onClick={handleIncreaseQty} className={classes.plusBtn}>
+        <Button
+          onClick={handleIncreaseQty}
+          className={`${classes.plusBtn} num-button`}
+        >
           +
         </Button>
       </ButtonGroup>
-      <Button onClick={handleIncreaseQty}>ADD TO CART</Button>
+      <Button
+        className="add-button"
+        variant="outlined"
+        onClick={handleIncreaseQty}
+      >
+        Add to Cart
+      </Button>
     </div>
   )
 }

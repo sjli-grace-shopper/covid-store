@@ -22,13 +22,12 @@ const handleClick = evt => {
 const Breadcrumbs = props => {
   const {product} = props
   const classes = useStyles()
-
   if (product.id)
     return (
       <div className={classes.root}>
         <MUIBreadcrumbs separator="›" aria-label="breadcrumb">
-          <Link onClick={() => handleClick('home')}>Home</Link>
-          <Link onClick={() => handleClick('products')}>Products</Link>
+          <a onClick={() => handleClick('home')}>Home</a>
+          <a onClick={() => handleClick('products')}>Products</a>
           <Typography>{product.name}</Typography>
         </MUIBreadcrumbs>
       </div>

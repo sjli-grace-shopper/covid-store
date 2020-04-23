@@ -33,8 +33,8 @@ class Routes extends Component {
         <Route
           exact
           path="/products/:productId"
-          component={SingleProduct}
-          // render={routeProps => <SingleProduct routeProps={routeProps}
+          // component={SingleProduct}
+          render={routeProps => <SingleProduct routeProps={routeProps} />}
         />
         <Route exact path="/" component={Home} />
         {isLoggedIn && (

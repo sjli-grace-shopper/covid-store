@@ -1,4 +1,6 @@
 import React, {Fragment} from 'react'
+import {Link} from 'react-router-dom'
+
 import Rating from '@material-ui/lab/Rating'
 import {makeStyles} from '@material-ui/core/styles'
 
@@ -19,7 +21,7 @@ const ReviewList = props => {
   const classes = useStyles()
 
   return (
-    <Fragment className="review-list">
+    <div className="review-list">
       <div className="review-list-row-1">
         <div className="review-list-row-1-left">
           <p>REVIEWS</p>
@@ -37,14 +39,15 @@ const ReviewList = props => {
           </p>
         </div>
         <div className="review-list-row-1-right">
-          <Link>Write a review</Link>
+          <Link to="/">Write a review</Link>
         </div>
       </div>
       <div className="review-list-row-2">
-        product.reviews.map(review =>{' '}
-        <ProductReview key={review.id} review={review} />)
+        {product.reviews.map(review => (
+          <ProductReview key={review.id} review={review} />
+        ))}
       </div>
-    </Fragment>
+    </div>
   )
 }
 

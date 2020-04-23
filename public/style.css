@@ -24,3 +24,99 @@ form div {
   display: flex;
   flex-direction: row;
 }
+/* ----- SINGLE PRODUCT ----- */
+
+div.single-product {
+  display: flex;
+  flex-direction: row;
+}
+
+div.single-product-row-1 {
+  flex-direction: row;
+}
+
+div.single-product-row-2 {
+  flex-direction: row;
+}
+
+div.single-product-row-2-left {
+  align-items: center;
+}
+
+div.single-product-row-2-right {
+  flex-direction: column;
+}
+
+div.single-product-row-2-right > * {
+  margin: 1em 0;
+}
+
+div.single-product-row-2-left {
+  flex: 50%;
+}
+
+div.single-product-row-2-right {
+  flex: 50%;
+}
+
+div.div.single-product-row-3 {
+  flex-direction: column;
+}
+
+/* ----- REVIEW LIST ----- */
+
+div.review-list {
+  display: flex;
+  flex-direction: column;
+}
+
+div.review-list-row-1 {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+div.review-list-row-1-left {
+  align-items: center;
+}
+
+div.review-list-row-1-right {
+  align-items: center;
+}
+
+div.review-list-row-2 {
+  flex-direction: column;
+}
+
+/* ----- PRODUCT REVIEW ----- */
+
+div.product-review {
+  flex-direction: row;
+}
+
+div.product-review-left {
+  flex-direction: column;
+  flex: 25%;
+}
+
+div.product-review-right {
+  flex-direction: column;
+  flex: 75%;
+}
+
+div.product-review-left-row-1,
+div.product-review-left-row-2 {
+  align-content: flex-start;
+}
+
+div.product-review-right-row-1,
+div.product-review-right-row-2 {
+  align-content: flex-start;
+}
+
+/* ----- NOT FOUND ----- */
+div.not-found {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  padding: 1em;
+}

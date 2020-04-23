@@ -1,8 +1,7 @@
 // DeleteCartItemButton component
 // mapDispatch - dispatch(editCart())
 
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React from 'react'
 
 export default function CartItem(props) {
   return (

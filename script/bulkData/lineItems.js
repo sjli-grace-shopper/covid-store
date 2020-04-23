@@ -6,6 +6,7 @@ const lineItems = [
   {quantity: 8, price: 27.41, productId: 192, orderId: 5},
   {quantity: 16, price: 49.95, productId: 77, orderId: 6},
   {quantity: 9, price: 38.98, productId: 68, orderId: 7},
+  {quantity: 3, price: 3.98, productId: 67, orderId: 7},
   {quantity: 13, price: 20.87, productId: 194, orderId: 8},
   {quantity: 11, price: 42.3, productId: 156, orderId: 9},
   {quantity: 15, price: 12.47, productId: 40, orderId: 10},

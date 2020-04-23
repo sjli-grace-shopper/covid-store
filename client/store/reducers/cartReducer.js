@@ -25,14 +25,14 @@ export const getCart = cart => ({
   cart
 })
 
-export const addToCart = item => ({
+export const addToCart = newCart => ({
   type: ADD_TO_CART,
-  item
+  newCart
 })
 
-export const updateCart = item => ({
+export const updateCart = newCart => ({
   type: UPDATE_CART,
-  item
+  newCart
 })
 
 export const deleteCartItem = id => ({
@@ -56,28 +56,29 @@ export const fetchCart = () => async dispatch => {
   }
 }
 
-export const addCartItem = item => async dispatch => {
+export const addCartItem = productData => async dispatch => {
   try {
-    const {data} = await axios.post('/api/cart', item)
+    const {data} = await axios.post('/api/cart', productData)
+    console.log('YES', data)
     dispatch(addToCart(data))
   } catch (err) {
     console.error('Error adding cart item: ', err)
   }
 }
 
-export const editCart = item => async dispatch => {
+export const editCart = changeData => async dispatch => {
   try {
-    const {data} = await axios.put('/api/cart', item)
+    const {data} = await axios.put('/api/cart', changeData)
     dispatch(updateCart(data))
   } catch (err) {
     console.error('Error updating cart: ', err)
   }
 }
 
-export const removeCartItem = id => async dispatch => {
+export const removeCartItem = productId => async dispatch => {
   try {
-    await axios.delete(`/api/cart/${id}`)
-    dispatch(deleteCartItem(id))
+    await axios.delete(`/api/cart/${productId}`)
+    dispatch(deleteCartItem(productId))
   } catch (err) {
     console.error('Error removing cart item: ', err)
   }
@@ -94,19 +95,21 @@ export default function cartReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: true,
-        cart: {...state.cart, products: [...state.cart.products, action.item]}
+        cart: action.newCart
+        // cart: {...state.cart, products: [...state.cart.products, action.item]},
       }
     case UPDATE_CART:
-      return {
-        ...state,
-        isFetching: true,
-        cart: {
-          ...state.cart,
-          products: state.cart.products.map(product => {
-            return product.id === action.item.id ? action.item : product
-          })
-        }
-      }
+      return {...state, isFetching: true, cart: action.newCart}
+    // return {
+    //   ...state,
+    //   isFetching: true,
+    //   cart: {
+    //     ...state.cart,
+    //     products: state.cart.products.map((product) => {
+    //       return product.id === action.item.id ? action.item : product
+    //     }),
+    //   },
+    // }
     case DELETE_CART_ITEM:
       return {
         ...state,

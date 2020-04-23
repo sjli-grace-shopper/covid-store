@@ -1,94 +1,78 @@
-// Add To Cart Button component
-import React, {useState, useEffect, Fragment} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect, useDispatch, useSelector} from 'react-redux'
-import {Link} from 'react-router-dom'
-import Rating from '@material-ui/lab/Rating'
-import {makeStyles} from '@material-ui/core/styles'
-import axios from 'axios'
+import {Link, withRouter} from 'react-router-dom'
 
-import {AddCartItemButton, Breadcrumbs, ReviewList} from '.'
-// import { getProducts } from '../store/reducers/productReducer';
+import {AddCartItemButton, Breadcrumbs, ReviewList, Ratings} from '.'
 import {fetchProducts} from '../store'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    '& > * + *': {
-      marginTop: theme.spacing(1)
-    }
-  }
-}))
-
-export const SingleProduct = props => {
-  const classes = useStyles()
-
-  const user = useSelector(state => state.user)
-  const productList = useSelector(state => state.products.productList)
-
-  const dispatch = useDispatch()
-  const getProducts = () => {
-    dispatch(fetchProducts())
+class SingleProduct extends Component {
+  componentDidMount() {
+    this.props.getProducts()
   }
 
-  const [products, setProducts] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  render() {
+    console.log('ISD', this.props.id)
 
-  useEffect(() => {
-    getProducts()
-  }, [])
-  if (!user) {
-    console.log('OR user is not logged in')
-  }
-  if (!productList) {
-    console.log('productList is loading')
-  }
+    const {product} = this.props
+    const rating = 5
+    // const rating = product.reviews.length
+    // 	? product.reviews.reduce((a, c) => {
+    // 			return a + c;
+    // 		}, 0) / product.reviews.length
+    // 	: 0;
 
-  const product = products.find(
-    product => product.id === props.match.params.productId
-  )
+    console.log('PRODUCT', this.props.product)
 
-  const rating = product.reviews.length
-    ? product.reviews.reduce((a, c) => a + c) / product.reviews.length
-    : 0
-  console.log('RATING', rating)
-
-  if (Object.keys(products).length > 0)
-    return (
-      <Fragment className="single-product">
-        <div className={`${classes.root} single-product-row-1`}>
-          <Breadcrumbs />
-        </div>
-        <div className="single-product-row-2">
-          <div className="single-product-row-2-left">{product.image}</div>
-          <div className="single-product-row-2-right">
-            <div className="single-product-row-2-right-row-1">
-              {product.name}
+    if (product)
+      return (
+        <Fragment>
+          <div className="single-product">
+            <div className="single-product-row-1">
+              <Breadcrumbs product={product} />
             </div>
-            <div className="single-product-row-2-right-row-2">
-              <div className={classes.root}>
-                <Rating
-                  name="half-rating-read"
-                  value={rating}
-                  precision={0.5}
-                  readOnly
-                />
+            <div className="single-product-row-2">
+              <div className="single-product-row-2-left">
+                <img src={product.imageUrl} />
+              </div>
+              <div className="single-product-row-2-right">
+                <div className="single-product-row-2-right-row-1">
+                  {product.name}
+                </div>
+                <div className="single-product-row-2-right-row-2">
+                  <Ratings product={product} rating={rating} />
+                </div>
+                <div className="single-product-row-2-right-row-3">
+                  <AddCartItemButton />
+                </div>
+                <div className="single-product-row-2-right-row-4">
+                  {product.description}
+                </div>
               </div>
             </div>
-            <div className="single-product-row-2-right-row-3">
-              <AddCartItemButton />
-            </div>
-            <div className="single-product-row-2-right-row-4">
-              {product.description}
+            <div className="single-product-row-3">
+              <ReviewList rating={rating} product={product} />
             </div>
           </div>
-        </div>
-        <div className="single-product-row-3">
-          <ReviewList rating={rating} product={product} />
-        </div>
-      </Fragment>
-    )
-  else return <div>hello</div>
+        </Fragment>
+      )
+    else return null
+  }
 }
 
-export default SingleProduct
+const mapState = (state, ownProps) => {
+  const id = +ownProps.match.params.productId
+  const getProducts = state.products.productList.find(
+    product => product.id === id
+  )
+  return {
+    id: id,
+    product: getProducts,
+    products: state.products.productList
+  }
+}
+
+const mapDispatch = dispatch => ({
+  getProducts: () => dispatch(fetchProducts())
+})
+
+export default withRouter(connect(mapState, mapDispatch)(SingleProduct))

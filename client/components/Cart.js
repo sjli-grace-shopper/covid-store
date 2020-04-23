@@ -89,7 +89,12 @@ class Cart extends React.Component {
             </div>
           </div>
         ) : (
-          <h3>Cart Is Empty</h3>
+          <div>
+            <h3>Cart Is Empty</h3>
+            <button type="button" onClick={this.addProduct}>
+              Add Random Item
+            </button>
+          </div>
         )}
       </div>
     )

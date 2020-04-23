@@ -5,6 +5,8 @@ const {Category, LineItem, Order, Product} = require('../db/models')
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
+      // CHECK IF THERE IS A CART IN THE SESSION
+      // transfer session cart to db and then remove cart from session
       const cart = await Order.findOne({
         where: {userId: req.user.id, status: 'IN_CART'},
         attributes: ['id', 'status'],
@@ -46,15 +48,20 @@ router.post('/', async (req, res, next) => {
 
       // const cartObj = Object.assign({lineItem}, product)
       // res.json(cartObj)
-    } else {
-      const lineItem = {
-        quantity: purchaseQty,
-        productId: product.id
+    } else if (req.session.cart !== undefined) {
+      const productToAdd = await Product.findByPk(productId)
+
+      productToAdd.dataValues.line_item = {quantity: quantity}
+
+      if (req.session.cart === undefined) {
+        req.session.cart = {products: [productToAdd]}
+      } else {
+        req.session.cart.products.push(productToAdd)
       }
 
-      const cartObj = Object.assign({lineItem}, product)
-      req.session.cart.products.push(cartObj)
-      res.json(cartObj)
+      res.json(req.session.cart)
+    } else {
+      res.sendStatus(500)
     }
   } catch (err) {
     next(err)
@@ -86,18 +93,15 @@ router.put('/', async (req, res, next) => {
         include: [{model: Product}]
       })
       res.json(newCart)
-    } else {
-      const lineItem = {
-        quantity: purchaseQty,
-        productId: product.id
-      }
-      const cartObj = Object.assign({lineItem}, product)
-
-      const filteredCart = req.session.cart.products.filter(
-        item => item.id !== product.id
+    } else if (req.session.cart !== undefined) {
+      // verify user has a session and cart
+      let productToChange = req.session.cart.products.find(
+        product => product.id === productId
       )
-      req.session.cart.products = [...filteredCart, cartObj]
-      res.json(cartObj)
+      productToChange.line_item.quantity = quantity
+      res.json(req.session.cart)
+    } else {
+      res.sendStatus(500)
     }
   } catch (err) {
     next(err)
@@ -115,12 +119,13 @@ router.delete('/:productId', async (req, res, next) => {
         where: {orderId: order.id, productId: req.params.productId}
       })
       res.sendStatus(204).end()
-    } else {
-      const productId = req.params.id
+    } else if (req.session.cart !== undefined) {
       req.session.cart.products = req.session.cart.products.filter(
-        product => product.id !== productId
+        product => product.id !== parseInt(req.params.productId, 10)
       )
       res.sendStatus(204).end()
+    } else {
+      res.sendStatus(500)
     }
   } catch (err) {
     next(err)

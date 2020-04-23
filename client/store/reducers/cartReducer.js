@@ -25,9 +25,9 @@ export const getCart = cart => ({
   cart
 })
 
-export const addToCart = item => ({
+export const addToCart = newCart => ({
   type: ADD_TO_CART,
-  item
+  newCart
 })
 
 export const updateCart = newCart => ({
@@ -56,18 +56,18 @@ export const fetchCart = () => async dispatch => {
   }
 }
 
-export const addCartItem = item => async dispatch => {
+export const addCartItem = productData => async dispatch => {
   try {
-    const {data} = await axios.post('/api/cart', item)
+    const {data} = await axios.post('/api/cart', productData)
     dispatch(addToCart(data))
   } catch (err) {
     console.error('Error adding cart item: ', err)
   }
 }
 
-export const editCart = item => async dispatch => {
+export const editCart = changeData => async dispatch => {
   try {
-    const {data} = await axios.put('/api/cart', item)
+    const {data} = await axios.put('/api/cart', changeData)
     dispatch(updateCart(data))
   } catch (err) {
     console.error('Error updating cart: ', err)
@@ -94,7 +94,8 @@ export default function cartReducer(state = initialState, action) {
       return {
         ...state,
         isFetching: true,
-        cart: {...state.cart, products: [...state.cart.products, action.item]}
+        cart: action.newCart
+        // cart: {...state.cart, products: [...state.cart.products, action.item]},
       }
     case UPDATE_CART:
       return {...state, isFetching: true, cart: action.newCart}

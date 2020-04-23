@@ -7,7 +7,8 @@ import {connect} from 'react-redux'
 import {
   fetchCart,
   editCart,
-  removeCartItem
+  removeCartItem,
+  addCartItem
 } from '../store/reducers/cartReducer'
 import CartItem from './CartItem'
 
@@ -17,6 +18,7 @@ class Cart extends React.Component {
     this.decrementQty = this.decrementQty.bind(this)
     this.incrementQty = this.incrementQty.bind(this)
     this.deleteProduct = this.deleteProduct.bind(this)
+    this.addProduct = this.addProduct.bind(this)
   }
 
   componentDidMount() {
@@ -42,6 +44,13 @@ class Cart extends React.Component {
 
   deleteProduct(product) {
     this.props.deleteProduct(product.id)
+  }
+
+  addProduct() {
+    this.props.addProduct({
+      quantity: Math.ceil(Math.random() * 20),
+      productId: Math.ceil(Math.random() * 400)
+    })
   }
 
   render() {
@@ -74,6 +83,9 @@ class Cart extends React.Component {
                   .toFixed(2)}
               </h3>
               <button type="button">Checkout</button>
+              <button type="button" onClick={this.addProduct}>
+                Add Random Item
+              </button>
             </div>
           </div>
         ) : (
@@ -92,8 +104,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCart: () => dispatch(fetchCart()),
-    editCart: newProduct => dispatch(editCart(newProduct)),
-    deleteProduct: productId => dispatch(removeCartItem(productId))
+    editCart: changeData => dispatch(editCart(changeData)),
+    deleteProduct: productId => dispatch(removeCartItem(productId)),
+    addProduct: productData => dispatch(addCartItem(productData))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

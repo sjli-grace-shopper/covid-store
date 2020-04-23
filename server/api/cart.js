@@ -22,21 +22,30 @@ router.get('/', async (req, res, next) => {
 // POST /api/cart
 router.post('/', async (req, res, next) => {
   try {
-    const {purchaseQty, product} = req.body
+    const {quantity, productId} = req.body
 
     if (req.user) {
       const order = await Order.findOne({
         where: {userId: req.user.id, status: 'IN_CART'}
       })
 
-      const lineItem = {
-        quantity: purchaseQty,
+      const newLineItem = {
+        quantity: quantity,
         orderId: order.id,
-        productId: product.id
+        productId: productId
       }
 
-      const cartObj = Object.assign({lineItem}, product)
-      res.json(cartObj)
+      await LineItem.create(newLineItem)
+
+      const newCart = await Order.findOne({
+        where: {userId: req.user.id, status: 'IN_CART'},
+        attributes: ['id', 'status'],
+        include: [{model: Product}]
+      })
+      res.json(newCart)
+
+      // const cartObj = Object.assign({lineItem}, product)
+      // res.json(cartObj)
     } else {
       const lineItem = {
         quantity: purchaseQty,

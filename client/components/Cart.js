@@ -5,6 +5,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchCart} from '../store/reducers/cartReducer'
+import CartItem from './CartItem'
 
 class Cart extends React.Component {
   componentDidMount() {
@@ -15,7 +16,21 @@ class Cart extends React.Component {
     console.log(this.props.cart)
     return (
       <div className="cart">
-        <p>THIS IS A TEST</p>
+        <div>SHOPPING CART</div>
+        <div id="cart-content">
+          <div id="cart-items">
+            {this.props.cart.products ? (
+              this.props.cart.products.map(product => {
+                return <CartItem key={product.id} product={product} />
+              })
+            ) : (
+              <h3>Cart Is Empty</h3>
+            )}
+          </div>
+          <div id="cart-checkout">
+            <h3>subtotal</h3>
+          </div>
+        </div>
       </div>
     )
   }

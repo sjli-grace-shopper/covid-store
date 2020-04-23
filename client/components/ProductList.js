@@ -11,6 +11,7 @@ class ProductList extends React.Component {
   }
 
   render() {
+    console.log('PROPS', this.props)
     return (
       <div className="productList">
         {this.props.products.map(product => {

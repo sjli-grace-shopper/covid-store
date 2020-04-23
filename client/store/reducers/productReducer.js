@@ -26,7 +26,12 @@ export const getProducts = products => {
     products
   }
 }
-export const createProduct = () => {}
+export const createProduct = product => {
+  return {
+    type: CREATE_PRODUCT,
+    product
+  }
+}
 export const updateProduct = () => {}
 export const createReview = () => {}
 
@@ -44,7 +49,17 @@ export function fetchProducts() {
   }
 }
 
-export const addProduct = () => async dispatch => {}
+export function addProduct(product) {
+  return async dispatch => {
+    try {
+      const {data} = await axios.post('/api/products', product)
+      dispatch(createProduct(data))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 export const editProduct = () => async dispatch => {}
 export const addReview = () => async dispatch => {}
 
@@ -55,6 +70,8 @@ export default function productReducer(state = initialState, action) {
   switch (action.type) {
     case GET_PRODUCTS:
       return {...state, productList: action.products, isFetching: true}
+    case CREATE_PRODUCT:
+      return {...state, productList: action.product, isFetching: false}
     default:
       return state
   }

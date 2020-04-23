@@ -30,9 +30,9 @@ export const addToCart = item => ({
   item
 })
 
-export const updateCart = item => ({
+export const updateCart = newCart => ({
   type: UPDATE_CART,
-  item
+  newCart
 })
 
 export const deleteCartItem = id => ({
@@ -97,16 +97,17 @@ export default function cartReducer(state = initialState, action) {
         cart: {...state.cart, products: [...state.cart.products, action.item]}
       }
     case UPDATE_CART:
-      return {
-        ...state,
-        isFetching: true,
-        cart: {
-          ...state.cart,
-          products: state.cart.products.map(product => {
-            return product.id === action.item.id ? action.item : product
-          })
-        }
-      }
+      return {...state, isFetching: true, cart: action.newCart}
+    // return {
+    //   ...state,
+    //   isFetching: true,
+    //   cart: {
+    //     ...state.cart,
+    //     products: state.cart.products.map((product) => {
+    //       return product.id === action.item.id ? action.item : product
+    //     }),
+    //   },
+    // }
     case DELETE_CART_ITEM:
       return {
         ...state,

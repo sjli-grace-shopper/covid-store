@@ -7,6 +7,7 @@ router.get('/', async (req, res, next) => {
     if (req.user) {
       const cart = await Order.findOne({
         where: {userId: req.user.id, status: 'IN_CART'},
+        attributes: ['id', 'status'],
         include: [{model: Product}]
       })
       res.json(cart)
@@ -53,8 +54,9 @@ router.post('/', async (req, res, next) => {
 
 // PUT /api/cart
 router.put('/', async (req, res, next) => {
+  console.log('HERE', req.body)
   try {
-    const {purchaseQty, product} = req.body
+    const {quantity, productId} = req.body
 
     if (req.user) {
       const order = await Order.findOne({
@@ -63,15 +65,19 @@ router.put('/', async (req, res, next) => {
 
       const updatedLineItem = await LineItem.update(
         {
-          quantity: purchaseQty
+          quantity: quantity
         },
         {
-          where: {orderId: order.id, productId: product.id}
+          where: {orderId: order.id, productId: productId}
         }
       )
 
-      const cartObj = Object.assign({lineItem: updatedLineItem}, product)
-      res.json(cartObj)
+      const newCart = await Order.findOne({
+        where: {userId: req.user.id, status: 'IN_CART'},
+        attributes: ['id', 'status'],
+        include: [{model: Product}]
+      })
+      res.json(newCart)
     } else {
       const lineItem = {
         quantity: purchaseQty,

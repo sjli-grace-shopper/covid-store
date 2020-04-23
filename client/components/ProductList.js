@@ -5,13 +5,6 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/reducers/productReducer'
 import {makeStyles} from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  }
-}))
 
 class ProductList extends React.Component {
   componentDidMount() {

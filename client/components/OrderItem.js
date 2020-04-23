@@ -9,9 +9,9 @@ export default class OrderItem extends React.Component {
   }
   async componentDidMount() {
     const {data} = await axios.get(
-      `/api/orders/history/${this.props.match.params.orderId}`
+      `/api/orders/history/${this.props.match.params.id}`
     )
-    this.setState({products: data})
+    this.setState({products: data[0].products})
   }
   render() {
     console.log(this.state.products)

@@ -48,7 +48,7 @@ router.post('/', async (req, res, next) => {
 
       // const cartObj = Object.assign({lineItem}, product)
       // res.json(cartObj)
-    } else if (req.session.cart !== undefined) {
+    } else if (req.session !== undefined) {
       const productToAdd = await Product.findByPk(productId)
 
       productToAdd.dataValues.line_item = {quantity: quantity}

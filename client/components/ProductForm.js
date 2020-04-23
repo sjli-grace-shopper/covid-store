@@ -34,11 +34,12 @@ class ProductForm extends React.Component {
     return (
       <div id="container">
         <h4>New Product Form:</h4>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="productForm">
           <label className="column" htmlFor="name">
             Name:
           </label>
           <input
+            className="productForm name"
             type="text"
             name="name"
             value={this.state.name}
@@ -49,53 +50,57 @@ class ProductForm extends React.Component {
             Description:
           </label>
           <input
+            className="productForm description"
             type="text"
             name="description"
             value={this.state.description}
             onChange={this.handleChange}
           />
           <br />
-          <label className="column" htmlFor="price">
-            price:
-          </label>
-          <input
-            type="double"
-            name="price"
-            value={this.state.price}
-            onChange={this.handleChange}
-          />
-          <br />
-          <label className="column" htmlFor="imageUrl">
-            Image Url:
-          </label>
-          <input
-            type="text"
-            name="imageUrl"
-            value={this.state.imageUrl}
-            onChange={this.handleChange}
-          />
-          <br />
-          <label className="column" htmlFor="quantity">
-            Quantity:
-          </label>
-          <input
-            type="integer"
-            name="quantity"
-            value={this.state.quantity}
-            onChange={this.handleChange}
-          />
-          <br />
-          <label className="column" htmlFor="category">
-            Category Number:
-          </label>
-          <input
-            type="integer"
-            name="category"
-            value={this.state.category}
-            onChange={this.handleChange}
-          />
-          <br />
-          <br />
+          <div className="productForm-row-1">
+            <label className="column" htmlFor="price">
+              price:
+            </label>
+            <input
+              className="productForm price"
+              type="double"
+              name="price"
+              value={this.state.price}
+              onChange={this.handleChange}
+            />
+            <label className="column" htmlFor="imageUrl">
+              Image Url:
+            </label>
+            <input
+              className="productForm imgUrl"
+              type="text"
+              name="imageUrl"
+              value={this.state.imageUrl}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="productForm-row-2">
+            <label className="column" htmlFor="quantity">
+              Quantity:
+            </label>
+            <input
+              className="productForm quantity"
+              type="integer"
+              name="quantity"
+              value={this.state.quantity}
+              onChange={this.handleChange}
+            />
+            <label className="column" htmlFor="category">
+              Category Number:
+            </label>
+            <input
+              className="productForm category"
+              type="integer"
+              name="category"
+              value={this.state.category}
+              onChange={this.handleChange}
+            />
+          </div>
           <input type="submit" value="Submit" />
           <br />
           <br />

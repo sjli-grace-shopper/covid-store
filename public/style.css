@@ -210,3 +210,34 @@ div.not-found {
   margin: 1em;
   padding: 1em;
 }
+/* all products */
+div.productList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+div.productList-product {
+  flex: 30%;
+}
+img.product-img {
+  width: 90%;
+  max-height: auto;
+}
+/* Form */
+form.productForm {
+  display: flex;
+  margin: 1em;
+  flex-direction: column;
+}
+div.productForm-row-1 {
+  flex-direction: row;
+}
+div.productForm-row-2 {
+  flex-direction: row;
+}
+div.productForm.price {
+  flex: 30%;
+}
+div.productForm.imgUrl {
+  flex: 60%;
+}

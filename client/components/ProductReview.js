@@ -24,9 +24,7 @@ const ProductReview = props => {
   return (
     <div className="product-review">
       <div className="product-review-left">
-        <div className="product-review-left-row-1">{`${user.firstName} ${
-          user.lastName[0]
-        }`}</div>
+        <div className="product-review-left-row-1">{`${user.firstName} ${user.lastName[0]}`}</div>
         <div className="product-review-left-row-2">{dateAdded}</div>
       </div>
       <div className="product-review-right">

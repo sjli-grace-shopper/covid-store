@@ -4,7 +4,11 @@
 
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, editCart} from '../store/reducers/cartReducer'
+import {
+  fetchCart,
+  editCart,
+  removeCartItem
+} from '../store/reducers/cartReducer'
 import CartItem from './CartItem'
 
 class Cart extends React.Component {
@@ -12,6 +16,7 @@ class Cart extends React.Component {
     super()
     this.decrementQty = this.decrementQty.bind(this)
     this.incrementQty = this.incrementQty.bind(this)
+    this.deleteProduct = this.deleteProduct.bind(this)
   }
 
   componentDidMount() {
@@ -35,8 +40,11 @@ class Cart extends React.Component {
     })
   }
 
+  deleteProduct(product) {
+    this.props.deleteProduct(product.id)
+  }
+
   render() {
-    console.log(this.props)
     return (
       <div className="cart">
         <h1>SHOPPING CART</h1>
@@ -51,6 +59,7 @@ class Cart extends React.Component {
                     product={product}
                     decrement={this.decrementQty}
                     increment={this.incrementQty}
+                    delete={this.deleteProduct}
                   />
                 )
               })}
@@ -83,7 +92,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCart: () => dispatch(fetchCart()),
-    editCart: newProduct => dispatch(editCart(newProduct))
+    editCart: newProduct => dispatch(editCart(newProduct)),
+    deleteProduct: productId => dispatch(removeCartItem(productId))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

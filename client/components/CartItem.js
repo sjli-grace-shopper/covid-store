@@ -17,6 +17,9 @@ export default function CartItem(props) {
       <button type="button" onClick={() => props.decrement(props.product)}>
         decrement
       </button>
+      <button type="button" onClick={() => props.delete(props.product)}>
+        delete
+      </button>
     </div>
   )
 }

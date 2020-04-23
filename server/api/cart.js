@@ -54,7 +54,6 @@ router.post('/', async (req, res, next) => {
 
 // PUT /api/cart
 router.put('/', async (req, res, next) => {
-  console.log('HERE', req.body)
   try {
     const {quantity, productId} = req.body
 
@@ -63,7 +62,7 @@ router.put('/', async (req, res, next) => {
         where: {userId: req.user.id, status: 'IN_CART'}
       })
 
-      const updatedLineItem = await LineItem.update(
+      await LineItem.update(
         {
           quantity: quantity
         },
@@ -97,14 +96,14 @@ router.put('/', async (req, res, next) => {
 })
 
 // DELETE /api/cart/:cartId
-router.put('/:id', async (req, res, next) => {
+router.delete('/:productId', async (req, res, next) => {
   try {
     if (req.user) {
       const order = await Order.findOne({
         where: {userId: req.user.id, status: 'IN_CART'}
       })
       await LineItem.destroy({
-        where: {orderId: order.id, productId: req.params.id}
+        where: {orderId: order.id, productId: req.params.productId}
       })
       res.sendStatus(204).end()
     } else {

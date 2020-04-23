@@ -74,10 +74,10 @@ export const editCart = item => async dispatch => {
   }
 }
 
-export const removeCartItem = id => async dispatch => {
+export const removeCartItem = productId => async dispatch => {
   try {
-    await axios.delete(`/api/cart/${id}`)
-    dispatch(deleteCartItem(id))
+    await axios.delete(`/api/cart/${productId}`)
+    dispatch(deleteCartItem(productId))
   } catch (err) {
     console.error('Error removing cart item: ', err)
   }

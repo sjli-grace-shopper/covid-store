@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import {logout} from '../store'
 import ProductList from './ProductList'
 import Cart from './Cart'
+import ProductForm from './ProductForm'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
@@ -35,6 +36,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           />
           <Route exact path="/products" component={ProductList} />
           {/* <Route path="/cart" component={Cart} /> */}
+          <Route exact path="/productform" component={ProductForm} />
           <Route>
             <h2>Page Not Found</h2>
           </Route>

@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import {makeStyles} from '@material-ui/core/styles'
-
-import {addCartItem, editCart} from '../store/reducers/cartReducer'
+import {editCart, addCartItem} from '../store/reducers/cartReducer'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,7 +27,7 @@ const AddCartItemButton = props => {
   const classes = useStyles()
 
   const handleIncreaseQty = () => {
-    setPurchaseQty(purchaseQty + 1)
+    if (purchaseQty < product.quantity) setPurchaseQty(purchaseQty + 1)
   }
 
   const handleDecreaseQty = () => {
@@ -41,11 +40,11 @@ const AddCartItemButton = props => {
       cartProduct => cartProduct.id === product.id
     )
     if (!productInCart.length) {
-      addToCart({purchaseQty, product})
+      addToCart({quantity: purchaseQty, productId: product.id})
       setPurchaseQty(1)
     } else {
-      const newQty = productInCart[0].lineItem.quantity + purchaseQty
-      updateCart({purchaseQty: newQty, product})
+      const newQty = productInCart[0].line_item.quantity + purchaseQty
+      updateCart({quantity: newQty, productId: product.id})
     }
   }
 
@@ -69,7 +68,7 @@ const AddCartItemButton = props => {
       <Button
         className="add-button"
         variant="outlined"
-        onClick={handleIncreaseQty}
+        onClick={handleAddItems}
       >
         Add to Cart
       </Button>

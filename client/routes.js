@@ -14,7 +14,9 @@ import {
   Cart,
   OrderItem,
   Order,
-  ProductForm
+  ProductForm,
+  UserProfile,
+  UpdateUser
 } from './components'
 
 /**
@@ -48,6 +50,8 @@ class Routes extends Component {
             <Route exact path="/home" component={UserHome} />
             <Route exact path="/orders" component={Order} />
             <Route path="/orders/:id" component={OrderItem} />
+            <Route exact path="/profile" component={UserProfile} />
+            <Route exact path="/updateprofile" component={UpdateUser} />
             {isAdmin && (
               <Switch>
                 <Route exact path="/productform" component={ProductForm} />

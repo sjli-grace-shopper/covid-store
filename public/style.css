@@ -3,6 +3,31 @@ body {
   margin: 2em;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.25em;
+}
+
+h4 {
+  font-size: 1.125em;
+}
+
 a {
   text-decoration: none;
 }
@@ -10,6 +35,13 @@ a {
 label {
   display: block;
 }
+
+/*
+nav {
+  background-color: #143B4C;
+  color: white;
+}
+*/
 
 nav a {
   display: inline-block;
@@ -84,12 +116,13 @@ div.single-product-row-2-right > * {
   margin: 1em 0;
 }
 
-div.single-product-row-2-right-row-4 > * {
-  font-size: 2.4em;
+div.single-product-row-2-right-row-1 {
+  margin: 0;
 }
 
 div.single-product-row-2-right-row-4 {
-  margin-top: 2em;
+  margin-top: 1.5em;
+  font-size: 1.2em;
 }
 
 div.single-product-row-2-right-row-2 > div.makeStyles-root-36 {
@@ -125,33 +158,38 @@ div.review-list {
 div.review-list-row-1 {
   display: flex;
   flex-direction: row;
+}
+
+div.review-list-row-2 {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
-div.review-list-row-1-left {
+div.review-list-row-2-left {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-div.review-list-row-1-left > div.makeStyles-root-121 {
-  margin: 1em 0.5em 1em 1em;
+div.review-list-row-2-left > div.makeStyles-root-121 {
+  margin: 1em 0.5em 1em 0;
 }
 
-div.review-list-row-1-right {
+div.review-list-row-2-right {
   align-items: center;
   margin: 1.2em 2em 0 0;
 }
 
-div.review-list-row-1-right a {
+div.review-list-row-2-right a {
   color: #277c78;
 }
 
-div.review-list-row-1-right a:hover {
+div.review-list-row-2-right a:hover {
   text-decoration: underline;
 }
 
-div.review-list-row-2 {
+div.review-list-row-3 {
   flex-direction: column;
 }
 
@@ -174,9 +212,9 @@ button.num-button:active {
   background-color: #acacac;
 }
 
-span.MuiRating-decimal {
-  color: #33a49f;
-}
+/* span.MuiRating-decimal {
+  color: #dea852;
+} */
 
 button.add-button {
   background-color: #33a49f;

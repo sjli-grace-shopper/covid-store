@@ -1,12 +1,19 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component, Fragment, createRef} from 'react'
 import {connect, useDispatch, useSelector} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
 
-import {AddCartItemButton, Breadcrumbs, ReviewList, Ratings} from '.'
+import {AddCartItemButton, Breadcrumbs, ReviewList, Rating} from '.'
 import {fetchProducts} from '../store'
 import {fetchCart, editCart, addCartItem} from '../store/reducers/cartReducer'
 
+const scrollToRef = ref => window.scrollTo(0, ref.current.offsetTop)
+
 class SingleProduct extends Component {
+  constructor() {
+    super()
+    this.scrollRef = createRef()
+  }
+
   componentDidMount() {
     this.props.getProducts()
     this.props.getCart()
@@ -14,16 +21,17 @@ class SingleProduct extends Component {
 
   render() {
     const {product} = this.props
-    const rating = 5
-    // const rating = product.reviews.length
-    // 	? product.reviews.reduce((a, c) => {
-    // 			return a + c;
-    // 		}, 0) / product.reviews.length
-    // 	: 0;
+    const executeScroll = () => scrollToRef(this.scrollRef)
 
-    console.log('PRODUCT', this.props)
+    if (product) {
+      const rating = product.reviews.length
+        ? +(
+            product.reviews.reduce((a, c) => {
+              return a + c.rating
+            }, 0) / product.reviews.length
+          )
+        : 0
 
-    if (product)
       return (
         <Fragment>
           <div className="single-product">
@@ -36,10 +44,14 @@ class SingleProduct extends Component {
               </div>
               <div className="single-product-row-2-right">
                 <div className="single-product-row-2-right-row-1">
-                  {product.name}
+                  <h1>{product.name}</h1>
                 </div>
                 <div className="single-product-row-2-right-row-2">
-                  <Ratings product={product} rating={rating} />
+                  <Rating
+                    product={product}
+                    rating={rating}
+                    executeScroll={executeScroll}
+                  />
                 </div>
                 <div className="single-product-row-2-right-row-3">
                   <AddCartItemButton product={product} />
@@ -50,12 +62,16 @@ class SingleProduct extends Component {
               </div>
             </div>
             <div className="single-product-row-3">
-              <ReviewList rating={rating} product={product} />
+              <ReviewList
+                refProp={this.scrollRef}
+                rating={rating}
+                product={product}
+              />
             </div>
           </div>
         </Fragment>
       )
-    else return null
+    } else return null
   }
 }
 

@@ -21,7 +21,7 @@ class SingleProduct extends Component {
     // 		}, 0) / product.reviews.length
     // 	: 0;
 
-    console.log('PRODUCT', this.props.product)
+    console.log('PRODUCT', this.props)
 
     if (product)
       return (

@@ -8,7 +8,7 @@ import Cart from './Cart'
 import ProductForm from './ProductForm'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
+  <div className="nav">
     <h1>COVID-19 STORE</h1>
     <nav>
       {isLoggedIn ? (

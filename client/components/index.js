@@ -25,7 +25,7 @@ export {default as ProductForm} from './ProductForm'
 export {default as ProductList} from './ProductList'
 export {default as ProductReview} from './ProductReview'
 export {default as Products} from './Products'
-export {default as Ratings} from './Rating'
+export {default as Rating} from './Rating'
 
 export {default as ReviewList} from './ReviewList'
 export {default as SingleProduct} from './SingleProduct'

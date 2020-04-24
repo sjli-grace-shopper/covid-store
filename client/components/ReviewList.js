@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 import {Link} from 'react-router-dom'
-
+import Divider from '@material-ui/core/divider'
 import Rating from '@material-ui/lab/Rating'
 import {makeStyles} from '@material-ui/core/styles'
 
@@ -21,10 +21,13 @@ const ReviewList = props => {
   const classes = useStyles()
 
   return (
-    <div className="review-list">
+    <div ref={props.refProp} className="review-list">
       <div className="review-list-row-1">
-        <div className="review-list-row-1-left">
-          <p>REVIEWS</p>
+        <h2>{`Reviews (${product.reviews.length})`}</h2>
+      </div>
+      <Divider />
+      <div className="review-list-row-2">
+        <div className="review-list-row-2-left">
           <div className={classes.root}>
             <Rating
               name="half-rating-read"
@@ -34,17 +37,20 @@ const ReviewList = props => {
             />
           </div>
           <p>
-            {product.reviews.length}{' '}
-            {product.reviews.length === 1 ? 'review' : 'reviews'}
+            <b>{rating}</b> out of 5 stars
           </p>
         </div>
-        <div className="review-list-row-1-right">
+        <div className="review-list-row-2-right">
           <Link to="/">Write a review</Link>
         </div>
       </div>
-      <div className="review-list-row-2">
+      <Divider />
+      <div className="review-list-row-3">
         {product.reviews.map(review => (
-          <ProductReview key={review.id} review={review} />
+          <Fragment>
+            <ProductReview key={review.id} review={review} />
+            <Divider />
+          </Fragment>
         ))}
       </div>
     </div>

@@ -4,15 +4,15 @@ import {Link, withRouter} from 'react-router-dom'
 
 import {AddCartItemButton, Breadcrumbs, ReviewList, Ratings} from '.'
 import {fetchProducts} from '../store'
+import {fetchCart, editCart, addCartItem} from '../store/reducers/cartReducer'
 
 class SingleProduct extends Component {
   componentDidMount() {
     this.props.getProducts()
+    this.props.getCart()
   }
 
   render() {
-    console.log('ISD', this.props.id)
-
     const {product} = this.props
     const rating = 5
     // const rating = product.reviews.length
@@ -21,7 +21,7 @@ class SingleProduct extends Component {
     // 		}, 0) / product.reviews.length
     // 	: 0;
 
-    console.log('PRODUCT', this.props.product)
+    console.log('PRODUCT', this.props)
 
     if (product)
       return (
@@ -42,7 +42,7 @@ class SingleProduct extends Component {
                   <Ratings product={product} rating={rating} />
                 </div>
                 <div className="single-product-row-2-right-row-3">
-                  <AddCartItemButton />
+                  <AddCartItemButton product={product} />
                 </div>
                 <div className="single-product-row-2-right-row-4">
                   {product.description}
@@ -72,7 +72,8 @@ const mapState = (state, ownProps) => {
 }
 
 const mapDispatch = dispatch => ({
-  getProducts: () => dispatch(fetchProducts())
+  getProducts: () => dispatch(fetchProducts()),
+  getCart: () => dispatch(fetchCart())
 })
 
 export default withRouter(connect(mapState, mapDispatch)(SingleProduct))

@@ -1,7 +1,3 @@
-// Cart Item component
-// mapState - state.cart.cart, state.cart.isFetching, state.user.id (loggedin)
-// mapDispatch - dispatch(addOrder) from accountsReducer
-
 import React from 'react'
 import {connect} from 'react-redux'
 import {

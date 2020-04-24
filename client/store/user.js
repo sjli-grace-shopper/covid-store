@@ -64,16 +64,7 @@ export const updateUserProfile = updatedUser => async dispatch => {
     console.error(err)
   }
 }
-export function fetchUsers() {
-  return async dispatch => {
-    try {
-      const {data} = await axios.get(`/api/users`)
-      dispatch(getUser(data))
-    } catch (err) {
-      console.error(err)
-    }
-  }
-}
+
 /**
  * REDUCER
  */

@@ -1,41 +1,37 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {fetchUsers} from '../store/user'
+import axios from 'axios'
 
-class Users extends React.Component {
-  componentDidMount() {
-    this.props.getUsers()
+export default class users extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      users: []
+    }
+  }
+  async componentDidMount() {
+    const {data} = await axios.get('/api/users')
+    this.setState({users: data})
   }
 
   render() {
-    console.log('PROPS', this.props)
     return (
       <div className="usersList">
-        {this.props.users.map(user => {
-          return (
-            <div key={user.id}>
-              <div>
-                <h3>
+        <h1>Users</h1>
+        {!this.state.users.length ? (
+          <h1>There are no users</h1>
+        ) : (
+          <ul>
+            {this.state.users.map(user => (
+              <div key={user.id}>
+                <li>
                   {user.firstName} {user.lastName}
-                </h3>
-                <p>{user.email}</p>
+                </li>
+                <p> Email: {user.email} </p>
               </div>
-            </div>
-          )
-        })}
+            ))}
+          </ul>
+        )}
       </div>
     )
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    users: state.users
-  }
-}
-const mapDispatchToProps = dispatch => {
-  return {
-    getUsers: () => dispatch(fetchUsers())
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Users)

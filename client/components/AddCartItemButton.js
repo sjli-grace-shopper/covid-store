@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 import {makeStyles} from '@material-ui/core/styles'
-import {fetchCart, editCart, addCartItem} from '../store/reducers/cartReducer'
+import {editCart, addCartItem} from '../store/reducers/cartReducer'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,14 +26,8 @@ const AddCartItemButton = props => {
   const {addToCart, cart, product, updateCart} = props
   const classes = useStyles()
 
-  console.log('BUTTON PROPS', props)
-
-  // useEffect(() => {
-  //   props.getCart()
-  // }, [])
-
   const handleIncreaseQty = () => {
-    setPurchaseQty(purchaseQty + 1)
+    if (purchaseQty < product.quantity) setPurchaseQty(purchaseQty + 1)
   }
 
   const handleDecreaseQty = () => {

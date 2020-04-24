@@ -13,8 +13,6 @@ class SingleProduct extends Component {
   }
 
   render() {
-    console.log('ISD', this.props.id)
-
     const {product} = this.props
     const rating = 5
     // const rating = product.reviews.length

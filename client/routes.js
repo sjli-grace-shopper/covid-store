@@ -16,7 +16,8 @@ import {
   Order,
   ProductForm,
   UserProfile,
-  UpdateUser
+  UpdateUser,
+  Users
 } from './components'
 
 /**
@@ -55,6 +56,7 @@ class Routes extends Component {
             {isAdmin && (
               <Switch>
                 <Route exact path="/productform" component={ProductForm} />
+                <Route exact path="/users" component={Users} />
               </Switch>
             )}
           </Switch>

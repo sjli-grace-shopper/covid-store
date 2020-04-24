@@ -4,7 +4,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/reducers/productReducer'
-import {makeStyles} from '@material-ui/core/styles'
 
 class ProductList extends React.Component {
   componentDidMount() {

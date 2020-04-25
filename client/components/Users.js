@@ -3,7 +3,7 @@ import axios from 'axios'
 import ListItem from '@material-ui/core/ListItem'
 import Typography from '@material-ui/core/Typography'
 
-export default class Users extends React.Component {
+export default class users extends React.Component {
   constructor() {
     super()
     this.state = {

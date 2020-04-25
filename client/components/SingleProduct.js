@@ -1,34 +1,57 @@
 import React, {Component, Fragment, createRef} from 'react'
-import {connect, useDispatch, useSelector} from 'react-redux'
+import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
+import Divider from '@material-ui/core/divider'
+import axios from 'axios'
 
 import {AddCartItemButton, Breadcrumbs, ReviewList, Rating} from '.'
-import {fetchProducts} from '../store'
-import {fetchCart, editCart, addCartItem} from '../store/reducers/cartReducer'
-
-const scrollToRef = ref => window.scrollTo(0, ref.current.offsetTop)
+import {addReview, fetchProducts, fetchCart} from '../store'
 
 class SingleProduct extends Component {
   constructor() {
     super()
-    this.scrollRef = createRef()
+    this.state = {
+      product: {},
+      showReviewForm: false
+    }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleAddReviewClick = this.handleAddReviewClick.bind(this)
+    this.handleCancelAddReviewClick = this.handleCancelAddReviewClick.bind(this)
   }
 
-  componentDidMount() {
-    this.props.getProducts()
+  async componentDidMount() {
+    const productId = +this.props.match.params.productId
+    const {data} = await axios.get(`/api/products/${productId}`)
+    this.setState({product: data})
     this.props.getCart()
   }
 
-  render() {
-    const {product} = this.props
-    const executeScroll = () => scrollToRef(this.scrollRef)
+  handleSubmit() {
+    this.setState({showReviewForm: false})
+  }
 
-    if (product) {
+  handleAddReviewClick() {
+    this.setState({showReviewForm: true})
+  }
+
+  handleCancelAddReviewClick(evt) {
+    evt.preventDefault()
+    this.setState({showReviewForm: false})
+  }
+
+  render() {
+    const product = this.state.product
+
+    if (Object.keys(product).length > 0) {
       const rating = product.reviews.length
         ? +(
-            product.reviews.reduce((a, c) => {
-              return a + c.rating
-            }, 0) / product.reviews.length
+            Math.round(
+              (product.reviews.reduce((a, c) => {
+                return a + c.rating
+              }, 0) /
+                product.reviews.length) *
+                2
+            ) / 2
           )
         : 0
 
@@ -47,11 +70,7 @@ class SingleProduct extends Component {
                   <h1>{product.name}</h1>
                 </div>
                 <div className="single-product-row-2-right-row-2">
-                  <Rating
-                    product={product}
-                    rating={rating}
-                    executeScroll={executeScroll}
-                  />
+                  <Rating product={product} rating={rating} />
                 </div>
                 <div className="single-product-row-2-right-row-3">
                   <AddCartItemButton product={product} />
@@ -63,9 +82,13 @@ class SingleProduct extends Component {
             </div>
             <div className="single-product-row-3">
               <ReviewList
-                refProp={this.scrollRef}
-                rating={rating}
+                handleCancel={this.handleCancelAddReviewClick}
+                handleClick={this.handleAddReviewClick}
+                handleSubmit={this.handleSubmit}
+                isLoggedIn={this.props.isLoggedIn}
                 product={product}
+                rating={rating}
+                showReviewForm={this.state.showReviewForm}
               />
             </div>
           </div>
@@ -75,21 +98,17 @@ class SingleProduct extends Component {
   }
 }
 
-const mapState = (state, ownProps) => {
-  const id = +ownProps.match.params.productId
-  const getProducts = state.products.productList.find(
-    product => product.id === id
-  )
+const mapState = state => {
   return {
-    id: id,
-    product: getProducts,
+    isLoggedIn: !!state.user.id,
     products: state.products.productList
   }
 }
 
 const mapDispatch = dispatch => ({
   getProducts: () => dispatch(fetchProducts()),
-  getCart: () => dispatch(fetchCart())
+  getCart: () => dispatch(fetchCart()),
+  postReview: (id, review) => dispatch(addReview(id, review))
 })
 
 export default withRouter(connect(mapState, mapDispatch)(SingleProduct))

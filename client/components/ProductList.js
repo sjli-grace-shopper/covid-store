@@ -1,10 +1,10 @@
-// Products component
-// mapState - state.user, state.products.list.filter(by category), category(from URL?)
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/reducers/productReducer'
 import {makeStyles} from '@material-ui/core/styles'
+
+import {fetchProducts} from '../store'
+import history from '../history'
 
 class ProductList extends React.Component {
   componentDidMount() {
@@ -13,6 +13,11 @@ class ProductList extends React.Component {
 
   render() {
     console.log('PROPS', this.props)
+
+    const handleClick = id => {
+      history.push(`/products/${id}/editproduct`)
+    }
+
     return (
       <div className="productList">
         {this.props.products.map(product => {
@@ -24,6 +29,11 @@ class ProductList extends React.Component {
                   <h3>{product.name}</h3>
                 </Link>
                 <p>$ {product.price} USD</p>
+                {this.props.isAdmin && (
+                  <button type="button" onClick={() => handleClick(product.id)}>
+                    Edit
+                  </button>
+                )}
               </div>
             </React.Fragment>
           )
@@ -35,7 +45,8 @@ class ProductList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.products.productList
+    products: state.products.productList,
+    isAdmin: !!state.user.isAdmin
   }
 }
 const mapDispatchToProps = dispatch => {

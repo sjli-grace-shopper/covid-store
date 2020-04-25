@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
+import ListItem from '@material-ui/core/ListItem'
+import Typography from '@material-ui/core/Typography'
 
-export default class users extends React.Component {
+export default class Users extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -16,18 +18,20 @@ export default class users extends React.Component {
   render() {
     return (
       <div className="usersList">
-        <h1>Users</h1>
+        <Typography variant="h4" align="center" component="h1" gutterBottom>
+          Users
+        </Typography>
         {!this.state.users.length ? (
           <h1>There are no users</h1>
         ) : (
           <ul>
             {this.state.users.map(user => (
-              <div key={user.id}>
-                <li>
-                  {user.firstName} {user.lastName}
-                </li>
-                <p> Email: {user.email} </p>
-              </div>
+              <ListItem button key={user.id}>
+                <p>
+                  {' '}
+                  {user.firstName} {user.lastName}: {user.email}{' '}
+                </p>
+              </ListItem>
             ))}
           </ul>
         )}

@@ -6,17 +6,8 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import Link from '@material-ui/core/Link'
-import {
-  Paper,
-  Button,
-  RadioGroup,
-  FormLabel,
-  MenuItem,
-  FormGroup,
-  FormControl,
-  FormControlLabel
-} from '@material-ui/core'
+
+import {Paper, Button} from '@material-ui/core'
 
 class ProductForm extends React.Component {
   constructor() {

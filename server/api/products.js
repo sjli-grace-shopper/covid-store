@@ -61,19 +61,22 @@ router.put('/:id', async (req, res, next) => {
 router.post('/:id/review', async (req, res, next) => {
   try {
     const {rating, reviewText} = req.body
-    const userId = req.user.id
-    const productId = req.params.id
     await Review.create({
-      userId,
-      productId,
+      userId: req.user.id,
+      productId: req.params.id,
       rating,
       reviewText
     })
     const reviewUser = await User.findByPk(req.user.id)
+    const newReview = await Review.findOne({
+      where: {reviewText: reviewText, userId: req.user.id}
+    })
     const reviewObj = {
+      id: newReview.id,
+      createdAt: newReview.createdAt,
       user: reviewUser,
-      userId,
-      productId,
+      userId: req.user.id,
+      productId: req.params.id,
       rating,
       reviewText
     }

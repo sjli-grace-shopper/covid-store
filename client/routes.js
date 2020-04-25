@@ -15,7 +15,10 @@ import {
   ProductList,
   Signup,
   SingleProduct,
-  UserHome
+  Users,
+  UserHome,
+  UserProfile,
+  UpdateUser
 } from './components'
 
 /**

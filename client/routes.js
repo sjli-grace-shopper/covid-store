@@ -4,20 +4,21 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {me} from './store'
 import {
+  AddProduct,
+  Cart,
+  EditProduct,
   Home,
   Login,
   NotFound,
+  OrderItem,
+  Order,
   ProductList,
   Signup,
   SingleProduct,
+  Users,
   UserHome,
-  Cart,
-  OrderItem,
-  Order,
-  ProductForm,
   UserProfile,
-  UpdateUser,
-  Users
+  UpdateUser
 } from './components'
 
 /**
@@ -55,7 +56,12 @@ class Routes extends Component {
             <Route exact path="/updateprofile" component={UpdateUser} />
             {isAdmin && (
               <Switch>
-                <Route exact path="/productform" component={ProductForm} />
+                <Route exact path="/addproduct" component={AddProduct} />
+                <Route
+                  exact
+                  path="/products/:productId/editproduct"
+                  component={EditProduct}
+                />
                 <Route exact path="/users" component={Users} />
               </Switch>
             )}

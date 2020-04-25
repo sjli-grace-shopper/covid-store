@@ -1,10 +1,9 @@
 import React, {Fragment} from 'react'
-import {Link} from 'react-router-dom'
 import Divider from '@material-ui/core/divider'
 import Rating from '@material-ui/lab/Rating'
 import {makeStyles} from '@material-ui/core/styles'
 
-import {ProductReview} from '.'
+import {AddReview, ProductReview} from '.'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,11 +16,19 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ReviewList = props => {
-  const {product, rating} = props
+  const {
+    handleCancel,
+    handleClick,
+    handleSubmit,
+    isLoggedIn,
+    product,
+    rating,
+    showReviewForm
+  } = props
   const classes = useStyles()
 
   return (
-    <div ref={props.refProp} className="review-list">
+    <div className="review-list">
       <div className="review-list-row-1">
         <h2>{`Reviews (${product.reviews.length})`}</h2>
       </div>
@@ -41,14 +48,24 @@ const ReviewList = props => {
           </p>
         </div>
         <div className="review-list-row-2-right">
-          <Link to="/">Write a review</Link>
+          {isLoggedIn && <a onClick={handleClick}>Write a review</a>}
         </div>
       </div>
       <Divider />
+      {showReviewForm && (
+        <div className="single-product-row-add-review">
+          <AddReview
+            product={product}
+            handleCancel={handleCancel}
+            handleSubmit={handleSubmit}
+          />
+          <Divider />
+        </div>
+      )}
       <div className="review-list-row-3">
-        {product.reviews.map(review => (
-          <Fragment>
-            <ProductReview key={review.id} review={review} />
+        {product.reviews.map((review, i) => (
+          <Fragment key={review.id}>
+            <ProductReview index={i} reviewProp={review} />
             <Divider />
           </Fragment>
         ))}

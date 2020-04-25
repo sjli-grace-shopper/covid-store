@@ -1,44 +1,34 @@
-// mapState - state.categories (to select category)
-import React from 'react'
+/* eslint-disable complexity */
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import {addProduct} from '../store/reducers/productReducer'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
+
 import CssBaseline from '@material-ui/core/CssBaseline'
+import Grid from '@material-ui/core/Grid'
+import Input from '@material-ui/core/Input'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import InputLabel from '@material-ui/core/InputLabel'
+import TextField from '@material-ui/core/TextField'
 
-import {Paper, Button} from '@material-ui/core'
+import Typography from '@material-ui/core/Typography'
+import {Button, MenuItem, Paper, Select} from '@material-ui/core'
 
-class ProductForm extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      name: '',
-      description: '',
-      price: 0,
-      imageUrl: '',
-      quantity: 0,
-      category: 0
-    }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-  }
-  handleSubmit(event) {
-    event.preventDefault()
-    try {
-      this.props.createProduct(this.state)
-    } catch (err) {
-      console.log(err)
+import {fetchCategories} from '../store'
+
+class ProductForm extends Component {
+  componentDidMount() {
+    this.props.getCategories()
+    if (this.props.isEdit) {
+      this.setState(this.props.product)
     }
   }
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+
   render() {
+    const {categories, handleChange, handleSubmit, isEdit, product} = this.props
+
+    const formTitle = isEdit ? 'Edit Product' : 'New Product Form'
+
     return (
-      <React.Fragment>
+      <Fragment>
         <Grid container alignItems="flex-start" spacing={2}>
           <div style={{padding: 20, margin: 'auto', maxWidth: 600}}>
             <CssBaseline />
@@ -49,9 +39,9 @@ class ProductForm extends React.Component {
                 component="h1"
                 gutterBottom
               >
-                New Product Form
+                {formTitle}
               </Typography>
-              <form onSubmit={this.handleSubmit} className="productForm">
+              <form onSubmit={handleSubmit} className="productForm">
                 <div>
                   <Grid item xs={6}>
                     <TextField
@@ -61,8 +51,8 @@ class ProductForm extends React.Component {
                       label="Product"
                       align="center"
                       fullWidth
-                      value={this.state.name}
-                      onChange={this.handleChange}
+                      value={product.name}
+                      onChange={handleChange}
                     />
                   </Grid>
                 </div>
@@ -74,21 +64,25 @@ class ProductForm extends React.Component {
                       name="description"
                       label="Description"
                       fullWidth
-                      value={this.state.description}
-                      onChange={this.handleChange}
+                      value={product.description}
+                      onChange={handleChange}
                     />
                   </Grid>
                 </div>
                 <div>
                   <Grid item xs={6}>
-                    <TextField
+                    <Input
                       className="productForm price"
                       type="double"
                       name="price"
                       label="Price"
                       fullWidth
-                      value={this.state.price}
-                      onChange={this.handleChange}
+                      placeholder="Price"
+                      startAdornment={
+                        <InputAdornment position="start">$</InputAdornment>
+                      }
+                      value={product.price}
+                      onChange={handleChange}
                     />
                   </Grid>
                 </div>
@@ -100,8 +94,8 @@ class ProductForm extends React.Component {
                       name="imageUrl"
                       label="URL"
                       fullWidth
-                      value={this.state.imageUrl}
-                      onChange={this.handleChange}
+                      value={product.imageUrl}
+                      onChange={handleChange}
                     />
                   </Grid>
                 </div>
@@ -113,22 +107,30 @@ class ProductForm extends React.Component {
                       name="quantity"
                       label="Quantity"
                       fullWidth
-                      value={this.state.quantity}
-                      onChange={this.handleChange}
+                      value={product.quantity}
+                      onChange={handleChange}
                     />
                   </Grid>
                 </div>
                 <div>
                   <Grid item xs={6}>
-                    <TextField
-                      className="productForm category"
-                      type="integer"
-                      name="category"
+                    <InputLabel id="select-label">Select Category</InputLabel>
+                    <Select
+                      labelId="select-outlined-label"
+                      id="select-outlined"
+                      name="categoryId"
+                      value={product.categoryId}
+                      onChange={handleChange}
                       label="Category"
                       fullWidth
-                      value={this.state.category}
-                      onChange={this.handleChange}
-                    />
+                      className="productForm category"
+                    >
+                      {categories.map(cat => (
+                        <MenuItem key={cat.id} value={cat.id}>
+                          {cat.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
                   </Grid>
                 </div>
                 <div>
@@ -142,15 +144,18 @@ class ProductForm extends React.Component {
             </Paper>
           </div>
         </Grid>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }
 
-const mapDispatch = dispatch => {
-  return {
-    createProduct: product => dispatch(addProduct(product))
-  }
-}
+const mapState = state => ({
+  categories: state.categories.categoryList,
+  products: state.products.productList
+})
 
-export default connect(null, mapDispatch)(ProductForm)
+const mapDispatch = dispatch => ({
+  getCategories: () => dispatch(fetchCategories())
+})
+
+export default connect(mapState, mapDispatch)(ProductForm)

@@ -11,10 +11,7 @@ const useStyles = makeStyles(theme => ({
 
 const Rating = props => {
   const classes = useStyles()
-  const {product, rating, executeScroll} = props
-  console.log('PROD', product)
-
-  console.log('RATING', rating)
+  const {product, rating} = props
 
   return (
     <div className={classes.root}>
@@ -22,10 +19,9 @@ const Rating = props => {
         name="half-rating-read"
         value={rating}
         precision={0.5}
-        onClick={executeScroll}
         readOnly
       />
-      <p onClick={executeScroll}>
+      <p>
         {product.reviews.length}{' '}
         {product.reviews.length === 1 ? 'review' : 'reviews'}
       </p>

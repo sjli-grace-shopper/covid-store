@@ -2,11 +2,11 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 const Review = db.define('review', {
   rating: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.DOUBLE,
     allowNull: false,
     validate: {
       min: 0,
-      max: 6
+      max: 5
     }
   },
   reviewText: {
@@ -14,8 +14,8 @@ const Review = db.define('review', {
     allowNull: false,
     validate: {
       len: {
-        args: 20,
-        msg: 'Review text must be at least 20 characters in length'
+        args: 5,
+        msg: 'Review text must be at least 5 characters in length'
       }
     }
   }

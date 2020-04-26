@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 
 import history from '../history'
 import {fetchCategories} from '../store'
-import {Breadcrumbs} from '.'
 
 class Home extends Component {
   componentDidMount() {
@@ -16,10 +15,6 @@ class Home extends Component {
     if (this.props.categories.length) {
       return (
         <Fragment>
-          <Breadcrumbs
-            name="categories"
-            location={this.props.location.pathname.split('/')}
-          />
           <div className="home-page">
             <div className="home-page-row-1">
               <img src="banner.png" />

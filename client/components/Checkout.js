@@ -12,7 +12,7 @@ class Checkout extends Component {
   render() {
     return (
       <div>
-        {this.props.cart.products ? (
+        {this.props.cart.products.length > 0 ? (
           <div id="checkout">
             <div id="checkout-contact">
               {this.props.isLoggedIn ? (

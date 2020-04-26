@@ -4,7 +4,7 @@ import axios from 'axios'
  * INITIAL STATE
  */
 const initialState = {
-  cart: {},
+  cart: {products: []},
   isFetching: false
 }
 
@@ -49,8 +49,8 @@ export const clearCart = () => ({
  */
 export const fetchCart = () => async dispatch => {
   try {
-    const {data} = await axios.get('/api/cart')
-    dispatch(getCart(data))
+    const cart = await axios.get('/api/cart')
+    dispatch(getCart(cart.data))
   } catch (err) {
     console.error('Error fetching cart: ', err)
   }
@@ -59,7 +59,6 @@ export const fetchCart = () => async dispatch => {
 export const addCartItem = productData => async dispatch => {
   try {
     const {data} = await axios.post('/api/cart', productData)
-    console.log('YES', data)
     dispatch(addToCart(data))
   } catch (err) {
     console.error('Error adding cart item: ', err)
@@ -131,7 +130,7 @@ export default function cartReducer(state = initialState, action) {
         }
       }
     case CLEAR_CART:
-      return {...state, isFetching: true, cart: {}}
+      return {...state, isFetching: true, cart: {products: []}}
     default:
       return state
   }

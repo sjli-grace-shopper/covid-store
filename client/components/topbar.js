@@ -22,8 +22,6 @@ const TopBar = props => {
   const handlePageChange = () => {
     window.location.href = '/cart'
   }
-
-  console.log(props)
   return (
     <div className="top-bar">
       <div className="top-bar-left">
@@ -37,12 +35,14 @@ const TopBar = props => {
             Logout
           </a>
           <ShoppingBasketIcon onClick={handlePageChange} />
+          <Link to="/cart">Cart</Link>
         </div>
       ) : (
         <div className="top-bar-right">
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+
           <span className={classes.root}>
             <Badge badgeContent={4} color="primary">
               <ShoppingBasketIcon

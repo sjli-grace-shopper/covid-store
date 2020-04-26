@@ -51,12 +51,12 @@ class Cart extends React.Component {
   }
 
   render() {
-    console.log('CART STATE', this.props)
+    // console.log('CART STATE', this.props)
     return (
       <div className="cart">
         <h1>SHOPPING CART</h1>
 
-        {this.props.cart.products ? (
+        {this.props.cart.products.length > 0 ? (
           <div id="cart-content">
             <div id="cart-items">
               {this.props.cart.products.map(product => {

@@ -15,7 +15,11 @@ router.get('/', async (req, res, next) => {
 
       // create a new cart if user does not have one
       if (!cart) {
-        const newCart = Order.create({status: 'IN_CART', userId: req.user.id})
+        const newCart = await Order.create({
+          status: 'IN_CART',
+          userId: req.user.id
+        })
+        newCart.dataValues.products = []
         res.json(newCart)
       } else {
         res.json(cart)

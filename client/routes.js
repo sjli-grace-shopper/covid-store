@@ -13,6 +13,7 @@ import {
   NotFound,
   OrderItem,
   Order,
+  OrderList,
   ProductList,
   Signup,
   SingleCategory,
@@ -58,7 +59,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/home" component={UserHome} />
-            <Route exact path="/orders" component={Order} />
+            <Route exact path="/orders" component={OrderList} />
             <Route path="/orders/:id" component={OrderItem} />
             <Route exact path="/profile" component={UserProfile} />
             <Route exact path="/updateprofile" component={UpdateUser} />

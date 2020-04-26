@@ -1,6 +1,15 @@
 const router = require('express').Router()
 const {Order, Product, LineItem} = require('../db/models')
 
+router.get('/', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({})
+    res.send(orders)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/history', async (req, res, next) => {
   try {
     const orders = await Order.findAll({

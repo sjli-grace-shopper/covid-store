@@ -3,6 +3,10 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import SendIcon from '@material-ui/icons/Send'
+import ListItem from '@material-ui/core/ListItem'
+
 export default class Orders extends React.Component {
   constructor() {
     super()
@@ -24,11 +28,18 @@ export default class Orders extends React.Component {
           <ul>
             {this.state.orders.map(order => (
               <div key={order.id}>
-                <NavLink to={`/orders/${order.id}`}>
-                  <li>Order {order.id}</li>
-                </NavLink>
-                <p> Order Status: {order.status} </p>
-                <p> Order Date : {order.updatedAt}</p>
+                <ListItem button>
+                  <ListItem button key={order.id}>
+                    <NavLink to={`/orders/${order.id}`}>
+                      <ListItemIcon>
+                        <SendIcon />
+                      </ListItemIcon>
+                      Order {order.id}
+                    </NavLink>
+                  </ListItem>
+                  <ListItem>Order Status: {order.status}</ListItem>
+                  <ListItem>Order Date : {order.updatedAt}</ListItem>
+                </ListItem>
               </div>
             ))}
           </ul>

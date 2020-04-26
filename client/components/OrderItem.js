@@ -1,5 +1,11 @@
 import React from 'react'
 import axios from 'axios'
+import ListItem from '@material-ui/core/ListItem'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import SendIcon from '@material-ui/icons/Send'
+
 export default class OrderItem extends React.Component {
   constructor() {
     super()
@@ -17,11 +23,21 @@ export default class OrderItem extends React.Component {
     console.log(this.state.products)
     return (
       <div>
-        <h1>Order Details</h1>
-        <h4>Products in Order</h4>
+        <Typography variant="h3" align="center" component="h1" gutterBottom>
+          Order Details
+        </Typography>
+        <Typography variant="h5" align="center" component="h5" gutterBottom>
+          Products in Order
+        </Typography>
         <ul>
           {this.state.products.map(product => (
-            <li key={product.id}>{product.name}</li>
+            <ListItem button key={product.id}>
+              <ListItemIcon>
+                <SendIcon />
+              </ListItemIcon>
+              {product.name}
+              <Divider />
+            </ListItem>
           ))}
         </ul>
       </div>

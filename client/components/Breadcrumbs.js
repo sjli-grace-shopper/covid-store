@@ -19,21 +19,29 @@ const handleClick = evt => {
 }
 
 const Breadcrumbs = props => {
-  const {product, formattedLocation, location} = props
-  console.log(formattedLocation)
-  console.log(location)
-  console.log(product)
-
   const classes = useStyles()
-  if (product.id)
+  const {name, location} = props
+
+  const formattedLocation = location.map(
+    el => `${el.slice(0, 1).toUpperCase()}${el.slice(1)}`
+  )
+  const formattedName = name
+    .split('[-\\s]')
+    .map(el => `${el.slice(0, 1).toUpperCase()}${el.slice(1)}`)
+    .join(' ')
+  console.log(location, formattedLocation)
+
+  if (name)
     return (
       <div className={`breadcrumbs ${classes.root}`}>
         <MUIBreadcrumbs separator="›" aria-label="breadcrumb">
-          <a onClick={() => handleClick('home')}>Home</a>
-          <a onClick={() => handleClick(`${location[1]}`)}>
-            {formattedLocation[0]}
-          </a>
-          <Typography>{product.name}</Typography>
+          <a onClick={() => handleClick('')}>Home</a>
+          {location.length > 2 && (
+            <a onClick={() => handleClick(`${location[1]}`)}>
+              {formattedLocation[1]}
+            </a>
+          )}
+          <Typography>{formattedName}</Typography>
         </MUIBreadcrumbs>
       </div>
     )

@@ -7,15 +7,16 @@ import {
   AddProduct,
   Cart,
   Categories,
-  CategoryPage,
   EditProduct,
   Home,
   Login,
   NotFound,
   OrderItem,
   Order,
+  OrderList,
   ProductList,
   Signup,
+  SingleCategory,
   SingleProduct,
   Users,
   UserHome,
@@ -44,10 +45,11 @@ class Routes extends Component {
         <Route path="/cart/checkout" component={Checkout} />
         <Route exact path="/products" component={ProductList} />
         <Route exact path="/categories" component={Categories} />
-        <Route exact path="/categories/masks" component={CategoryPage} />
-        <Route exact path="/categories/gloves" component={CategoryPage} />
-        <Route exact path="/categories/sanitizers" component={CategoryPage} />
-        <Route exact path="/categories/toilet-paper" component={CategoryPage} />
+        <Route
+          exact
+          path="/categories/:categoryName"
+          component={SingleCategory}
+        />
         <Route
           exact
           path="/products/:productId"
@@ -59,7 +61,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/home" component={UserHome} />
-            <Route exact path="/orders" component={Order} />
+            <Route exact path="/orders" component={OrderList} />
             <Route path="/orders/:id" component={OrderItem} />
             <Route exact path="/profile" component={UserProfile} />
             <Route exact path="/updateprofile" component={UpdateUser} />

@@ -6,6 +6,7 @@ import axios from 'axios'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import SendIcon from '@material-ui/icons/Send'
 import ListItem from '@material-ui/core/ListItem'
+import Typography from '@material-ui/core/Typography'
 
 export default class Orders extends React.Component {
   constructor() {
@@ -21,7 +22,9 @@ export default class Orders extends React.Component {
   render() {
     return (
       <div>
-        <h1>Order History</h1>
+        <Typography variant="h4" align="center" component="h1" gutterBottom>
+          Order History
+        </Typography>
         {!this.state.orders.length ? (
           <h1>You do not have any placed orders</h1>
         ) : (
@@ -31,9 +34,6 @@ export default class Orders extends React.Component {
                 <ListItem button>
                   <ListItem button key={order.id}>
                     <NavLink to={`/orders/${order.id}`}>
-                      <ListItemIcon>
-                        <SendIcon />
-                      </ListItemIcon>
                       Order {order.id}
                     </NavLink>
                   </ListItem>

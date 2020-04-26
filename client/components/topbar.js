@@ -18,10 +18,13 @@ const useStyles = makeStyles(theme => ({
 
 const TopBar = props => {
   const classes = useStyles()
-  const {handleClick, isLoggedIn} = props
+  const {cart, handleClick, isLoggedIn} = props
   const handlePageChange = () => {
     window.location.href = '/cart'
   }
+  const isInvisible = Object.keys(cart).length > 1
+  console.log('PROPS', props)
+
   return (
     <div className="top-bar">
       <div className="top-bar-left">
@@ -44,7 +47,11 @@ const TopBar = props => {
           <Link to="/signup">Sign Up</Link>
 
           <span className={classes.root}>
-            <Badge badgeContent={4} color="primary">
+            <Badge
+              badgeContent={Object.keys(cart).length}
+              color="primary"
+              invisible={isInvisible}
+            >
               <ShoppingBasketIcon
                 className="cart-icon"
                 onClick={handlePageChange}
@@ -61,7 +68,8 @@ const TopBar = props => {
  * CONTAINER
  */
 const mapState = state => ({
-  isLoggedIn: !!state.user.id
+  isLoggedIn: !!state.user.id,
+  cart: state.cart.cart
 })
 
 const mapDispatch = dispatch => ({

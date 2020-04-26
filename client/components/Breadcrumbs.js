@@ -15,19 +15,24 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const handleClick = evt => {
-  evt.preventDefault()
   history.push(`/${evt}`)
 }
 
 const Breadcrumbs = props => {
-  const {product} = props
+  const {product, formattedLocation, location} = props
+  console.log(formattedLocation)
+  console.log(location)
+  console.log(product)
+
   const classes = useStyles()
   if (product.id)
     return (
-      <div className={classes.root}>
+      <div className={`breadcrumbs ${classes.root}`}>
         <MUIBreadcrumbs separator="›" aria-label="breadcrumb">
           <a onClick={() => handleClick('home')}>Home</a>
-          <a onClick={() => handleClick('products')}>Products</a>
+          <a onClick={() => handleClick(`${location[1]}`)}>
+            {formattedLocation[0]}
+          </a>
           <Typography>{product.name}</Typography>
         </MUIBreadcrumbs>
       </div>

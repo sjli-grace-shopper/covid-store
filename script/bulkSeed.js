@@ -6,8 +6,8 @@ const products = require('./bulkData/products')
 
 const categories = [
   {name: 'masks'},
-  {name: 'toilet_paper'},
-  {name: 'sanatizer'},
+  {name: 'toilet-paper'},
+  {name: 'sanitizers'},
   {name: 'gloves'}
 ]
 

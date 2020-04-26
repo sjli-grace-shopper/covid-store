@@ -6,6 +6,7 @@ import {
   removeCartItem,
   addCartItem
 } from '../store/reducers/cartReducer'
+import {Link} from 'react-router-dom'
 import CartItem from './CartItem'
 
 class Cart extends React.Component {
@@ -50,11 +51,12 @@ class Cart extends React.Component {
   }
 
   render() {
+    // console.log('CART STATE', this.props)
     return (
       <div className="cart">
         <h1>SHOPPING CART</h1>
 
-        {this.props.cart.products ? (
+        {this.props.cart.products.length > 0 ? (
           <div id="cart-content">
             <div id="cart-items">
               {this.props.cart.products.map(product => {
@@ -78,7 +80,7 @@ class Cart extends React.Component {
                   }, 0)
                   .toFixed(2)}
               </h3>
-              <button type="button">Checkout</button>
+              <Link to="/cart/checkout">Checkout</Link>
               <button type="button" onClick={this.addProduct}>
                 Add Random Item
               </button>

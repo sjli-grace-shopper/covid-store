@@ -5,16 +5,83 @@ const {Category, LineItem, Order, Product} = require('../db/models')
 router.get('/', async (req, res, next) => {
   try {
     if (req.user) {
-      // CHECK IF THERE IS A CART IN THE SESSION
-      // transfer session cart to db and then remove cart from session
+      // Check if there is a cartId in session
+      if (req.session.cartId) {
+        // get the guest order
+        const guestOrder = await Order.findOne({
+          where: {id: req.session.cartId},
+          include: [{model: Product}]
+        })
+
+        // get the user order
+        const userOrder = await Order.findOne({
+          where: {userId: req.user.id, status: 'IN_CART'}
+        })
+
+        // move all products to user order
+        await Promise.all(
+          guestOrder.products.map(product => {
+            LineItem.update(
+              {
+                orderId: userOrder.id
+              },
+              {
+                where: {orderId: guestOrder.id, productId: product.id}
+              }
+            )
+          })
+        )
+
+        // re-fetch the user's order, this time using eager-loading to get all products and line items
+        const cart = await Order.findOne({
+          where: {userId: req.user.id, status: 'IN_CART'},
+          attributes: ['id', 'status'],
+          include: [{model: Product}]
+        })
+
+        // set the cartId to undefined
+        req.session.cartId = undefined
+
+        console.log('UPDATED CART', cart.id)
+
+        res.json(cart)
+      } else {
+        const cart = await Order.findOne({
+          where: {userId: req.user.id, status: 'IN_CART'},
+          attributes: ['id', 'status'],
+          include: [{model: Product}]
+        })
+
+        // create a new cart if user does not have one
+        if (!cart) {
+          const newCart = await Order.create({
+            status: 'IN_CART',
+            userId: req.user.id
+          })
+          // add an empty
+          newCart.dataValues.products = []
+          // send back a new empty cart
+          res.json(newCart)
+        } else {
+          // send back the user's cart
+          res.json(cart)
+        }
+      }
+    } else if (req.session.cartId) {
+      // guest user has a cart
       const cart = await Order.findOne({
-        where: {userId: req.user.id, status: 'IN_CART'},
+        where: {id: req.session.cartId},
         attributes: ['id', 'status'],
         include: [{model: Product}]
       })
+
       res.json(cart)
     } else {
-      res.json(req.session.cart)
+      // guest user does not have a cart
+      const newCart = await Order.create({status: 'IN_CART'})
+      newCart.dataValues.products = []
+      req.session.cartId = newCart.id
+      res.json(newCart)
     }
   } catch (err) {
     next(err)
@@ -27,6 +94,7 @@ router.post('/', async (req, res, next) => {
     const {quantity, productId} = req.body
 
     if (req.user) {
+      // user is logged in
       const order = await Order.findOne({
         where: {userId: req.user.id, status: 'IN_CART'}
       })
@@ -45,21 +113,27 @@ router.post('/', async (req, res, next) => {
         include: [{model: Product}]
       })
       res.json(newCart)
+    } else if (req.session.cartId) {
+      // user is not logged in
 
-      // const cartObj = Object.assign({lineItem}, product)
-      // res.json(cartObj)
-    } else if (req.session !== undefined) {
-      const productToAdd = await Product.findByPk(productId)
+      const order = await Order.findOne({
+        where: {id: req.session.cartId}
+      })
 
-      productToAdd.dataValues.line_item = {quantity: quantity}
-
-      if (req.session.cart === undefined) {
-        req.session.cart = {products: [productToAdd]}
-      } else {
-        req.session.cart.products.push(productToAdd)
+      const newLineItem = {
+        quantity: quantity,
+        orderId: order.id,
+        productId: productId
       }
 
-      res.json(req.session.cart)
+      await LineItem.create(newLineItem)
+
+      const newCart = await Order.findOne({
+        where: {id: req.session.cartId},
+        attributes: ['id', 'status'],
+        include: [{model: Product}]
+      })
+      res.json(newCart)
     } else {
       res.sendStatus(500)
     }
@@ -93,19 +167,66 @@ router.put('/', async (req, res, next) => {
         include: [{model: Product}]
       })
       res.json(newCart)
-    } else if (req.session.cart !== undefined) {
-      // verify user has a session and cart
-      let productToChange = req.session.cart.products.find(
-        product => product.id === productId
+    } else if (req.session.cartId) {
+      const order = await Order.findOne({
+        where: {id: req.session.cartId}
+      })
+
+      await LineItem.update(
+        {
+          quantity: quantity
+        },
+        {
+          where: {orderId: order.id, productId: productId}
+        }
       )
-      productToChange.line_item.quantity = quantity
-      res.json(req.session.cart)
+
+      const newCart = await Order.findOne({
+        where: {id: req.session.cartId},
+        attributes: ['id', 'status'],
+        include: [{model: Product}]
+      })
+      res.json(newCart)
     } else {
       res.sendStatus(500)
     }
   } catch (err) {
     next(err)
   }
+})
+
+router.put('/checkout', async (req, res, next) => {
+  if (req.user) {
+    const cart = await Order.findOne({
+      where: {userId: req.user.id, status: 'IN_CART'},
+      include: [{model: Product}]
+    })
+    // set price in each lineitem
+    await Promise.all(
+      cart.products.map(product => {
+        LineItem.update(
+          {
+            price: product.price
+          },
+          {
+            where: {orderId: cart.id, productId: product.id}
+          }
+        )
+      })
+    )
+
+    // mark order status as processing
+    await Order.update(
+      {
+        status: 'PROCESSING'
+      },
+      {
+        where: {userId: req.user.id, status: 'IN_CART'}
+      }
+    )
+    res.send('ORDER PROCESSED')
+  }
+  res.send('GUEST')
 })
 
 // DELETE /api/cart/:cartId

@@ -38,12 +38,14 @@ const TopBar = props => {
             Logout
           </a>
           <ShoppingBasketIcon onClick={handlePageChange} />
+          <Link to="/cart">Cart</Link>
         </div>
       ) : (
         <div className="top-bar-right">
           {/* The navbar will show these links before you log in */}
           <Link to="/login">Login</Link>
           <Link to="/signup">Sign Up</Link>
+
           <span className={classes.root}>
             <Badge
               badgeContent={Object.keys(cart).length}

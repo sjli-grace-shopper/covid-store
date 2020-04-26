@@ -196,6 +196,12 @@ div.nav hr {
   justify-content: flex-start;
 }
 
+/* ----- CHECKOUT ----- */
+
+#checkout {
+  display: flex;
+  flex-direction: row;
+}
 /* ----- CATEGORIES ----- */
 
 div.categories {

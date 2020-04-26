@@ -1,30 +1,16 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import Rating from '@material-ui/lab/Rating'
-import FormControl from '@material-ui/core/FormControl'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import {makeStyles} from '@material-ui/core/styles'
 
 import {addReview} from '../store'
-
-const useStyles = makeStyles(theme => ({
-  MuiOutlinedInput: {
-    '&$focused $notchedOutline': {
-      borderColor: 'green'
-    },
-    '& $notchedOutline': {
-      borderColor: 'green'
-    }
-  }
-}))
 
 const AddReview = props => {
   const [rating, setRating] = useState(0)
   const [reviewText, setReviewText] = useState('')
 
   const {handleCancel, handleSubmit, product, postReview} = props
-  const classes = useStyles()
 
   const handleAddReview = evt => {
     evt.preventDefault()
@@ -54,11 +40,6 @@ const AddReview = props => {
             label="Tell us what you think"
             value={reviewText}
             onChange={evt => setReviewText(evt.target.value)}
-            InputLabelProps={{
-              classes: {
-                root: classes.MuiOutlinedInput
-              }
-            }}
             variant="outlined"
           />
         </div>

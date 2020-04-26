@@ -29,7 +29,6 @@ const Breadcrumbs = props => {
     .split('[-\\s]')
     .map(el => `${el.slice(0, 1).toUpperCase()}${el.slice(1)}`)
     .join(' ')
-  console.log(location, formattedLocation)
 
   if (name)
     return (

@@ -1,7 +1,11 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+
 import Divider from '@material-ui/core/divider'
 import Rating from '@material-ui/lab/Rating'
 import {makeStyles} from '@material-ui/core/styles'
+import axios from 'axios'
 
 import {AddReview, ProductReview} from '.'
 
@@ -16,6 +20,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ReviewList = props => {
+  const [reviews, setReviews] = useState([])
+
   const {
     handleCancel,
     handleClick,
@@ -23,14 +29,19 @@ const ReviewList = props => {
     isLoggedIn,
     product,
     rating,
-    showReviewForm
+    showReviewForm,
+    selProduct
   } = props
   const classes = useStyles()
+  console.log('selProduct', selProduct, props.prod)
+  useEffect(() => {
+    setReviews(selProduct.reviews)
+  }, [selProduct.reviews.length])
 
   return (
     <div className="review-list">
       <div className="review-list-row-1">
-        <h2>{`Reviews (${product.reviews.length})`}</h2>
+        <h2>{`Reviews (${selProduct.reviews.length})`}</h2>
       </div>
       <Divider />
       <div className="review-list-row-2">
@@ -74,4 +85,15 @@ const ReviewList = props => {
   )
 }
 
-export default ReviewList
+const mapState = (state, ownProps) => {
+  const id = +ownProps.match.params.id
+  const getProduct = state.products.productList.find(
+    product => product.id === id
+  )
+  return {
+    selProduct: getProduct,
+    prod: state.products.productList
+  }
+}
+
+export default withRouter(connect(mapState)(ReviewList))

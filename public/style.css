@@ -32,6 +32,15 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 label {
   display: block;
 }
@@ -90,6 +99,10 @@ div.home-page-row-2 img {
   width: 90%;
   height: auto;
   padding: 1em 1em 0 1em;
+}
+
+div.home-page > div {
+  cursor: pointer;
 }
 
 /* ----- TOP BAR ----- */
@@ -159,9 +172,6 @@ nav a {
   margin: 1em;
 }
 
-nav a:hover {
-  cursor: pointer;
-}
 div.nav hr {
   margin: 0 0.75em;
 }
@@ -390,6 +400,10 @@ div.review-list-row-2-left > div.makeStyles-root-121 {
   margin: 1em 0.5em 1em 0;
 }
 
+review-list-row-2-left p {
+  margin-left: 0.5em;
+}
+
 div.review-list-row-2-right {
   align-items: center;
   margin: 1.2em 2em 0 0;
@@ -397,11 +411,6 @@ div.review-list-row-2-right {
 
 div.review-list-row-2-right a {
   color: #277c78;
-}
-
-div.review-list-row-2-right a:hover {
-  text-decoration: underline;
-  cursor: pointer;
 }
 
 div.review-list-row-3 {
@@ -481,6 +490,7 @@ div.product-review-right-row-1 {
 
 div.product-review-right-row-2 {
   align-content: flex-start;
+  margin-top: 0.5em;
 }
 
 /* ----- NOT FOUND ----- */
@@ -610,11 +620,6 @@ div.add-review button:active {
 }
 
 /* ----- BREADCRUMBS ----- */
-
-li.MuiBreadcrumbs-li a:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
 
 ol.MuiBreadcrumbs-ol p,
 ol.MuiBreadcrumbs-ol a {

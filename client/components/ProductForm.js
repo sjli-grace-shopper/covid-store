@@ -1,119 +1,135 @@
-// mapState - state.categories (to select category)
-import React from 'react'
+/* eslint-disable complexity */
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {addProduct} from '../store/reducers/productReducer'
 
-class ProductForm extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      name: '',
-      description: '',
-      price: 0,
-      imageUrl: '',
-      quantity: 0,
-      category: 0
-    }
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-  }
-  handleSubmit(event) {
-    event.preventDefault()
-    try {
-      this.props.createProduct(this.state)
-    } catch (err) {
-      console.log(err)
+import Input from '@material-ui/core/Input'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import InputLabel from '@material-ui/core/InputLabel'
+import OutlinedInput from '@material-ui/core/OutlinedInput'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import {Button, MenuItem, Paper, Select} from '@material-ui/core'
+
+import {fetchCategories} from '../store'
+
+class ProductForm extends Component {
+  componentDidMount() {
+    this.props.getCategories()
+    if (this.props.isEdit) {
+      this.setState(this.props.product)
     }
   }
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+
   render() {
+    const {categories, handleChange, handleSubmit, isEdit, product} = this.props
+
+    const formTitle = isEdit ? 'Edit Product' : 'New Product Form'
+
     return (
-      <div id="container">
-        <h4>New Product Form:</h4>
-        <form onSubmit={this.handleSubmit} className="productForm">
-          <label className="column" htmlFor="name">
-            Name:
-          </label>
-          <input
-            className="productForm name"
+      <form onSubmit={handleSubmit} className="product-form">
+        <div className="product-form-row-1">
+          <h3>{formTitle}</h3>
+        </div>
+        <div className="product-form-row-2">
+          <InputLabel id="name-label">Name</InputLabel>
+          <TextField
+            className="product-form name"
             type="text"
             name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
+            align="center"
+            variant="outlined"
+            value={product.name}
+            onChange={handleChange}
+            fullWidth
           />
-          <br />
-          <label className="column" htmlFor="description">
-            Description:
-          </label>
-          <input
-            className="productForm description"
+        </div>
+        <div className="product-form-row-3">
+          <InputLabel id="description-label">Description</InputLabel>
+          <TextField
+            className="product-form description"
             type="text"
             name="description"
-            value={this.state.description}
-            onChange={this.handleChange}
+            variant="outlined"
+            value={product.description}
+            onChange={handleChange}
+            fullWidth
           />
-          <br />
-          <div className="productForm-row-1">
-            <label className="column" htmlFor="price">
-              price:
-            </label>
-            <input
-              className="productForm price"
-              type="double"
-              name="price"
-              value={this.state.price}
-              onChange={this.handleChange}
-            />
-            <label className="column" htmlFor="imageUrl">
-              Image Url:
-            </label>
-            <input
-              className="productForm imgUrl"
-              type="text"
-              name="imageUrl"
-              value={this.state.imageUrl}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="productForm-row-2">
-            <label className="column" htmlFor="quantity">
-              Quantity:
-            </label>
-            <input
-              className="productForm quantity"
-              type="integer"
-              name="quantity"
-              value={this.state.quantity}
-              onChange={this.handleChange}
-            />
-            <label className="column" htmlFor="category">
-              Category Number:
-            </label>
-            <input
-              className="productForm category"
-              type="integer"
-              name="category"
-              value={this.state.category}
-              onChange={this.handleChange}
-            />
-          </div>
-          <input type="submit" value="Submit" />
-          <br />
-          <br />
-        </form>
-      </div>
+        </div>
+        <div className="product-form-row-4">
+          <InputLabel id="price-label">Price</InputLabel>
+          <OutlinedInput
+            className="product-form price"
+            type="double"
+            name="price"
+            variant="outlined"
+            placeholder="Price"
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            value={product.price}
+            onChange={handleChange}
+            fullWidth
+          />
+        </div>
+        <div className="product-form-row-5">
+          <InputLabel id="image-label">Image URL</InputLabel>
+          <TextField
+            className="product-form imgUrl"
+            type="text"
+            name="imageUrl"
+            variant="outlined"
+            value={product.imageUrl}
+            onChange={handleChange}
+            fullWidth
+          />
+        </div>
+        <div className="product-form-row-6">
+          <InputLabel id="quantity-label">Quantity</InputLabel>
+          <TextField
+            className="product-form quantity"
+            type="integer"
+            name="quantity"
+            variant="outlined"
+            value={product.quantity}
+            onChange={handleChange}
+            fullWidth
+          />
+        </div>
+        <div className="product-form-row-7">
+          <InputLabel id="select-label">Category</InputLabel>
+          <Select
+            labelId="select-outlined-label"
+            id="select-outlined"
+            name="categoryId"
+            variant="outlined"
+            value={product.categoryId}
+            onChange={handleChange}
+            label="Category"
+            className="product-form category"
+            fullWidth
+          >
+            {categories.map(cat => (
+              <MenuItem key={cat.id} value={cat.id}>
+                {cat.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
+        <div className="product-form-row-8">
+          <Button variant="contained" type="submit" value="Submit">
+            Submit
+          </Button>
+        </div>
+      </form>
     )
   }
 }
 
-const mapDispatch = dispatch => {
-  return {
-    createProduct: product => dispatch(addProduct(product))
-  }
-}
+const mapState = state => ({
+  categories: state.categories.categoryList,
+  products: state.products.productList
+})
 
-export default connect(null, mapDispatch)(ProductForm)
+const mapDispatch = dispatch => ({
+  getCategories: () => dispatch(fetchCategories())
+})
+
+export default connect(mapState, mapDispatch)(ProductForm)

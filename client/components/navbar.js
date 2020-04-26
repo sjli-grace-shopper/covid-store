@@ -4,35 +4,25 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
-  <div>
-    <h1>COVID-19 STORE</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <Link to="/products">Products</Link>
-          <Link to="/orders">Orders</Link>
-          {isAdmin && <Link to="/productform">Add product</Link>}
-          <Link to="/cart">Cart</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/home">Home</Link>
-          <Link to="/products">Products</Link>
-          <Link to="/cart">Cart</Link>
-        </div>
-      )}
+const Navbar = ({isAdmin}) => (
+  <div className="nav">
+    <div className="nav-left">
+      <h1>COVID-19 STORE</h1>
+    </div>
+    <nav className="nav-right">
+      <div className="nav-links">
+        <Link to="/products">PRODUCTS</Link>
+        <Link to="/categories/masks">MASKS</Link>
+        <Link to="/categories/gloves">GLOVES</Link>
+        <Link to="/categories/sanitizers">SANITIZERS</Link>
+        <Link to="/categories/toilet-paper">TOILET PAPER</Link>
+        {/* The navbar will show these links to admins */}
+        {isAdmin && <hr />}
+        {isAdmin && <Link to="/addproduct">ADD PRODUCT</Link>}
+        {isAdmin && <Link to="/orders">ORDERS</Link>}
+        {isAdmin && <Link to="/users">USERS</Link>}
+      </div>
     </nav>
-
-    <hr />
   </div>
 )
 

@@ -4,18 +4,25 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {me} from './store'
 import {
+  AddProduct,
+  Cart,
+  Categories,
+  CategoryPage,
+  EditProduct,
   Home,
   Login,
   NotFound,
+  OrderItem,
+  Order,
   ProductList,
   Signup,
   SingleProduct,
+  Users,
   UserHome,
-  Cart,
-  OrderItem,
-  Order,
   ProductForm,
-  Checkout
+  Checkout,
+  UserProfile,
+  UpdateUser
 } from './components'
 
 /**
@@ -37,6 +44,11 @@ class Routes extends Component {
         <Route exact path="/cart" component={Cart} />
         <Route path="/cart/checkout" component={Checkout} />
         <Route exact path="/products" component={ProductList} />
+        <Route exact path="/categories" component={Categories} />
+        <Route exact path="/categories/masks" component={CategoryPage} />
+        <Route exact path="/categories/gloves" component={CategoryPage} />
+        <Route exact path="/categories/sanitizers" component={CategoryPage} />
+        <Route exact path="/categories/toilet-paper" component={CategoryPage} />
         <Route
           exact
           path="/products/:productId"
@@ -50,9 +62,17 @@ class Routes extends Component {
             <Route exact path="/home" component={UserHome} />
             <Route exact path="/orders" component={Order} />
             <Route path="/orders/:id" component={OrderItem} />
+            <Route exact path="/profile" component={UserProfile} />
+            <Route exact path="/updateprofile" component={UpdateUser} />
             {isAdmin && (
               <Switch>
-                <Route exact path="/productform" component={ProductForm} />
+                <Route exact path="/addproduct" component={AddProduct} />
+                <Route
+                  exact
+                  path="/products/:productId/editproduct"
+                  component={EditProduct}
+                />
+                <Route exact path="/users" component={Users} />
               </Switch>
             )}
           </Switch>

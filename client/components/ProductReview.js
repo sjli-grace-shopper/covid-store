@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Rating from '@material-ui/lab/Rating'
 import {makeStyles} from '@material-ui/core/styles'
 
@@ -13,8 +14,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ProductReview = props => {
-  const {review} = props
-  const {rating, reviewText, user, createdAt} = review
+  const {createdAt, rating, reviewText, user} = props
+
   const dateAdded = `${createdAt.slice(5, 7)}/${createdAt.slice(
     8,
     10

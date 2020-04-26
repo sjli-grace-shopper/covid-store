@@ -1,34 +1,72 @@
-import React, {Component, Fragment} from 'react'
-import {connect, useDispatch, useSelector} from 'react-redux'
+import React, {Component, Fragment, createRef} from 'react'
+import {connect} from 'react-redux'
 import {Link, withRouter} from 'react-router-dom'
+import Divider from '@material-ui/core/divider'
+import axios from 'axios'
 
-import {AddCartItemButton, Breadcrumbs, ReviewList, Ratings} from '.'
-import {fetchProducts} from '../store'
-import {fetchCart, editCart, addCartItem} from '../store/reducers/cartReducer'
+import {AddCartItemButton, Breadcrumbs, ReviewList, Rating} from '.'
+import {addReview, fetchProducts, fetchCart} from '../store'
 
 class SingleProduct extends Component {
-  componentDidMount() {
-    this.props.getProducts()
+  constructor() {
+    super()
+    this.state = {
+      product: {},
+      showReviewForm: false
+    }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleAddReviewClick = this.handleAddReviewClick.bind(this)
+    this.handleCancelAddReviewClick = this.handleCancelAddReviewClick.bind(this)
+  }
+
+  async componentDidMount() {
+    const productId = +this.props.match.params.productId
+    const {data} = await axios.get(`/api/products/${productId}`)
+    this.setState({product: data})
     this.props.getCart()
   }
 
+  handleSubmit() {
+    this.setState({showReviewForm: false})
+  }
+
+  handleAddReviewClick() {
+    this.setState({showReviewForm: true})
+  }
+
+  handleCancelAddReviewClick(evt) {
+    evt.preventDefault()
+    this.setState({showReviewForm: false})
+  }
+
   render() {
-    const {product} = this.props
-    const rating = 5
-    // const rating = product.reviews.length
-    // 	? product.reviews.reduce((a, c) => {
-    // 			return a + c;
-    // 		}, 0) / product.reviews.length
-    // 	: 0;
+    const product = this.state.product
+    const location = this.props.location.pathname
+      .split('/')
+      .slice(1)
+      .map(el => (el = el.slice(0, 1).toUpperCase() + el.slice(1)))
+    if (Object.keys(product).length > 0) {
+      const rating = product.reviews.length
+        ? +(
+            Math.round(
+              (product.reviews.reduce((a, c) => {
+                return a + c.rating
+              }, 0) /
+                product.reviews.length) *
+                2
+            ) / 2
+          )
+        : 0
 
-    console.log('PRODUCT', this.props)
-
-    if (product)
       return (
         <Fragment>
           <div className="single-product">
             <div className="single-product-row-1">
-              <Breadcrumbs product={product} />
+              <Breadcrumbs
+                product={product}
+                location={this.props.location.pathname.split('/')}
+                formattedLocation={location}
+              />
             </div>
             <div className="single-product-row-2">
               <div className="single-product-row-2-left">
@@ -36,10 +74,10 @@ class SingleProduct extends Component {
               </div>
               <div className="single-product-row-2-right">
                 <div className="single-product-row-2-right-row-1">
-                  {product.name}
+                  <h1>{product.name}</h1>
                 </div>
                 <div className="single-product-row-2-right-row-2">
-                  <Ratings product={product} rating={rating} />
+                  <Rating product={product} rating={rating} />
                 </div>
                 <div className="single-product-row-2-right-row-3">
                   <AddCartItemButton product={product} />
@@ -50,30 +88,34 @@ class SingleProduct extends Component {
               </div>
             </div>
             <div className="single-product-row-3">
-              <ReviewList rating={rating} product={product} />
+              <ReviewList
+                handleCancel={this.handleCancelAddReviewClick}
+                handleClick={this.handleAddReviewClick}
+                handleSubmit={this.handleSubmit}
+                isLoggedIn={this.props.isLoggedIn}
+                product={product}
+                rating={rating}
+                showReviewForm={this.state.showReviewForm}
+              />
             </div>
           </div>
         </Fragment>
       )
-    else return null
+    } else return null
   }
 }
 
-const mapState = (state, ownProps) => {
-  const id = +ownProps.match.params.productId
-  const getProducts = state.products.productList.find(
-    product => product.id === id
-  )
+const mapState = state => {
   return {
-    id: id,
-    product: getProducts,
+    isLoggedIn: !!state.user.id,
     products: state.products.productList
   }
 }
 
 const mapDispatch = dispatch => ({
   getProducts: () => dispatch(fetchProducts()),
-  getCart: () => dispatch(fetchCart())
+  getCart: () => dispatch(fetchCart()),
+  postReview: (id, review) => dispatch(addReview(id, review))
 })
 
 export default withRouter(connect(mapState, mapDispatch)(SingleProduct))

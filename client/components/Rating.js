@@ -1,5 +1,5 @@
 import React from 'react'
-import Rating from '@material-ui/lab/Rating'
+import {Rating as MUIRating} from '@material-ui/lab'
 import {makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
@@ -9,18 +9,18 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Ratings = props => {
+const Rating = props => {
   const classes = useStyles()
   const {product, rating} = props
-  console.log('RATING', product)
-
-  const reviews = product.reviews
-
-  console.log('RATING', rating)
 
   return (
     <div className={classes.root}>
-      <Rating name="half-rating-read" value={rating} precision={0.5} readOnly />
+      <MUIRating
+        name="half-rating-read"
+        value={rating}
+        precision={0.5}
+        readOnly
+      />
       <p>
         {product.reviews.length}{' '}
         {product.reviews.length === 1 ? 'review' : 'reviews'}
@@ -29,4 +29,4 @@ const Ratings = props => {
   )
 }
 
-export default Ratings
+export default Rating

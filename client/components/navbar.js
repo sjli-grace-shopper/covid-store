@@ -7,7 +7,9 @@ import {logout} from '../store'
 const Navbar = ({isAdmin}) => (
   <div className="nav">
     <div className="nav-left">
-      <h1>COVID-19 STORE</h1>
+      <Link to="/">
+        <h1>COVID-19 STORE</h1>
+      </Link>
     </div>
     <nav className="nav-right">
       <div className="nav-links">

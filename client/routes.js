@@ -7,7 +7,6 @@ import {
   AddProduct,
   Cart,
   Categories,
-  CategoryPage,
   EditProduct,
   Home,
   Login,
@@ -17,6 +16,7 @@ import {
   OrderList,
   ProductList,
   Signup,
+  SingleCategory,
   SingleProduct,
   Users,
   UserHome,
@@ -43,10 +43,11 @@ class Routes extends Component {
         <Route path="/cart" component={Cart} />
         <Route exact path="/products" component={ProductList} />
         <Route exact path="/categories" component={Categories} />
-        <Route exact path="/categories/masks" component={CategoryPage} />
-        <Route exact path="/categories/gloves" component={CategoryPage} />
-        <Route exact path="/categories/sanitizers" component={CategoryPage} />
-        <Route exact path="/categories/toilet-paper" component={CategoryPage} />
+        <Route
+          exact
+          path="/categories/:categoryName"
+          component={SingleCategory}
+        />
         <Route
           exact
           path="/products/:productId"

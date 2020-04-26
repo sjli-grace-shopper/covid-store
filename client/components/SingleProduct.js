@@ -1,7 +1,6 @@
-import React, {Component, Fragment, createRef} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import {Link, withRouter} from 'react-router-dom'
-import Divider from '@material-ui/core/divider'
+import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 
 import {AddCartItemButton, Breadcrumbs, ReviewList, Rating} from '.'
@@ -41,10 +40,6 @@ class SingleProduct extends Component {
 
   render() {
     const product = this.state.product
-    const location = this.props.location.pathname
-      .split('/')
-      .slice(1)
-      .map(el => (el = el.slice(0, 1).toUpperCase() + el.slice(1)))
     if (Object.keys(product).length > 0) {
       const rating = product.reviews.length
         ? +(
@@ -63,9 +58,8 @@ class SingleProduct extends Component {
           <div className="single-product">
             <div className="single-product-row-1">
               <Breadcrumbs
-                product={product}
+                name={product.name}
                 location={this.props.location.pathname.split('/')}
-                formattedLocation={location}
               />
             </div>
             <div className="single-product-row-2">

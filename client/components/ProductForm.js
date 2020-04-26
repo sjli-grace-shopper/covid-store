@@ -2,13 +2,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import InputLabel from '@material-ui/core/InputLabel'
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import TextField from '@material-ui/core/TextField'
-import Typography from '@material-ui/core/Typography'
-import {Button, MenuItem, Paper, Select} from '@material-ui/core'
+import {Button, MenuItem, Select} from '@material-ui/core'
 
 import {fetchCategories} from '../store'
 

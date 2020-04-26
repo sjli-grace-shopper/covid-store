@@ -234,8 +234,8 @@ const lineItems = [
 
 const categories = [
   {name: 'masks'},
-  {name: 'toilet_paper'},
-  {name: 'sanatizer'},
+  {name: 'toilet-paper'},
+  {name: 'sanitizers'},
   {name: 'gloves'}
 ]
 

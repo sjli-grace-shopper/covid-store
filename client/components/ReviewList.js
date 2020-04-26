@@ -65,7 +65,7 @@ const ReviewList = props => {
       <div className="review-list-row-3">
         {product.reviews.map((review, i) => (
           <Fragment key={review.id}>
-            <ProductReview index={i} reviewProp={review} />
+            <ProductReview {...review} />
             <Divider />
           </Fragment>
         ))}

@@ -6,6 +6,8 @@ import {me} from './store'
 import {
   AddProduct,
   Cart,
+  Categories,
+  CategoryPage,
   EditProduct,
   Home,
   Login,
@@ -39,6 +41,11 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
         <Route exact path="/products" component={ProductList} />
+        <Route exact path="/categories" component={Categories} />
+        <Route exact path="/categories/masks" component={CategoryPage} />
+        <Route exact path="/categories/gloves" component={CategoryPage} />
+        <Route exact path="/categories/sanitizers" component={CategoryPage} />
+        <Route exact path="/categories/toilet-paper" component={CategoryPage} />
         <Route
           exact
           path="/products/:productId"

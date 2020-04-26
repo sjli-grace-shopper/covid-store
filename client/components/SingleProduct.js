@@ -41,7 +41,10 @@ class SingleProduct extends Component {
 
   render() {
     const product = this.state.product
-
+    const location = this.props.location.pathname
+      .split('/')
+      .slice(1)
+      .map(el => (el = el.slice(0, 1).toUpperCase() + el.slice(1)))
     if (Object.keys(product).length > 0) {
       const rating = product.reviews.length
         ? +(
@@ -59,7 +62,11 @@ class SingleProduct extends Component {
         <Fragment>
           <div className="single-product">
             <div className="single-product-row-1">
-              <Breadcrumbs product={product} />
+              <Breadcrumbs
+                product={product}
+                location={this.props.location.pathname.split('/')}
+                formattedLocation={location}
+              />
             </div>
             <div className="single-product-row-2">
               <div className="single-product-row-2-left">

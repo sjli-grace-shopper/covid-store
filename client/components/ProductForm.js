@@ -1,14 +1,12 @@
 /* eslint-disable complexity */
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Grid from '@material-ui/core/Grid'
 import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import InputLabel from '@material-ui/core/InputLabel'
+import OutlinedInput from '@material-ui/core/OutlinedInput'
 import TextField from '@material-ui/core/TextField'
-
 import Typography from '@material-ui/core/Typography'
 import {Button, MenuItem, Paper, Select} from '@material-ui/core'
 
@@ -28,123 +26,99 @@ class ProductForm extends Component {
     const formTitle = isEdit ? 'Edit Product' : 'New Product Form'
 
     return (
-      <Fragment>
-        <Grid container alignItems="flex-start" spacing={2}>
-          <div style={{padding: 20, margin: 'auto', maxWidth: 600}}>
-            <CssBaseline />
-            <Paper style={{padding: 5}}>
-              <Typography
-                variant="h4"
-                align="center"
-                component="h1"
-                gutterBottom
-              >
-                {formTitle}
-              </Typography>
-              <form onSubmit={handleSubmit} className="productForm">
-                <div>
-                  <Grid item xs={6}>
-                    <TextField
-                      className="productForm name"
-                      type="text"
-                      name="name"
-                      label="Product"
-                      align="center"
-                      fullWidth
-                      value={product.name}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                </div>
-                <div>
-                  <Grid item xs={12}>
-                    <TextField
-                      className="productForm description"
-                      type="text"
-                      name="description"
-                      label="Description"
-                      fullWidth
-                      value={product.description}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                </div>
-                <div>
-                  <Grid item xs={6}>
-                    <Input
-                      className="productForm price"
-                      type="double"
-                      name="price"
-                      label="Price"
-                      fullWidth
-                      placeholder="Price"
-                      startAdornment={
-                        <InputAdornment position="start">$</InputAdornment>
-                      }
-                      value={product.price}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                </div>
-                <div>
-                  <Grid item xs={12}>
-                    <TextField
-                      className="productForm imgUrl"
-                      type="text"
-                      name="imageUrl"
-                      label="URL"
-                      fullWidth
-                      value={product.imageUrl}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                </div>
-                <div>
-                  <Grid item xs={6}>
-                    <TextField
-                      className="productForm quantity"
-                      type="integer"
-                      name="quantity"
-                      label="Quantity"
-                      fullWidth
-                      value={product.quantity}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                </div>
-                <div>
-                  <Grid item xs={6}>
-                    <InputLabel id="select-label">Select Category</InputLabel>
-                    <Select
-                      labelId="select-outlined-label"
-                      id="select-outlined"
-                      name="categoryId"
-                      value={product.categoryId}
-                      onChange={handleChange}
-                      label="Category"
-                      fullWidth
-                      className="productForm category"
-                    >
-                      {categories.map(cat => (
-                        <MenuItem key={cat.id} value={cat.id}>
-                          {cat.name}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </Grid>
-                </div>
-                <div>
-                  <Grid item style={{marginTop: 16}}>
-                    <Button variant="contained" type="submit" value="Submit">
-                      Submit
-                    </Button>
-                  </Grid>
-                </div>
-              </form>
-            </Paper>
-          </div>
-        </Grid>
-      </Fragment>
+      <form onSubmit={handleSubmit} className="product-form">
+        <div className="product-form-row-1">
+          <h3>{formTitle}</h3>
+        </div>
+        <div className="product-form-row-2">
+          <InputLabel id="name-label">Name</InputLabel>
+          <TextField
+            className="product-form name"
+            type="text"
+            name="name"
+            align="center"
+            variant="outlined"
+            value={product.name}
+            onChange={handleChange}
+            fullWidth
+          />
+        </div>
+        <div className="product-form-row-3">
+          <InputLabel id="description-label">Description</InputLabel>
+          <TextField
+            className="product-form description"
+            type="text"
+            name="description"
+            variant="outlined"
+            value={product.description}
+            onChange={handleChange}
+            fullWidth
+          />
+        </div>
+        <div className="product-form-row-4">
+          <InputLabel id="price-label">Price</InputLabel>
+          <OutlinedInput
+            className="product-form price"
+            type="double"
+            name="price"
+            variant="outlined"
+            placeholder="Price"
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            value={product.price}
+            onChange={handleChange}
+            fullWidth
+          />
+        </div>
+        <div className="product-form-row-5">
+          <InputLabel id="image-label">Image URL</InputLabel>
+          <TextField
+            className="product-form imgUrl"
+            type="text"
+            name="imageUrl"
+            variant="outlined"
+            value={product.imageUrl}
+            onChange={handleChange}
+            fullWidth
+          />
+        </div>
+        <div className="product-form-row-6">
+          <InputLabel id="quantity-label">Quantity</InputLabel>
+          <TextField
+            className="product-form quantity"
+            type="integer"
+            name="quantity"
+            variant="outlined"
+            value={product.quantity}
+            onChange={handleChange}
+            fullWidth
+          />
+        </div>
+        <div className="product-form-row-7">
+          <InputLabel id="select-label">Category</InputLabel>
+          <Select
+            labelId="select-outlined-label"
+            id="select-outlined"
+            name="categoryId"
+            variant="outlined"
+            value={product.categoryId}
+            onChange={handleChange}
+            label="Category"
+            className="product-form category"
+            fullWidth
+          >
+            {categories.map(cat => (
+              <MenuItem key={cat.id} value={cat.id}>
+                {cat.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
+        <div className="product-form-row-8">
+          <Button variant="contained" type="submit" value="Submit">
+            Submit
+          </Button>
+        </div>
+      </form>
     )
   }
 }

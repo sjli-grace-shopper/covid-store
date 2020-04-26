@@ -84,6 +84,15 @@ export const removeCartItem = productId => async dispatch => {
   }
 }
 
+export const checkout = () => async dispatch => {
+  try {
+    await axios.put(`/api/cart/checkout`)
+    dispatch(clearCart())
+  } catch (err) {
+    console.error('Error removing cart item: ', err)
+  }
+}
+
 /**
  * REDUCER
  */

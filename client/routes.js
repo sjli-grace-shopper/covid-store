@@ -14,7 +14,8 @@ import {
   Cart,
   OrderItem,
   Order,
-  ProductForm
+  ProductForm,
+  Checkout
 } from './components'
 
 /**
@@ -27,13 +28,14 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn, isAdmin} = this.props
-
+    console.log(this.props)
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/cart" component={Cart} />
+        <Route exact path="/cart" component={Cart} />
+        <Route path="/cart/checkout" component={Checkout} />
         <Route exact path="/products" component={ProductList} />
         <Route
           exact

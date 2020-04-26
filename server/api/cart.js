@@ -108,6 +108,40 @@ router.put('/', async (req, res, next) => {
   }
 })
 
+router.put('/checkout', async (req, res, next) => {
+  if (req.user) {
+    const cart = await Order.findOne({
+      where: {userId: req.user.id, status: 'IN_CART'},
+      include: [{model: Product}]
+    })
+    // set price in each lineitem
+    await Promise.all(
+      cart.products.map(product => {
+        LineItem.update(
+          {
+            price: product.price
+          },
+          {
+            where: {orderId: cart.id, productId: product.id}
+          }
+        )
+      })
+    )
+
+    // mark order status as processing
+    await Order.update(
+      {
+        status: 'PROCESSING'
+      },
+      {
+        where: {userId: req.user.id, status: 'IN_CART'}
+      }
+    )
+    req.send('ORDER PROCESSED')
+  }
+  req.send('GUEST')
+})
+
 // DELETE /api/cart/:cartId
 router.delete('/:productId', async (req, res, next) => {
   try {

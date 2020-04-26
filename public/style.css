@@ -50,6 +50,14 @@ form div {
   flex-direction: column;
   justify-content: flex-start;
 }
+
+/* ----- CHECKOUT ----- */
+
+#checkout {
+  display: flex;
+  flex-direction: row;
+}
+
 /* ----- SINGLE PRODUCT ----- */
 
 div.single-product {

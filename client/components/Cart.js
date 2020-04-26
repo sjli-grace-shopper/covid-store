@@ -6,6 +6,7 @@ import {
   removeCartItem,
   addCartItem
 } from '../store/reducers/cartReducer'
+import {Link} from 'react-router-dom'
 import CartItem from './CartItem'
 
 class Cart extends React.Component {
@@ -78,7 +79,7 @@ class Cart extends React.Component {
                   }, 0)
                   .toFixed(2)}
               </h3>
-              <button type="button">Checkout</button>
+              <Link to="/cart/checkout">Checkout</Link>
               <button type="button" onClick={this.addProduct}>
                 Add Random Item
               </button>

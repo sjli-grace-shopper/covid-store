@@ -12,8 +12,16 @@ router.get('/', async (req, res, next) => {
         attributes: ['id', 'status'],
         include: [{model: Product}]
       })
-      res.json(cart)
+
+      // create a new cart if user does not have one
+      if (!cart) {
+        const newCart = Order.create({status: 'IN_CART', userId: req.user.id})
+        res.json(newCart)
+      } else {
+        res.json(cart)
+      }
     } else {
+      console.log('REQ>SESSION>CART', req.session.cart)
       res.json(req.session.cart)
     }
   } catch (err) {
@@ -137,9 +145,9 @@ router.put('/checkout', async (req, res, next) => {
         where: {userId: req.user.id, status: 'IN_CART'}
       }
     )
-    req.send('ORDER PROCESSED')
+    res.send('ORDER PROCESSED')
   }
-  req.send('GUEST')
+  res.send('GUEST')
 })
 
 // DELETE /api/cart/:cartId

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import Divider from '@material-ui/core/divider'
 
 import {fetchProducts, fetchCategories} from '../store'
 import {Breadcrumbs, ProductDetail} from '.'
@@ -30,11 +29,9 @@ class SingleCategory extends Component {
             name={category.name}
             location={this.props.location.pathname.split('/')}
           />
-          {/* <Divider /> */}
           <div className="single-category-row-1">
             <img src={`/images/${category.id}.png`} />
           </div>
-          {/* <Divider /> */}
           <div className="single-category-products">
             {products.reduce((a, product) => {
               if (product.categoryId === category.id) {

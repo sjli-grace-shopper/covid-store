@@ -553,7 +553,7 @@ div.product-list {
 div.product-list-product {
   display: flex;
   flex-direction: column;
-  flex: 30%;
+  flex: 0 1 30%;
   margin: 1em 0;
 }
 
@@ -584,6 +584,13 @@ div.product-list-row-3 {
 
 a h3 {
   color: black;
+}
+
+div.product-list-pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 2em 1em 1em 1em;
 }
 
 /* ----- PRODUCT FORM ----- */

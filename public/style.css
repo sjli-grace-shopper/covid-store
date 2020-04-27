@@ -141,9 +141,9 @@ span.MuiBadge-root {
   cursor: pointer;
 }
 
-span.MuiBadge-root > span {
+/* span.MuiBadge-root > span {
   transform: scale(1) translate(40%, -35%);
-}
+} */
 
 /* ----- NAV BAR ----- */
 

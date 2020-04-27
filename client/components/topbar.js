@@ -49,6 +49,7 @@ const TopBar = props => {
           <span className={classes.root}>
             <Badge
               badgeContent={Object.keys(cart).length}
+              badgeContent={1}
               color="primary"
               invisible={isInvisible}
             >

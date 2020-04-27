@@ -75,7 +75,15 @@ router.get('/', async (req, res, next) => {
         include: [{model: Product}]
       })
 
-      res.json(cart)
+      // check if there was a corresponding order (in case database was re-seeded or order was deleted somehow)
+      if (!cart) {
+        const newCart = await Order.create({status: 'IN_CART'})
+        newCart.dataValues.products = []
+        req.session.cartId = newCart.id
+        res.json(newCart)
+      } else {
+        res.json(cart)
+      }
     } else {
       // guest user does not have a cart
       const newCart = await Order.create({status: 'IN_CART'})

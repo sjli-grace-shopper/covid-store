@@ -98,6 +98,7 @@ export const checkout = () => async dispatch => {
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case GET_CART:
+      console.log('WE HAVE RETREIVED THE CART!', action.cart)
       return {...state, isFetching: true, cart: action.cart}
     case ADD_TO_CART:
       return {

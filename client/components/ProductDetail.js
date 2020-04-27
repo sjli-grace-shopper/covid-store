@@ -2,6 +2,7 @@ import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
+import history from '../history'
 
 const ProductDetail = props => {
   const {product, isAdmin} = props

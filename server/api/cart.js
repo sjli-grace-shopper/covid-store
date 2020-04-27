@@ -21,7 +21,7 @@ router.get('/', async (req, res, next) => {
         // move all products to user order
         await Promise.all(
           guestOrder.products.map(product => {
-            LineItem.update(
+            return LineItem.update(
               {
                 orderId: userOrder.id
               },
@@ -212,12 +212,26 @@ router.put('/checkout', async (req, res, next) => {
     // set price in each lineitem
     await Promise.all(
       cart.products.map(product => {
-        LineItem.update(
+        return LineItem.update(
           {
             price: product.price
           },
           {
             where: {orderId: cart.id, productId: product.id}
+          }
+        )
+      })
+    )
+
+    // reduce stock
+    await Promise.all(
+      cart.products.map(product => {
+        return Product.update(
+          {
+            quantity: product.quantity - product.line_item.quantity
+          },
+          {
+            where: {id: product.id}
           }
         )
       })

@@ -185,8 +185,9 @@ div.nav hr {
 
 .cart-item {
   border-radius: 10px;
-  background-color: rgb(185, 185, 185);
-  margin: 10px;
+  border: 0.05em solid;
+  border-color: rgb(185, 185, 185);
+  margin: 1em;
   display: flex;
   flex-direction: row;
 }
@@ -196,11 +197,11 @@ div.nav hr {
 }
 
 .cart-item-image {
-  margin: 10px;
+  margin: 1em;
 }
 
 .cart-item-info {
-  margin-right: 10px;
+  margin-right: 1em;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

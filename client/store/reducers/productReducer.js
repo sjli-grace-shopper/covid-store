@@ -44,10 +44,8 @@ export function fetchProducts() {
 export function addProduct(product, ownProps) {
   return async dispatch => {
     try {
-      console.log('AXIOS', product)
       const {data} = await axios.post('/api/products', product)
       dispatch(createProduct(data))
-      console.log('AXIOS SUCCESS', data)
       ownProps.history.push(`/products/${data.id}`)
     } catch (err) {
       console.error('Error adding product: ', err)
@@ -57,10 +55,8 @@ export function addProduct(product, ownProps) {
 
 export const editProduct = (id, product, ownProps) => async dispatch => {
   try {
-    console.log('AXIOS', id, product)
     const {data} = await axios.put(`/api/products/${id}`, product)
     dispatch(updateProduct(data))
-    console.log('AXIOS SUCCESS', data)
     ownProps.history.push(`/products/${data.id}`)
   } catch (err) {
     console.error('Error editing product: ', err)
@@ -71,6 +67,7 @@ export const addReview = (id, review) => async dispatch => {
   try {
     const {data} = await axios.post(`/api/products/${id}/review`, review)
     dispatch(createReview(id, data))
+    dispatch(fetchProducts())
   } catch (err) {
     console.error('Error adding review: ', err)
   }

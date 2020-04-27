@@ -130,15 +130,20 @@ div.top-bar a {
   margin: 0.25em 1em 0 0;
   color: black;
   align-self: center;
+  cursor: pointer;
 }
 
 div.top-bar-right svg.MuiSvgIcon-root {
   margin: 0 0.25em 0.25em 0;
 }
 
-span.MuiBadge-root > span {
-  transform: scale(1) translate(40%, -35%);
+span.MuiBadge-root {
+  cursor: pointer;
 }
+
+/* span.MuiBadge-root > span {
+  transform: scale(1) translate(40%, -35%);
+} */
 
 /* ----- NAV BAR ----- */
 

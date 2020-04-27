@@ -86,4 +86,13 @@ router.post('/:id/review', async (req, res, next) => {
   }
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    await Product.destroy({where: {id: req.params.id}})
+    res.sendStatus(204).end()
+  } catch (err) {
+    next(err)
+  }
+})
+
 module.exports = router

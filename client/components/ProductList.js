@@ -59,7 +59,11 @@ class ProductList extends Component {
           </div>
           <div className="product-list">
             {products.map(product => (
-              <ProductDetail key={product.id} product={product} />
+              <ProductDetail
+                key={product.id}
+                routeProps={this.props.routeProps}
+                product={product}
+              />
             ))}
           </div>
         </Fragment>

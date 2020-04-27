@@ -185,8 +185,9 @@ div.nav hr {
 
 .cart-item {
   border-radius: 10px;
-  background-color: rgb(185, 185, 185);
-  margin: 10px;
+  border: 0.05em solid;
+  border-color: rgb(185, 185, 185);
+  margin: 1em;
   display: flex;
   flex-direction: row;
 }
@@ -196,11 +197,11 @@ div.nav hr {
 }
 
 .cart-item-image {
-  margin: 10px;
+  margin: 1em;
 }
 
 .cart-item-info {
-  margin-right: 10px;
+  margin-right: 1em;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -298,8 +299,26 @@ div.product-list-row-3 {
   margin: 0 1.2em;
 }
 
+div.product-list-row-3-btns {
+  display: flex;
+  flex-direction: row;
+}
+
 div.product-list-row-3 button {
-  height: 100%;
+  align-self: center;
+  height: 2.5em;
+  font-size: 0.7em;
+}
+
+div.product-list-row-3 button.edit {
+  margin-right: 0.25em;
+  width: 3em;
+}
+
+div.product-list-row-3 button.delete {
+  margin-left: 0.25em;
+  width: 3.3em;
+  background-color: rgba(255, 154, 154, 0.842);
 }
 
 /* ----- SINGLE PRODUCT ----- */
@@ -556,10 +575,6 @@ div.product-list-row-3 {
   flex-direction: row;
   justify-content: space-between;
   margin: 0 1.2em;
-}
-
-div.product-list-row-3 button {
-  height: 100%;
 }
 
 a h3 {

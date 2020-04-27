@@ -1,11 +1,8 @@
-import React, {Fragment, useEffect, useState} from 'react'
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import React, {Fragment} from 'react'
 
 import Divider from '@material-ui/core/divider'
 import Rating from '@material-ui/lab/Rating'
 import {makeStyles} from '@material-ui/core/styles'
-import axios from 'axios'
 
 import {AddReview, ProductReview} from '.'
 
@@ -20,28 +17,22 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ReviewList = props => {
-  const [reviews, setReviews] = useState([])
-
   const {
     handleCancel,
     handleClick,
     handleSubmit,
     isLoggedIn,
+    ownProps,
     product,
     rating,
-    showReviewForm,
-    selProduct
+    showReviewForm
   } = props
   const classes = useStyles()
-  console.log('selProduct', selProduct, props.prod)
-  useEffect(() => {
-    setReviews(selProduct.reviews)
-  }, [selProduct.reviews.length])
-
+  console.log('OWNPROPS', props)
   return (
     <div className="review-list">
       <div className="review-list-row-1">
-        <h2>{`Reviews (${selProduct.reviews.length})`}</h2>
+        <h2>{`Reviews (${product.reviews.length})`}</h2>
       </div>
       <Divider />
       <div className="review-list-row-2">
@@ -76,7 +67,7 @@ const ReviewList = props => {
       <div className="review-list-row-3">
         {product.reviews.map((review, i) => (
           <Fragment key={review.id}>
-            <ProductReview {...review} />
+            <ProductReview index={i} {...review} />
             <Divider />
           </Fragment>
         ))}
@@ -85,15 +76,4 @@ const ReviewList = props => {
   )
 }
 
-const mapState = (state, ownProps) => {
-  const id = +ownProps.match.params.id
-  const getProduct = state.products.productList.find(
-    product => product.id === id
-  )
-  return {
-    selProduct: getProduct,
-    prod: state.products.productList
-  }
-}
-
-export default withRouter(connect(mapState)(ReviewList))
+export default ReviewList

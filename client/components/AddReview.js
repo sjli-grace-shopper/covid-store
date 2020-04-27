@@ -17,7 +17,7 @@ const AddReview = props => {
     postReview(product.id, {rating, reviewText})
     setRating(0)
     setReviewText('')
-    handleSubmit()
+    handleSubmit(evt)
   }
 
   return (
@@ -44,7 +44,12 @@ const AddReview = props => {
           />
         </div>
         <div className="add-review-row-3">
-          <Button className="add-button" variant="outlined" type="submit">
+          <Button
+            className="add-button"
+            disabled={rating === 0}
+            variant="outlined"
+            type="submit"
+          >
             Submit Review
           </Button>
           <a onClick={handleCancel}>Cancel</a>

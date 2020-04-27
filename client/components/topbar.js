@@ -22,47 +22,45 @@ const TopBar = props => {
   const handlePageChange = () => {
     window.location.href = '/cart'
   }
-  const isInvisible = Object.keys(cart).length > 1
+  const isInvisible = cart.products.length < 1
   console.log('PROPS', props)
+  console.log('CART', cart.products.length)
+  const hasCart = cart.products.length
+  if (cart && hasCart) {
+    return (
+      <div className="top-bar">
+        <div className="top-bar-left">
+          <Link to="/">Home</Link>
+        </div>
+        {isLoggedIn ? (
+          <div className="top-bar-right">
+            {/* The navbar will show these links after you log in */}
+            <Link to="/profile">Account</Link>
+            <a href="#" onClick={handleClick}>
+              Logout
+            </a>
+            <ShoppingBasketIcon onClick={handlePageChange} />
+            <Link to="/cart">Cart</Link>
+          </div>
+        ) : (
+          <div className="top-bar-right">
+            {/* The navbar will show these links before you log in */}
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
 
-  return (
-    <div className="top-bar">
-      <div className="top-bar-left">
-        <Link to="/">Home</Link>
+            <span className={classes.root}>
+              <Badge badgeContent={cart.products.length} color="default">
+                <ShoppingBasketIcon
+                  className="cart-icon"
+                  onClick={handlePageChange}
+                />
+              </Badge>
+            </span>
+          </div>
+        )}
       </div>
-      {isLoggedIn ? (
-        <div className="top-bar-right">
-          {/* The navbar will show these links after you log in */}
-          <Link to="/profile">Account</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-          <ShoppingBasketIcon onClick={handlePageChange} />
-          <Link to="/cart">Cart</Link>
-        </div>
-      ) : (
-        <div className="top-bar-right">
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-
-          <span className={classes.root}>
-            <Badge
-              badgeContent={Object.keys(cart).length}
-              badgeContent={1}
-              color="primary"
-              invisible={isInvisible}
-            >
-              <ShoppingBasketIcon
-                className="cart-icon"
-                onClick={handlePageChange}
-              />
-            </Badge>
-          </span>
-        </div>
-      )}
-    </div>
-  )
+    )
+  } else return null
 }
 
 /**

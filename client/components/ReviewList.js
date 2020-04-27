@@ -28,7 +28,6 @@ const ReviewList = props => {
     showReviewForm
   } = props
   const classes = useStyles()
-  console.log('OWNPROPS', props)
   return (
     <div className="review-list">
       <div className="review-list-row-1">

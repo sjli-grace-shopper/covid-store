@@ -14,8 +14,10 @@ class SingleProduct extends Component {
       showReviewForm: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleAddReviewClick = this.handleAddReviewClick.bind(this)
-    this.handleCancelAddReviewClick = this.handleCancelAddReviewClick.bind(this)
+    this.handleReviewFormClick = this.handleReviewFormClick.bind(this)
+    this.handleCancelReviewFormClick = this.handleCancelReviewFormClick.bind(
+      this
+    )
   }
 
   async componentDidMount() {
@@ -32,11 +34,11 @@ class SingleProduct extends Component {
     this.setState({product: this.props.stateProduct})
   }
 
-  handleAddReviewClick() {
+  handleReviewFormClick() {
     this.setState({showReviewForm: true})
   }
 
-  handleCancelAddReviewClick(evt) {
+  handleCancelReviewFormClick(evt) {
     evt.preventDefault()
     this.setState({showReviewForm: false})
   }
@@ -90,8 +92,8 @@ class SingleProduct extends Component {
             <div className="single-product-row-3">
               <ReviewList
                 ownProps={this.props}
-                handleCancel={this.handleCancelAddReviewClick}
-                handleClick={this.handleAddReviewClick}
+                handleCancel={this.handleCancelReviewFormClick}
+                handleClick={this.handleReviewFormClick}
                 handleSubmit={this.handleSubmit}
                 isLoggedIn={this.props.isLoggedIn}
                 product={product}
@@ -108,7 +110,9 @@ class SingleProduct extends Component {
 
 const mapState = (state, ownProps) => {
   const id = +ownProps.match.params.productId
-  const getProduct = state.products.productList.find(prod => prod.id === id)
+  const getProduct =
+    state.products.productList.length &&
+    state.products.productList.find(prod => prod.id === id)
   return {
     isLoggedIn: !!state.user.id,
     products: state.products.productList,

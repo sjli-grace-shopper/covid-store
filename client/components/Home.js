@@ -17,7 +17,7 @@ class Home extends Component {
         <Fragment>
           <div className="home-page">
             <div className="home-page-row-1">
-              <img src="banner.png" />
+              <img src="/images/banner.png" />
             </div>
             <div className="home-page-row-2">
               {this.props.categories.map((cat, i) => {
@@ -27,7 +27,7 @@ class Home extends Component {
                     className={`home-page-row-2-box-${i + 1}`}
                     onClick={() => handleClick(cat.name)}
                   >
-                    <img src={`${cat.name}.png`} />
+                    <img src={`/images/${cat.name}.png`} />
                     <h2>
                       {cat.name === 'toilet-paper'
                         ? 'Toilet Paper'

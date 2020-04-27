@@ -31,7 +31,7 @@ class Categories extends Component {
                   className={`categories-box-${i + 1}`}
                   onClick={() => handleClick(cat.name)}
                 >
-                  <img src={`${cat.name}.png`} />
+                  <img src={`/images/${cat.name}.png`} />
                   <h2>
                     {cat.name === 'toilet-paper'
                       ? 'Toilet Paper'

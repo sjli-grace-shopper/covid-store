@@ -23,10 +23,13 @@ const TopBar = props => {
     window.location.href = '/cart'
   }
   const isInvisible = cart.products.length < 1
-  console.log('PROPS', props)
-  console.log('CART', cart.products.length)
   const hasCart = cart.products.length
-  if (cart && hasCart) {
+  const cartQty =
+    hasCart &&
+    cart.products.reduce((a, c) => {
+      return a + c.line_item.quantity
+    }, 0)
+  if (cart) {
     return (
       <div className="top-bar">
         <div className="top-bar-left">
@@ -39,8 +42,14 @@ const TopBar = props => {
             <a href="#" onClick={handleClick}>
               Logout
             </a>
-            <ShoppingBasketIcon onClick={handlePageChange} />
-            <Link to="/cart">Cart</Link>
+            <span className={classes.root}>
+              <Badge badgeContent={cartQty} color="secondary">
+                <ShoppingBasketIcon
+                  className="cart-icon"
+                  onClick={handlePageChange}
+                />
+              </Badge>
+            </span>
           </div>
         ) : (
           <div className="top-bar-right">
@@ -49,7 +58,7 @@ const TopBar = props => {
             <Link to="/signup">Sign Up</Link>
 
             <span className={classes.root}>
-              <Badge badgeContent={cart.products.length} color="default">
+              <Badge badgeContent={cartQty} color="secondary">
                 <ShoppingBasketIcon
                   className="cart-icon"
                   onClick={handlePageChange}

@@ -185,8 +185,9 @@ div.nav hr {
 
 .cart-item {
   border-radius: 10px;
-  background-color: rgb(185, 185, 185);
-  margin: 10px;
+  border: 0.05em solid;
+  border-color: rgb(185, 185, 185);
+  margin: 1em;
   display: flex;
   flex-direction: row;
 }
@@ -196,11 +197,11 @@ div.nav hr {
 }
 
 .cart-item-image {
-  margin: 10px;
+  margin: 1em;
 }
 
 .cart-item-info {
-  margin-right: 10px;
+  margin-right: 1em;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -259,11 +260,14 @@ div.single-category-row-1 {
   margin: 1em 0 0.5em 0;
 }
 
+div.single-category-row-1 img {
+  width: 100%;
+}
+
 div.single-category-products {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 2em;
   text-align: center;
 }
 
@@ -295,8 +299,26 @@ div.product-list-row-3 {
   margin: 0 1.2em;
 }
 
+div.product-list-row-3-btns {
+  display: flex;
+  flex-direction: row;
+}
+
 div.product-list-row-3 button {
-  height: 100%;
+  align-self: center;
+  height: 2.5em;
+  font-size: 0.7em;
+}
+
+div.product-list-row-3 button.edit {
+  margin-right: 0.25em;
+  width: 3em;
+}
+
+div.product-list-row-3 button.delete {
+  margin-left: 0.25em;
+  width: 3.3em;
+  background-color: rgba(255, 154, 154, 0.842);
 }
 
 /* ----- SINGLE PRODUCT ----- */
@@ -510,6 +532,13 @@ div.not-found {
 
 /* ----- ALL PRODUCTS ----- */
 
+div.products-breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 div.product-list {
   display: flex;
   flex-direction: row;
@@ -521,6 +550,10 @@ div.product-list-product {
   flex-direction: column;
   flex: 30%;
   margin: 1em 0;
+}
+
+img.products-banner {
+  width: 100%;
 }
 
 img.product-img {
@@ -544,8 +577,8 @@ div.product-list-row-3 {
   margin: 0 1.2em;
 }
 
-div.product-list-row-3 button {
-  height: 100%;
+a h3 {
+  color: black;
 }
 
 /* ----- PRODUCT FORM ----- */
@@ -631,3 +664,21 @@ ol.MuiBreadcrumbs-ol p,
 ol.MuiBreadcrumbs-ol a {
   font-size: small;
 }
+
+/* ----- FILTER BAR ----- */
+
+/* button.filter-bar-btn {
+	margin-left: 0.5em;
+	border: 0.1em solid;
+	border-color: #33a49f;
+}
+
+button.filter-bar-btn:hover {
+	background-color: #2c9690;
+	cursor: pointer;
+}
+
+button.filter-bar-btn:active {
+	background-color: #3c837f;
+	color: white;
+} */

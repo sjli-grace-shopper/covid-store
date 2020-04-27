@@ -30,11 +30,11 @@ class SingleCategory extends Component {
             name={category.name}
             location={this.props.location.pathname.split('/')}
           />
-          <Divider />
+          {/* <Divider /> */}
           <div className="single-category-row-1">
-            <h2>{name}</h2>
+            <img src={`/images/${category.id}.png`} />
           </div>
-          <Divider />
+          {/* <Divider /> */}
           <div className="single-category-products">
             {products.reduce((a, product) => {
               if (product.categoryId === category.id) {

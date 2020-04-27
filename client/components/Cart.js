@@ -9,6 +9,9 @@ import {
 import {Link} from 'react-router-dom'
 import CartItem from './CartItem'
 
+import Button from '@material-ui/core/Button'
+import Divider from '@material-ui/core/divider'
+
 class Cart extends React.Component {
   constructor() {
     super()
@@ -73,7 +76,7 @@ class Cart extends React.Component {
             </div>
             <div id="cart-checkout">
               <h3>
-                subtotal: $
+                Subtotal: $
                 {this.props.cart.products
                   .reduce((subtotal, product) => {
                     return subtotal + product.price * product.line_item.quantity

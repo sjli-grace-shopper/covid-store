@@ -8,7 +8,7 @@ const Navbar = ({isAdmin}) => (
   <div className="nav">
     <div className="nav-left">
       <Link to="/">
-        <h1>COVID-19 STORE</h1>
+        <h1>COVID STORE</h1>
       </Link>
     </div>
     <nav className="nav-right">

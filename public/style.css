@@ -212,6 +212,88 @@ div.nav hr {
   justify-content: flex-start;
 }
 
+.cart-item-name:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ----- CART PREVIEW ----- */
+
+div.cart-preview-box {
+  margin-top: 2.2em;
+  padding: 0.5em;
+  border: 0.05em solid;
+  border-color: rgb(185, 185, 185);
+  border-radius: 0.6em;
+  width: 90%;
+  background-color: white;
+}
+
+div.cart-preview-box .cart-item {
+  border: none;
+  margin: 0 0 0 0.5em;
+}
+
+div.cart-preview-box .cart-item-image {
+  width: 30%;
+}
+
+div.cart-preview-box img {
+  max-width: 90%;
+  height: auto;
+}
+
+div.cart-preview-box button {
+  height: 2em;
+  font-size: 0.8em;
+  padding: 0.1em;
+}
+
+.cart-preview-box p.cart-item-name {
+  margin: 1em 0 0.5em 0;
+}
+
+.cart-preview-box .cart-item-info > div,
+.cart-preview-box .cart-item-info > p.cart-item-price {
+  margin: 0.5em 0 0.5em 0;
+}
+
+.cart-item .delete {
+  margin-left: 1em;
+  background-color: rgba(255, 154, 154, 0.842);
+}
+
+div.cart-preview button#cart {
+  background-color: #33a49f;
+  color: white;
+  margin: 1.2em 1em 1.2em 1.5em;
+  height: 2.5em;
+  width: 8em;
+}
+
+div.cart-preview button#cart:hover {
+  background-color: #2c9690;
+  cursor: pointer;
+}
+
+div.cart-preview button#cart:active {
+  background-color: #3c837f;
+}
+
+div.cart-preview-box .cart-preview-close {
+  color: #c5c5c5;
+}
+
+div.cart-preview-box .cart-preview-close:hover {
+  cursor: pointer;
+  background-color: #d4d4d4;
+  cursor: pointer;
+}
+
+div.cart-preview-box .cart-preview-close:active {
+  background-color: #acacac;
+}
+
 /* ----- CHECKOUT ----- */
 
 #checkout {
@@ -452,7 +534,7 @@ div.review-list-row-3 {
 
 /* ----- ADD TO CART BTN ----- */
 
-div.single-product-row-2-right-row-3 button {
+div.single-product-row-2-right-row-3 button. {
   border: solid 1px;
   border-color: #e2e2e2;
 }

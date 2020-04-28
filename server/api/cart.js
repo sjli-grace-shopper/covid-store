@@ -1,8 +1,12 @@
 const router = require('express').Router()
 const {Category, LineItem, Order, Product} = require('../db/models')
+const dotenv = require('dotenv')
+
+// load engironment variables
+dotenv.config()
 
 const Stripe = require('stripe')
-const stripe = new Stripe('sk_test_iYjEYq2Umb0h6GWXpRlo4yjo00nLf3eUjK')
+const stripe = new Stripe(process.env.STRIPE_SECRET_TEST_KEY)
 
 // GET /api/cart
 router.get('/', async (req, res, next) => {

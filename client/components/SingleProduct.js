@@ -22,9 +22,7 @@ class SingleProduct extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleReviewFormClick = this.handleReviewFormClick.bind(this)
-    this.handleCancelReviewFormClick = this.handleCancelReviewFormClick.bind(
-      this
-    )
+    this.handleCancelReviewClick = this.handleCancelReviewClick.bind(this)
     this.handleAddCartClick = this.handleAddCartClick.bind(this)
     this.handleCloseCartClick = this.handleCloseCartClick.bind(this)
   }
@@ -47,7 +45,7 @@ class SingleProduct extends Component {
     this.setState({showReviewForm: true})
   }
 
-  handleCancelReviewFormClick(evt) {
+  handleCancelReviewClick(evt) {
     evt.preventDefault()
     this.setState({showReviewForm: false})
   }
@@ -66,18 +64,6 @@ class SingleProduct extends Component {
       : this.props.stateProduct
 
     if (product && product.reviews) {
-      const rating = product.reviews.length
-        ? +(
-            Math.round(
-              (product.reviews.reduce((a, c) => {
-                return a + c.rating
-              }, 0) /
-                product.reviews.length) *
-                2
-            ) / 2
-          )
-        : 0
-
       return (
         <Fragment>
           <div className="single-product">
@@ -100,7 +86,7 @@ class SingleProduct extends Component {
                   <h1>{product.name}</h1>
                 </div>
                 <div className="single-product-row-2-right-row-2">
-                  <Rating product={product} rating={rating} />
+                  <Rating product={product} />
                 </div>
                 <div className="single-product-row-2-right-row-3">
                   <AddCartItemButton
@@ -116,12 +102,11 @@ class SingleProduct extends Component {
             <div className="single-product-row-3">
               <ReviewList
                 ownProps={this.props}
-                handleCancel={this.handleCancelReviewFormClick}
+                handleCancel={this.handleCancelReviewClick}
                 handleClick={this.handleReviewFormClick}
                 handleSubmit={this.handleSubmit}
                 isLoggedIn={this.props.isLoggedIn}
                 product={product}
-                rating={rating}
                 showReviewForm={this.state.showReviewForm}
               />
             </div>

@@ -4,7 +4,7 @@ const {Category, Product, Review, User} = require('../db/models')
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
-      include: [{model: Review, include: [User]}]
+      include: [{model: Review, include: [User]}, {model: Category}]
     })
     res.json(products)
   } catch (err) {
@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
 router.get('/:productId', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.productId, {
-      include: [{model: Review, include: [User]}]
+      include: [{model: Review, include: [User]}, {model: Category}]
     })
     res.json(product)
   } catch (err) {

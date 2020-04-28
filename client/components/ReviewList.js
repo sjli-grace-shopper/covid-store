@@ -23,10 +23,22 @@ const ReviewList = props => {
     handleSubmit,
     isLoggedIn,
     product,
-    rating,
     showReviewForm
   } = props
   const classes = useStyles()
+
+  const rating = product.reviews.length
+    ? +(
+        Math.round(
+          (product.reviews.reduce((a, c) => {
+            return a + c.rating
+          }, 0) /
+            product.reviews.length) *
+            2
+        ) / 2
+      )
+    : 0
+
   return (
     <div className="review-list">
       <div className="review-list-row-1">

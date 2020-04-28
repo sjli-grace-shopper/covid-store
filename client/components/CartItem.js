@@ -9,7 +9,7 @@ export default function CartItem(props) {
   const handleClick = evt => {
     history.push(`/products/${evt}`)
   }
-
+  console.log('PROPS', props)
   return (
     <div className="cart-item">
       <div className="cart-item-image">

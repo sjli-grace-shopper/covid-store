@@ -11,7 +11,18 @@ const useStyles = makeStyles(theme => ({
 
 const Rating = props => {
   const classes = useStyles()
-  const {product, rating} = props
+  const {product} = props
+  const rating = product.reviews.length
+    ? +(
+        Math.round(
+          (product.reviews.reduce((a, c) => {
+            return a + c.rating
+          }, 0) /
+            product.reviews.length) *
+            2
+        ) / 2
+      )
+    : 0
 
   return (
     <div className={classes.root}>

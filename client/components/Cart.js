@@ -54,7 +54,6 @@ class Cart extends React.Component {
   }
 
   render() {
-    // console.log('CART STATE', this.props)
     return (
       <div className="cart">
         <h1>SHOPPING CART</h1>

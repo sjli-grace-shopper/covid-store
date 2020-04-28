@@ -21,6 +21,7 @@ import {
   Users,
   UserHome,
   ProductForm,
+  Search,
   Checkout,
   UserProfile,
   UpdateUser
@@ -58,6 +59,16 @@ class Routes extends Component {
           exact
           path="/products/:productId"
           render={routeProps => <SingleProduct routeProps={routeProps} />}
+        />
+        <Route
+          exact
+          path="/search"
+          render={routeProps => <Search routeProps={routeProps} />}
+        />
+        <Route
+          exact
+          path="/search/:query"
+          render={routeProps => <Search routeProps={routeProps} />}
         />
         <Route exact path="/" component={Home} />
         {isLoggedIn && (

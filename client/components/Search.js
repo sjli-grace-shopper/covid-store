@@ -11,6 +11,8 @@ import {
 } from 'react-instantsearch-dom'
 import Rating from '@material-ui/lab/Rating'
 
+import history from 'history'
+
 const searchClient = algoliasearch(
   '7XNVVHR5BR',
   '8a9130d9c443dea3ae3d5177cba27d25'
@@ -33,31 +35,25 @@ const Hit = ({hit}) => {
         )
       : 0
   }
-
   return (
-    <a href="/">
-      <div className="search-hit">
-        <div className="search-hit-image">
-          <img src={hit.imageUrl} alt={hit.name} className="image" />
+    <div className="search-hit">
+      <div className="search-hit-image">
+        <img src={hit.imageUrl} alt={hit.name} className="image" />
+      </div>
+      <div className="search-hit-contents">
+        <div attribute="name" hit={hit} className="search-hit-name">
+          <a href={`/products/${hit.id}`}>{hit.name}</a>
         </div>
-        <div className="search-hit-contents">
-          <div attribute="name" hit={hit} className="search-hit-name">
-            {hit.name}
-          </div>
-          <div className="search-hit-rating">
-            <Rating
-              name="half-rating-read"
-              value={hit.reviews ? rating : ''}
-              precision={0.5}
-              readOnly
-            />{' '}
-          </div>
-          <div className="search-hit-category">
-            <span>{hit.category.name}</span>
-          </div>
+        <div className="search-hit-rating">
+          <Rating
+            name="half-rating-read"
+            value={hit.reviews ? rating : ''}
+            precision={0.5}
+            readOnly
+          />{' '}
         </div>
       </div>
-    </a>
+    </div>
   )
 }
 
@@ -87,8 +83,8 @@ export const Search = () => {
 }
 
 const UnwrappedSearchBar = props => {
-  console.log('SEARCH BAR', props)
   const {handleChange, handleSubmit, query} = props
+
   return (
     <InstantSearch searchClient={searchClient} indexName="products_NAME">
       <Header

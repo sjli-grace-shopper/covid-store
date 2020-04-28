@@ -9,16 +9,29 @@ import {
 import {Link} from 'react-router-dom'
 import CartItem from './CartItem'
 
+import Snackbar from '@material-ui/core/Snackbar'
+import MuiAlert from '@material-ui/lab/Alert'
+
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/divider'
+
+// Alert component
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />
+}
 
 class Cart extends React.Component {
   constructor() {
     super()
+    this.state = {
+      snackOpen: false
+    }
     this.decrementQty = this.decrementQty.bind(this)
     this.incrementQty = this.incrementQty.bind(this)
     this.deleteProduct = this.deleteProduct.bind(this)
     this.addProduct = this.addProduct.bind(this)
+    this.handleCheckoutClick = this.handleCheckoutClick.bind(this)
+    this.handleSnackbarClose = this.handleSnackbarClose.bind(this)
   }
 
   componentDidMount() {
@@ -36,10 +49,12 @@ class Cart extends React.Component {
   }
 
   incrementQty(product) {
-    this.props.editCart({
-      quantity: product.line_item.quantity + 1,
-      productId: product.id
-    })
+    if (product.line_item.quantity < product.quantity) {
+      this.props.editCart({
+        quantity: product.line_item.quantity + 1,
+        productId: product.id
+      })
+    }
   }
 
   deleteProduct(product) {
@@ -53,10 +68,38 @@ class Cart extends React.Component {
     })
   }
 
+  handleCheckoutClick(e) {
+    if (this.props.user.id) {
+      const enoughStock = this.props.cart.products.every(product => {
+        return product.quantity >= product.line_item.quantity
+      })
+      if (!enoughStock) {
+        e.preventDefault()
+        this.setState({snackOpen: true})
+      }
+    } else {
+      e.preventDefault()
+      this.props.history.push(`/login`)
+    }
+  }
+
+  handleSnackbarClose() {
+    this.setState({snackOpen: false})
+  }
+
   render() {
     return (
       <div className="cart">
         <h1>SHOPPING CART</h1>
+        <Snackbar
+          open={this.state.snackOpen}
+          autoHideDuration={6000}
+          onClose={this.handleSnackbarClose}
+        >
+          <Alert onClose={this.handleSnackbarClose} severity="error">
+            Not Enough Stock to Fulfill Order!
+          </Alert>
+        </Snackbar>
 
         {this.props.cart.products.length > 0 ? (
           <div id="cart-content">
@@ -82,7 +125,9 @@ class Cart extends React.Component {
                   }, 0)
                   .toFixed(2)}
               </h3>
-              <Link to="/cart/checkout">Checkout</Link>
+              <Link to="/cart/checkout" onClick={this.handleCheckoutClick}>
+                Checkout
+              </Link>
               <button type="button" onClick={this.addProduct}>
                 Add Random Item
               </button>
@@ -103,7 +148,8 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart.cart
+    cart: state.cart.cart,
+    user: state.user
   }
 }
 const mapDispatchToProps = dispatch => {

@@ -1,12 +1,27 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchCart, checkout} from '../store/reducers/cartReducer'
+import {Redirect} from 'react-router-dom'
 import CheckoutCartItem from './CheckoutCartItem'
 import Button from '@material-ui/core/Button'
+import axios from 'axios'
+
+import StripeCheckout from 'react-stripe-checkout'
 
 class Checkout extends Component {
   componentDidMount() {
     this.props.getCart()
+  }
+
+  onToken = token => {
+    axios
+      .put('/api/cart/checkout', {
+        source: token.id
+      })
+      .then(response => {
+        this.props.history.push(`/orders/receipt/${response.data.orderId}`)
+      })
+      .catch(err => console.log(err))
   }
 
   render() {
@@ -35,9 +50,10 @@ class Checkout extends Component {
                   </div>
                 )
               })}
-              <Button onClick={() => this.props.checkout()}>
-                CONFIRM ORDER
-              </Button>
+              <StripeCheckout
+                token={this.onToken}
+                stripeKey="pk_test_54bq4KHZTDzCzwuzinIyeOjJ00Q6DoO0gR"
+              />
             </div>
           </div>
         ) : (

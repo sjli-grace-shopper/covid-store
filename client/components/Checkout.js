@@ -3,10 +3,26 @@ import {connect} from 'react-redux'
 import {fetchCart, checkout} from '../store/reducers/cartReducer'
 import CheckoutCartItem from './CheckoutCartItem'
 import Button from '@material-ui/core/Button'
+import axios from 'axios'
+
+import StripeCheckout from 'react-stripe-checkout'
+import {loadStripe} from '@stripe/stripe-js'
+import {Elements} from '@stripe/react-stripe-js'
 
 class Checkout extends Component {
   componentDidMount() {
     this.props.getCart()
+  }
+
+  onToken = token => {
+    axios
+      .put('/api/cart/checkout', {
+        source: token.id
+      })
+      .then(response => {
+        console.log('CHECKOUT WORKED', response)
+      })
+      .catch(err => console.log(err))
   }
 
   render() {
@@ -35,9 +51,10 @@ class Checkout extends Component {
                   </div>
                 )
               })}
-              <Button onClick={() => this.props.checkout()}>
-                CONFIRM ORDER
-              </Button>
+              <StripeCheckout
+                token={this.onToken}
+                stripeKey="pk_test_54bq4KHZTDzCzwuzinIyeOjJ00Q6DoO0gR"
+              />
             </div>
           </div>
         ) : (

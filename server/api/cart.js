@@ -1,6 +1,9 @@
 const router = require('express').Router()
 const {Category, LineItem, Order, Product} = require('../db/models')
 
+const Stripe = require('stripe')
+const stripe = new Stripe('sk_test_iYjEYq2Umb0h6GWXpRlo4yjo00nLf3eUjK')
+
 // GET /api/cart
 router.get('/', async (req, res, next) => {
   try {
@@ -203,54 +206,6 @@ router.put('/', async (req, res, next) => {
   }
 })
 
-router.put('/checkout', async (req, res, next) => {
-  if (req.user) {
-    const cart = await Order.findOne({
-      where: {userId: req.user.id, status: 'IN_CART'},
-      include: [{model: Product}]
-    })
-    // set price in each lineitem
-    await Promise.all(
-      cart.products.map(product => {
-        return LineItem.update(
-          {
-            price: product.price
-          },
-          {
-            where: {orderId: cart.id, productId: product.id}
-          }
-        )
-      })
-    )
-
-    // reduce stock
-    await Promise.all(
-      cart.products.map(product => {
-        return Product.update(
-          {
-            quantity: product.quantity - product.line_item.quantity
-          },
-          {
-            where: {id: product.id}
-          }
-        )
-      })
-    )
-
-    // mark order status as processing
-    await Order.update(
-      {
-        status: 'PROCESSING'
-      },
-      {
-        where: {userId: req.user.id, status: 'IN_CART'}
-      }
-    )
-    res.send('ORDER PROCESSED')
-  }
-  res.send('GUEST')
-})
-
 // DELETE /api/cart/:cartId
 router.delete('/:productId', async (req, res, next) => {
   try {
@@ -272,6 +227,80 @@ router.delete('/:productId', async (req, res, next) => {
     }
   } catch (err) {
     next(err)
+  }
+})
+
+router.put('/checkout', async (req, res, next) => {
+  if (req.user) {
+    try {
+      // find user's cart
+      const cart = await Order.findOne({
+        where: {userId: req.user.id, status: 'IN_CART'},
+        include: [{model: Product}]
+      })
+
+      // check to make sure there is adequate stock to place order
+      if (
+        !cart.products.every(product => {
+          return product.quantity >= product.line_item.quantity
+        })
+      ) {
+        throw new Error('Not Enough Stock to Place Order')
+      }
+
+      // complete payment with Stripe
+
+      const payment = await stripe.charges.create({
+        amount: 1000,
+        currency: 'USD',
+        description: 'TEST123',
+        source: req.body.source
+      })
+
+      // set price in each lineitem
+      await Promise.all(
+        cart.products.map(product => {
+          return LineItem.update(
+            {
+              price: product.price
+            },
+            {
+              where: {orderId: cart.id, productId: product.id}
+            }
+          )
+        })
+      )
+
+      // reduce stock
+      await Promise.all(
+        cart.products.map(product => {
+          return Product.update(
+            {
+              quantity: product.quantity - product.line_item.quantity
+            },
+            {
+              where: {id: product.id}
+            }
+          )
+        })
+      )
+
+      // mark order status as processing
+      await Order.update(
+        {
+          status: 'PROCESSING'
+        },
+        {
+          where: {userId: req.user.id, status: 'IN_CART'}
+        }
+      )
+
+      res.send('ORDER PROCESSED')
+    } catch (err) {
+      next(err)
+    }
+  } else {
+    res.send('GUEST')
   }
 })
 

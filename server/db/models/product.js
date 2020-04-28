@@ -18,9 +18,6 @@ const Product = db.define('product', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    validate: {
-      isUrl: true
-    },
     defaultValue:
       'https://i.pinimg.com/736x/d9/d9/d7/d9d9d7bfbcfd0df44965f2db18ba9d62.jpg'
   },

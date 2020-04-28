@@ -3,7 +3,13 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 
-import {AddCartItemButton, Breadcrumbs, ReviewList, Rating} from '.'
+import {
+  AddCartItemButton,
+  Breadcrumbs,
+  ReviewList,
+  Rating,
+  CartPreview
+} from '.'
 import {addReview, fetchProducts, fetchCart} from '../store'
 
 class SingleProduct extends Component {
@@ -11,13 +17,14 @@ class SingleProduct extends Component {
     super()
     this.state = {
       product: {},
-      showReviewForm: false
+      showReviewForm: false,
+      showCartPreview: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleReviewFormClick = this.handleReviewFormClick.bind(this)
-    this.handleCancelReviewFormClick = this.handleCancelReviewFormClick.bind(
-      this
-    )
+    this.handleCancelReviewClick = this.handleCancelReviewClick.bind(this)
+    this.handleAddCartClick = this.handleAddCartClick.bind(this)
+    this.handleCloseCartClick = this.handleCloseCartClick.bind(this)
   }
 
   async componentDidMount() {
@@ -38,9 +45,17 @@ class SingleProduct extends Component {
     this.setState({showReviewForm: true})
   }
 
-  handleCancelReviewFormClick(evt) {
+  handleCancelReviewClick(evt) {
     evt.preventDefault()
     this.setState({showReviewForm: false})
+  }
+
+  handleAddCartClick() {
+    this.setState({showCartPreview: true})
+  }
+
+  handleCloseCartClick() {
+    this.setState({showCartPreview: false})
   }
 
   render() {
@@ -49,21 +64,13 @@ class SingleProduct extends Component {
       : this.props.stateProduct
 
     if (product && product.reviews) {
-      const rating = product.reviews.length
-        ? +(
-            Math.round(
-              (product.reviews.reduce((a, c) => {
-                return a + c.rating
-              }, 0) /
-                product.reviews.length) *
-                2
-            ) / 2
-          )
-        : 0
-
       return (
         <Fragment>
           <div className="single-product">
+            <CartPreview
+              open={this.state.showCartPreview}
+              handleCloseCartClick={this.handleCloseCartClick}
+            />
             <div className="single-product-row-1">
               <Breadcrumbs
                 name={product.name}
@@ -79,10 +86,13 @@ class SingleProduct extends Component {
                   <h1>{product.name}</h1>
                 </div>
                 <div className="single-product-row-2-right-row-2">
-                  <Rating product={product} rating={rating} />
+                  <Rating product={product} />
                 </div>
                 <div className="single-product-row-2-right-row-3">
-                  <AddCartItemButton product={product} />
+                  <AddCartItemButton
+                    product={product}
+                    handleOpenCartClick={this.handleAddCartClick}
+                  />
                 </div>
                 <div className="single-product-row-2-right-row-4">
                   {product.description}
@@ -92,12 +102,11 @@ class SingleProduct extends Component {
             <div className="single-product-row-3">
               <ReviewList
                 ownProps={this.props}
-                handleCancel={this.handleCancelReviewFormClick}
+                handleCancel={this.handleCancelReviewClick}
                 handleClick={this.handleReviewFormClick}
                 handleSubmit={this.handleSubmit}
                 isLoggedIn={this.props.isLoggedIn}
                 product={product}
-                rating={rating}
                 showReviewForm={this.state.showReviewForm}
               />
             </div>

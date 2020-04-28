@@ -55,7 +55,7 @@ class ProductList extends Component {
       const productsArr = products.slice()
       const pageArr = []
       while (productsArr.length) {
-        pageArr.push(productsArr.splice(0, 15))
+        pageArr.push(productsArr.splice(0, 16))
       }
 
       return (

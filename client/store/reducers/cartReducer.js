@@ -76,7 +76,10 @@ export const editCart = changeData => async dispatch => {
 
 export const removeCartItem = productId => async dispatch => {
   try {
+    console.log('AXIOS', productId)
     await axios.delete(`/api/cart/${productId}`)
+    console.log('AXIOS SUCCESS')
+
     dispatch(deleteCartItem(productId))
   } catch (err) {
     console.error('Error removing cart item: ', err)

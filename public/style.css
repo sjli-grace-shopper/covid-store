@@ -786,11 +786,6 @@ button.filter-bar-btn:active {
   margin: 1em 0 1em 0;
 }
 
-.ais-Hits-item {
-  border-radius: 5px;
-  box-shadow: none;
-}
-
 .search-body-content {
   margin: 1em 0 1em 0;
 }
@@ -800,27 +795,25 @@ button.filter-bar-btn:active {
   flex-direction: column;
 }
 
+li.ais-Hits-item {
+  border: none;
+}
+
 .search-hit-image img {
   width: 100%;
 }
 
-.search-hit-name,
-.search-hit-category {
+.search-hit-name a {
   color: black;
 }
 
-.search-hit-name:hover,
-.search-hit-category:hover {
+.search-hit-name:hover {
   text-decoration: underline;
   cursor: pointer;
 }
 
 .search-hit-name {
   margin: 1em 0 0.5em 0;
-}
-
-.search-hit-category {
-  font-size: small;
 }
 
 .ais-Pagination {

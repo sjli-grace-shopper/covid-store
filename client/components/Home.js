@@ -1,12 +1,15 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
+import Divider from '@material-ui/core/divider'
 
 import history from '../history'
-import {fetchCategories} from '../store'
+import {fetchCategories, fetchProducts} from '../store'
+import {Slider} from '.'
 
 class Home extends Component {
   componentDidMount() {
     this.props.getCategories()
+    this.props.getProducts()
   }
   render() {
     const handleClick = evt => {
@@ -19,6 +22,12 @@ class Home extends Component {
             <div className="home-page-row-1">
               <img src="/images/banner.png" />
             </div>
+            <Divider id="home-divider-1" />
+            <div className="home-page-row-slider">
+              <h3>FEATURED PRODUCTS</h3>
+              <Slider products={this.props.products} />
+            </div>
+            <Divider />
             <div className="home-page-row-2">
               {this.props.categories.map((cat, i) => {
                 return (
@@ -47,11 +56,13 @@ class Home extends Component {
 }
 
 const mapState = state => ({
-  categories: state.categories.categoryList
+  categories: state.categories.categoryList,
+  products: state.products.productList
 })
 
 const mapDispatch = dispatch => ({
-  getCategories: () => dispatch(fetchCategories())
+  getCategories: () => dispatch(fetchCategories()),
+  getProducts: () => dispatch(fetchProducts())
 })
 
 export default connect(mapState, mapDispatch)(Home)

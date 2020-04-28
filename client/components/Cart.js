@@ -16,6 +16,7 @@ class Cart extends React.Component {
     this.incrementQty = this.incrementQty.bind(this)
     this.deleteProduct = this.deleteProduct.bind(this)
     this.addProduct = this.addProduct.bind(this)
+    this.handleCheckoutClick = this.handleCheckoutClick.bind(this)
   }
 
   componentDidMount() {
@@ -33,10 +34,12 @@ class Cart extends React.Component {
   }
 
   incrementQty(product) {
-    this.props.editCart({
-      quantity: product.line_item.quantity + 1,
-      productId: product.id
-    })
+    if (product.line_item.quantity < product.quantity) {
+      this.props.editCart({
+        quantity: product.line_item.quantity + 1,
+        productId: product.id
+      })
+    }
   }
 
   deleteProduct(product) {
@@ -48,6 +51,16 @@ class Cart extends React.Component {
       quantity: Math.ceil(Math.random() * 20),
       productId: Math.ceil(Math.random() * 400)
     })
+  }
+
+  handleCheckoutClick(e) {
+    const enoughStock = this.props.cart.products.every(product => {
+      return product.quantity >= product.line_item.quantity
+    })
+    if (!enoughStock) {
+      e.preventDefault()
+      window.alert('Not Enough Stock to Fulfill Order!')
+    }
   }
 
   render() {
@@ -80,7 +93,9 @@ class Cart extends React.Component {
                   }, 0)
                   .toFixed(2)}
               </h3>
-              <Link to="/cart/checkout">Checkout</Link>
+              <Link to="/cart/checkout" onClick={this.handleCheckoutClick}>
+                Checkout
+              </Link>
               <button type="button" onClick={this.addProduct}>
                 Add Random Item
               </button>

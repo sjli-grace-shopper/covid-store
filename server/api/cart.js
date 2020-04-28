@@ -248,14 +248,20 @@ router.put('/checkout', async (req, res, next) => {
         throw new Error('Not Enough Stock to Place Order')
       }
 
-      // complete payment with Stripe
+      // get total payment amount in cents
+      const paymentAmount = cart.products.reduce((total, product) => {
+        return total + product.price * 100 * product.line_item.quantity
+      }, 0)
 
+      // complete payment with Stripe
       const payment = await stripe.charges.create({
-        amount: 1000,
+        amount: paymentAmount,
         currency: 'USD',
         description: 'TEST123',
         source: req.body.source
       })
+
+      // console.log(payment)
 
       // set price in each lineitem
       await Promise.all(
@@ -295,7 +301,7 @@ router.put('/checkout', async (req, res, next) => {
         }
       )
 
-      res.send('ORDER PROCESSED')
+      res.send('ORDER PLACED')
     } catch (err) {
       next(err)
     }

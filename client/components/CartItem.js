@@ -18,6 +18,7 @@ export default function CartItem(props) {
           <Button onClick={() => props.increment(props.product)}>+</Button>
           <Button onClick={() => props.delete(props.product)}>delete</Button>
         </ButtonGroup>
+        <p>Total Stock: {props.product.quantity}</p>
       </div>
     </div>
   )

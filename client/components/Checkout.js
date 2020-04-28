@@ -6,8 +6,6 @@ import Button from '@material-ui/core/Button'
 import axios from 'axios'
 
 import StripeCheckout from 'react-stripe-checkout'
-import {loadStripe} from '@stripe/stripe-js'
-import {Elements} from '@stripe/react-stripe-js'
 
 class Checkout extends Component {
   componentDidMount() {

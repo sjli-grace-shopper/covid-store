@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {makeStyles} from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 
@@ -15,8 +15,6 @@ const FilterBar = props => {
   const {categories, handleClick, selectedCats} = props
   const [selected, setSelected] = useState(selectedCats)
 
-  const formattedCats = categories.map(cat => cat.name.split('-').join(' '))
-
   const handleCatClick = (evt, id) => {
     evt.preventDefault()
     if (selected.length === 0) {
@@ -31,17 +29,16 @@ const FilterBar = props => {
     }
     handleClick(evt, id)
   }
-
   return (
     <div className={`filter-bar-row ${classes.root}`}>
-      {categories.map((cat, i) => (
+      {categories.map(cat => (
         <Button
           className="filter-bar-btn"
           key={cat.id}
           onClick={evt => handleCatClick(evt, cat.id)}
           variant={selected.includes(cat.id) ? 'contained' : 'outlined'}
         >
-          {formattedCats[i]}
+          {cat.name.split('-').join(' ')}
         </Button>
       ))}
     </div>

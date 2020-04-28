@@ -31,7 +31,8 @@ const AddCartItemButton = props => {
   }
 
   const handleDecreaseQty = () => {
-    if (purchaseQty > 0) setPurchaseQty(purchaseQty - 1)
+    if (purchaseQty > 0 && product.line_item.quantity > 1)
+      setPurchaseQty(purchaseQty - 1)
   }
 
   const handleAddItems = evt => {
@@ -49,6 +50,7 @@ const AddCartItemButton = props => {
     handleOpenCartClick()
   }
 
+  console.log('PRODUCTCART', product)
   return (
     <div className={classes.root}>
       <ButtonGroup aria-label="outlined primary button group">

@@ -130,15 +130,20 @@ div.top-bar a {
   margin: 0.25em 1em 0 0;
   color: black;
   align-self: center;
+  cursor: pointer;
 }
 
 div.top-bar-right svg.MuiSvgIcon-root {
   margin: 0 0.25em 0.25em 0;
 }
 
-span.MuiBadge-root > span {
-  transform: scale(1) translate(40%, -35%);
+span.MuiBadge-root {
+  cursor: pointer;
 }
+
+/* span.MuiBadge-root > span {
+  transform: scale(1) translate(40%, -35%);
+} */
 
 /* ----- NAV BAR ----- */
 
@@ -185,8 +190,9 @@ div.nav hr {
 
 .cart-item {
   border-radius: 10px;
-  background-color: rgb(185, 185, 185);
-  margin: 10px;
+  border: 0.05em solid;
+  border-color: rgb(185, 185, 185);
+  margin: 1em;
   display: flex;
   flex-direction: row;
 }
@@ -196,11 +202,11 @@ div.nav hr {
 }
 
 .cart-item-image {
-  margin: 10px;
+  margin: 1em;
 }
 
 .cart-item-info {
-  margin-right: 10px;
+  margin-right: 1em;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -298,8 +304,26 @@ div.product-list-row-3 {
   margin: 0 1.2em;
 }
 
+div.product-list-row-3-btns {
+  display: flex;
+  flex-direction: row;
+}
+
 div.product-list-row-3 button {
-  height: 100%;
+  align-self: center;
+  height: 2.5em;
+  font-size: 0.7em;
+}
+
+div.product-list-row-3 button.edit {
+  margin-right: 0.25em;
+  width: 3em;
+}
+
+div.product-list-row-3 button.delete {
+  margin-left: 0.25em;
+  width: 3.3em;
+  background-color: rgba(255, 154, 154, 0.842);
 }
 
 /* ----- SINGLE PRODUCT ----- */
@@ -529,7 +553,7 @@ div.product-list {
 div.product-list-product {
   display: flex;
   flex-direction: column;
-  flex: 30%;
+  flex: 0 1 30%;
   margin: 1em 0;
 }
 
@@ -558,12 +582,15 @@ div.product-list-row-3 {
   margin: 0 1.2em;
 }
 
-div.product-list-row-3 button {
-  height: 100%;
-}
-
 a h3 {
   color: black;
+}
+
+div.product-list-pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 2em 1em 1em 1em;
 }
 
 /* ----- PRODUCT FORM ----- */

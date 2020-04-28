@@ -22,7 +22,6 @@ const ReviewList = props => {
     handleClick,
     handleSubmit,
     isLoggedIn,
-    ownProps,
     product,
     rating,
     showReviewForm

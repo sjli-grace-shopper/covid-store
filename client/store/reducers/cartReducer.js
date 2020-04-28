@@ -104,20 +104,9 @@ export default function cartReducer(state = initialState, action) {
         ...state,
         isFetching: true,
         cart: action.newCart
-        // cart: {...state.cart, products: [...state.cart.products, action.item]},
       }
     case UPDATE_CART:
       return {...state, isFetching: true, cart: action.newCart}
-    // return {
-    //   ...state,
-    //   isFetching: true,
-    //   cart: {
-    //     ...state.cart,
-    //     products: state.cart.products.map((product) => {
-    //       return product.id === action.item.id ? action.item : product
-    //     }),
-    //   },
-    // }
     case DELETE_CART_ITEM:
       return {
         ...state,
@@ -130,7 +119,7 @@ export default function cartReducer(state = initialState, action) {
         }
       }
     case CLEAR_CART:
-      return {...state, isFetching: true, cart: {products: []}}
+      return initialState
     default:
       return state
   }

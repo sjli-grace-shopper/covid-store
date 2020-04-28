@@ -21,7 +21,7 @@ router.get('/', async (req, res, next) => {
         // move all products to user order
         await Promise.all(
           guestOrder.products.map(product => {
-            LineItem.update(
+            return LineItem.update(
               {
                 orderId: userOrder.id
               },

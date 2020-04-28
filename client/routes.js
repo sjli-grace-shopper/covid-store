@@ -43,7 +43,11 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/cart" component={Cart} />
         <Route path="/cart/checkout" component={Checkout} />
-        <Route exact path="/products" component={ProductList} />
+        <Route
+          exact
+          path="/products"
+          render={routeProps => <ProductList {...routeProps} />}
+        />
         <Route exact path="/categories" component={Categories} />
         <Route
           exact
@@ -53,7 +57,6 @@ class Routes extends Component {
         <Route
           exact
           path="/products/:productId"
-          // component={SingleProduct}
           render={routeProps => <SingleProduct routeProps={routeProps} />}
         />
         <Route exact path="/" component={Home} />

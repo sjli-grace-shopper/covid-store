@@ -1,12 +1,19 @@
 import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import Button from '@material-ui/core/Button'
+import history from '../history'
+import {removeProduct} from '../store'
 
 const ProductDetail = props => {
-  const {product, isAdmin} = props
-  const handleClick = id => {
+  const {deleteProduct, isAdmin, product} = props
+
+  const handleEditClick = id => {
     history.push(`/products/${id}/editproduct`)
+  }
+
+  const handleDeleteClick = id => {
+    deleteProduct(id)
   }
 
   return (
@@ -24,13 +31,24 @@ const ProductDetail = props => {
       <div className="product-list-row-3">
         <p>$ {product.price} USD</p>
         {isAdmin && (
-          <Button
-            type="button"
-            variant="contained"
-            onClick={() => handleClick(product.id)}
-          >
-            Edit
-          </Button>
+          <div className="product-list-row-3-btns">
+            <Button
+              type="button"
+              className="edit"
+              variant="contained"
+              onClick={() => handleEditClick(product.id)}
+            >
+              Edit
+            </Button>
+            <Button
+              type="button"
+              className="delete"
+              variant="contained"
+              onClick={() => handleDeleteClick(product.id)}
+            >
+              Delete
+            </Button>
+          </div>
         )}
       </div>
     </div>
@@ -41,4 +59,8 @@ const mapState = state => ({
   isAdmin: !!state.user.isAdmin
 })
 
-export default connect(mapState)(ProductDetail)
+const mapDispatch = (dispatch, ownProps) => ({
+  deleteProduct: id => dispatch(removeProduct(id, ownProps))
+})
+
+export default withRouter(connect(mapState, mapDispatch)(ProductDetail))

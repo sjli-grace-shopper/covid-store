@@ -112,7 +112,7 @@ div.top-bar {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 1em 0;
+  margin: 0 0 1em;
 }
 
 div.top-bar-left {
@@ -174,7 +174,7 @@ div.nav-links {
 }
 
 nav a {
-  color: black;
+  color: #686767;
   display: inline-block;
   margin: 1em;
 }
@@ -797,6 +797,11 @@ button.filter-bar-btn:active {
 
 li.ais-Hits-item {
   border: none;
+  height: 18em;
+}
+
+.search-hit-image {
+  height: 10em;
 }
 
 .search-hit-image img {
@@ -805,6 +810,10 @@ li.ais-Hits-item {
 
 .search-hit-name a {
   color: black;
+}
+
+.search-hit-contents {
+  margin: 0 0 0 1em;
 }
 
 .search-hit-name:hover {
@@ -832,4 +841,56 @@ li.ais-Hits-item {
 
 .search-results {
   text-align: right;
+}
+
+/* ----- SLIDER ----- */
+
+div.slider-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 12em;
+}
+
+.slider-item-row-1 {
+  text-align: center;
+  margin: 1em 0 0 0;
+}
+
+.slider-item-row-2 {
+  text-align: center;
+  margin: 0 0 2.5em 0;
+}
+
+.slider-item-row-2 a {
+  color: black;
+}
+
+.slider-item-row-2 a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.slider-item-row-2 h5 {
+  line-height: 0.5;
+}
+
+.home-page-row-slider h3 {
+  text-align: center;
+  margin: 0.5em 0 1em 0;
+  color: #7a7a7a;
+}
+
+.home-page-row-slider img {
+  width: 65%;
+  height: auto;
+}
+
+.sc-bwzfXH.gwZiig {
+  overflow-y: hidden;
+}
+
+#home-divider-1 {
+  margin: 1em 0;
 }

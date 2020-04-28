@@ -1,6 +1,23 @@
 const router = require('express').Router()
 const {Category, Product, Review, User} = require('../db/models')
 
+const isAdmin = (req, res, next) => {
+  if (!req.user || !req.user.isAdmin) {
+    res.status(404)
+    next(new Error('Not authorized'))
+  } else {
+    next()
+  }
+}
+const isLoggedIn = (req, res, next) => {
+  if (!req.user) {
+    res.status(404)
+    next(new Error('Not authenticated'))
+  } else {
+    next()
+  }
+}
+
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
@@ -23,7 +40,7 @@ router.get('/:productId', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
     const {name, description, price, imageUrl, quantity} = req.body
     const newProduct = await Product.create({
@@ -42,7 +59,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isAdmin, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id, {
       include: [
@@ -58,7 +75,7 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/:id/review', async (req, res, next) => {
+router.post('/:id/review', isLoggedIn, async (req, res, next) => {
   try {
     const {rating, reviewText} = req.body
     await Review.create({
@@ -86,7 +103,7 @@ router.post('/:id/review', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isAdmin, async (req, res, next) => {
   try {
     await Product.destroy({where: {id: req.params.id}})
     res.sendStatus(204).end()

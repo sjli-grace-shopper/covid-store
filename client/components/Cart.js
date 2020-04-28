@@ -57,12 +57,17 @@ class Cart extends React.Component {
   }
 
   handleCheckoutClick(e) {
-    const enoughStock = this.props.cart.products.every(product => {
-      return product.quantity >= product.line_item.quantity
-    })
-    if (!enoughStock) {
+    if (this.props.user.id) {
+      const enoughStock = this.props.cart.products.every(product => {
+        return product.quantity >= product.line_item.quantity
+      })
+      if (!enoughStock) {
+        e.preventDefault()
+        window.alert('Not Enough Stock to Fulfill Order!')
+      }
+    } else {
       e.preventDefault()
-      window.alert('Not Enough Stock to Fulfill Order!')
+      this.props.history.push(`/login`)
     }
   }
 
@@ -118,7 +123,8 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart.cart
+    cart: state.cart.cart,
+    user: state.user
   }
 }
 const mapDispatchToProps = dispatch => {

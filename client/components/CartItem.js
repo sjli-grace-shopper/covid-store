@@ -45,8 +45,8 @@ export default function CartItem(props) {
           >
             delete
           </Button>
-          <p>Total Stock: {props.product.quantity}</p>
         </div>
+        <p>Total Stock: {props.product.quantity}</p>
       </div>
     </div>
   )

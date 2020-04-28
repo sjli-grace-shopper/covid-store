@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import ListItem from '@material-ui/core/ListItem'
 
 export default class OrderReceipt extends Component {
   constructor() {
@@ -27,9 +28,9 @@ export default class OrderReceipt extends Component {
             {this.state.order.products.map(product => {
               return (
                 <div key={product.id}>
-                  {product.name}
-                  {product.price}
-                  {product.line_item.quantity}
+                  <ListItem>{product.name}</ListItem>
+                  <ListItem>{product.price}</ListItem>
+                  <ListItem>{product.line_item.quantity}</ListItem>
                 </div>
               )
             })}

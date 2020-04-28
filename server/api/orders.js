@@ -49,7 +49,7 @@ router.get('/history', isLoggedIn, async (req, res, next) => {
 
 router.get('/history/:orderId', isLoggedIn, async (req, res, next) => {
   try {
-    const orderDetails = await Order.findAll({
+    const orderDetails = await Order.findOne({
       where: {id: req.params.orderId},
       include: [{model: Product}]
     })

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchCart, checkout} from '../store/reducers/cartReducer'
+import {Redirect} from 'react-router-dom'
 import CheckoutCartItem from './CheckoutCartItem'
 import Button from '@material-ui/core/Button'
 import axios from 'axios'
@@ -18,7 +19,7 @@ class Checkout extends Component {
         source: token.id
       })
       .then(response => {
-        console.log('CHECKOUT WORKED', response)
+        this.props.history.push(`/orders/receipt/${response.data.orderId}`)
       })
       .catch(err => console.log(err))
   }

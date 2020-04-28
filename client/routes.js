@@ -24,7 +24,8 @@ import {
   Search,
   Checkout,
   UserProfile,
-  UpdateUser
+  UpdateUser,
+  OrderReceipt
 } from './components'
 
 /**
@@ -76,7 +77,8 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route exact path="/home" component={UserHome} />
             <Route exact path="/orders" component={OrderList} />
-            <Route path="/orders/:id" component={OrderItem} />
+            <Route exact path="/orders/:id" component={OrderItem} />
+            <Route exact path="/orders/receipt/:id" component={OrderReceipt} />
             <Route exact path="/profile" component={UserProfile} />
             <Route exact path="/updateprofile" component={UpdateUser} />
             {isAdmin && (

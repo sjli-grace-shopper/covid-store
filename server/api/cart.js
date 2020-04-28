@@ -249,9 +249,11 @@ router.put('/checkout', async (req, res, next) => {
       }
 
       // get total payment amount in cents
-      const paymentAmount = cart.products.reduce((total, product) => {
-        return total + product.price * 100 * product.line_item.quantity
-      }, 0)
+      const paymentAmount = cart.products
+        .reduce((total, product) => {
+          return total + product.price * 100 * product.line_item.quantity
+        }, 0)
+        .toFixed(0)
 
       // complete payment with Stripe
       const payment = await stripe.charges.create({
@@ -301,7 +303,7 @@ router.put('/checkout', async (req, res, next) => {
         }
       )
 
-      res.send('ORDER PLACED')
+      res.json({orderId: cart.id})
     } catch (err) {
       next(err)
     }

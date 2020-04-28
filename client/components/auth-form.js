@@ -45,7 +45,7 @@ const AuthForm = props => {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h3" variant="h3">
           {name === 'signup' ? <h3>Sign Up</h3> : <h3>Log In</h3>}
         </Typography>
         <form onSubmit={handleSubmit} name={name}>
@@ -95,7 +95,7 @@ const AuthForm = props => {
               margin="normal"
               fullWidth
               id="password"
-              label="Email Address"
+              label="Password"
               name="password"
               type="password"
               autoComplete="email"

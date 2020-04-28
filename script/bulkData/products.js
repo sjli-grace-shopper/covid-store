@@ -1,4 +1,4 @@
-const products = [
+const unformattedProducts = [
   {
     name: 'Felis wiedi or Leopardus weidi',
     description: 'In quis justo.',
@@ -3067,5 +3067,13 @@ const products = [
     categoryId: 2
   }
 ]
+
+const products = unformattedProducts.map(el => {
+  if (el.categoryId === 1) el.imageUrl = '/images/cat1.png'
+  if (el.categoryId === 2) el.imageUrl = '/images/cat2.png'
+  if (el.categoryId === 3) el.imageUrl = '/images/cat3.png'
+  if (el.categoryId === 4) el.imageUrl = '/images/cat4.png'
+  return el
+})
 
 module.exports = products

@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 
 const AddCartItemButton = props => {
   const [purchaseQty, setPurchaseQty] = useState(1)
-  const {addToCart, cart, product, updateCart} = props
+  const {addToCart, cart, handleOpenCartClick, product, updateCart} = props
   const classes = useStyles()
 
   const handleIncreaseQty = () => {
@@ -46,6 +46,7 @@ const AddCartItemButton = props => {
       const newQty = productInCart[0].line_item.quantity + purchaseQty
       updateCart({quantity: newQty, productId: product.id})
     }
+    handleOpenCartClick()
   }
 
   return (

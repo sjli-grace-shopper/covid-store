@@ -1,5 +1,3 @@
-// Order Item component
-// mapState - state.user, state.orders.isFetching
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
@@ -20,6 +18,7 @@ export default class Orders extends React.Component {
     this.setState({orders: data})
   }
   render() {
+    console.log('orders')
     return (
       <div>
         <Typography variant="h4" align="center" component="h1" gutterBottom>

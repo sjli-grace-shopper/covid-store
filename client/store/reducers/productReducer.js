@@ -75,7 +75,6 @@ export const addReview = (id, review) => async dispatch => {
 
 export const removeProduct = (id, ownProps) => async dispatch => {
   try {
-    console.log('AXIOS', id, ownProps)
     await axios.delete(`/api/products/${id}`)
     dispatch(deleteProduct(id))
     ownProps.history.push('/products')

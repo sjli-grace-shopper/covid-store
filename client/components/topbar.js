@@ -4,23 +4,49 @@ import {Link} from 'react-router-dom'
 
 import Badge from '@material-ui/core/Badge'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'
-
 import {logout, fetchCart} from '../store'
+import {SearchBar, CartPreview} from '.'
+import history from '../history'
 
 class TopBar extends Component {
+  constructor() {
+    super()
+    this.state = {
+      showCartPreview: false,
+      query: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleOpenCartClick = this.handleOpenCartClick.bind(this)
+    this.handleCloseCartClick = this.handleCloseCartClick.bind(this)
+  }
+
   componentDidMount() {
     this.props.getCart()
+  }
+
+  handleChange(evt) {
+    this.setState({query: evt.target.value})
+  }
+
+  handleSubmit(evt) {
+    console.log('EVT TARGET VAL', evt.target.value)
+    history.push(`/search/${this.state.query}`)
+    this.setState({query: ''})
+  }
+
+  handleOpenCartClick() {
+    this.setState({showCartPreview: true})
+  }
+
+  handleCloseCartClick() {
+    this.setState({showCartPreview: false})
   }
 
   render() {
     const {cart, handleClick, isLoggedIn} = this.props
 
-    const handlePageChange = () => {
-      window.location.href = '/cart'
-    }
-
     if (cart) {
-      console.log('CART', cart)
       const hasCart = cart.products.length
       const cartQty =
         hasCart &&
@@ -32,6 +58,11 @@ class TopBar extends Component {
         <div className="top-bar">
           <div className="top-bar-left">
             <Link to="/">Home</Link>
+            <SearchBar
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              query={this.state.query}
+            />
           </div>
           {isLoggedIn ? (
             <div className="top-bar-right">
@@ -44,7 +75,11 @@ class TopBar extends Component {
                 <Badge badgeContent={cartQty} color="secondary">
                   <ShoppingBasketIcon
                     className="cart-icon"
-                    onClick={handlePageChange}
+                    onClick={this.handleOpenCartClick}
+                  />
+                  <CartPreview
+                    open={this.state.showCartPreview}
+                    handleCloseCartClick={this.handleCloseCartClick}
                   />
                 </Badge>
               </span>
@@ -59,7 +94,11 @@ class TopBar extends Component {
                 <Badge badgeContent={cartQty} color="secondary">
                   <ShoppingBasketIcon
                     className="cart-icon"
-                    onClick={handlePageChange}
+                    onClick={this.handleOpenCartClick}
+                  />
+                  <CartPreview
+                    open={this.state.showCartPreview}
+                    handleCloseCartClick={this.handleCloseCartClick}
                   />
                 </Badge>
               </span>

@@ -36,7 +36,6 @@ class Checkout extends Component {
                   <p>Order will be shipped to: {this.props.user.address}</p>
                   <StripeCheckout
                     token={this.onToken}
-                    s
                     stripeKey="pk_test_54bq4KHZTDzCzwuzinIyeOjJ00Q6DoO0gR"
                   />
                 </div>

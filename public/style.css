@@ -119,7 +119,7 @@ div home-page-row-2-box-4 {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 0 0 1em;
+  margin: 0 1em 1em 0;
 }
 
 .top-bar-left {

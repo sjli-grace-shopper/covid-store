@@ -222,10 +222,13 @@ router.delete('/:productId', async (req, res, next) => {
         where: {orderId: order.id, productId: req.params.productId}
       })
       res.sendStatus(204).end()
-    } else if (req.session.cart !== undefined) {
-      req.session.cart.products = req.session.cart.products.filter(
-        product => product.id !== parseInt(req.params.productId, 10)
-      )
+    } else if (req.session.cartId !== undefined) {
+      const order = await Order.findOne({
+        where: {id: req.session.cartId}
+      })
+      await LineItem.destroy({
+        where: {orderId: order.id, productId: req.params.productId}
+      })
       res.sendStatus(204).end()
     } else {
       res.sendStatus(500)

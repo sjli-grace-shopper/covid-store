@@ -26,16 +26,7 @@ router.get('/', isAdmin, async (req, res, next) => {
     next(error)
   }
 })
-router.get('/:orderId', isLoggedIn, async (req, res, next) => {
-  try {
-    const orderDetails = await Order.findAll({
-      where: {id: req.params.orderId}
-    })
-    res.send(orderDetails)
-  } catch (error) {
-    next(error)
-  }
-})
+
 router.get('/history', isLoggedIn, async (req, res, next) => {
   try {
     const orders = await Order.findAll({
@@ -47,7 +38,7 @@ router.get('/history', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.get('/history/:orderId', isLoggedIn, async (req, res, next) => {
+router.get('/history/:orderId', async (req, res, next) => {
   try {
     const orderDetails = await Order.findOne({
       where: {id: req.params.orderId},
@@ -58,11 +49,11 @@ router.get('/history/:orderId', isLoggedIn, async (req, res, next) => {
     next(error)
   }
 })
-router.put('/history/:orderId', isLoggedIn, async (req, res, next) => {
+router.put('/history/:orderId', async (req, res, next) => {
   try {
     await Order.update(req.body, {
       where: {
-        id: req.params.orderrId
+        id: req.params.orderId
       },
       returning: true
     }).then(() => {

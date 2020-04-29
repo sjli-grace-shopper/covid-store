@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import ListItem from '@material-ui/core/ListItem'
+import CheckoutCartItem from './CheckoutCartItem'
 
 export default class OrderReceipt extends Component {
   constructor() {
@@ -28,12 +28,19 @@ export default class OrderReceipt extends Component {
             {this.state.order.products.map(product => {
               return (
                 <div key={product.id}>
-                  <ListItem>{product.name}</ListItem>
-                  <ListItem>{product.price}</ListItem>
-                  <ListItem>{product.line_item.quantity}</ListItem>
+                  <CheckoutCartItem product={product} />
+                  <hr />
                 </div>
               )
             })}
+            <h2>
+              Total: $
+              {this.state.order.products
+                .reduce((subtotal, product) => {
+                  return subtotal + product.price * product.line_item.quantity
+                }, 0)
+                .toFixed(2)}
+            </h2>
           </div>
         ) : (
           <div>loading receipt...</div>

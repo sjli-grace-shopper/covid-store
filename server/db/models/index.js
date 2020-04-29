@@ -3,7 +3,7 @@ const Product = require('./product')
 const Review = require('./review')
 const Order = require('./order')
 const LineItem = require('./lineItem')
-const Category = require('./Category')
+const Category = require('./category')
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:

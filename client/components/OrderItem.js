@@ -12,44 +12,34 @@ export default class OrderItem extends React.Component {
   constructor() {
     super()
     this.state = {
-      products: [],
       order: [],
+      products: [],
+      status: '',
       categories: ['COMPLETED', 'IN_CART', 'PROCESSING', 'CANCELLED']
     }
     this.handleChange = this.handleChange.bind(this)
-    this.setOrderStatus = this.setOrderStatus.bind(this)
+    // this.setOrderStatus = this.setOrderStatus.bind(this)
   }
   async componentDidMount() {
     const {data} = await axios.get(
       `/api/orders/history/${this.props.match.params.id}`
     )
-    this.setState({products: data[0].products})
-    this.setState({order: data[0]})
+    this.setState({products: data.products})
+    this.setState({order: data})
   }
   handleChange(event) {
     console.log('CLICk')
-    this.setState({
-      order: {...this.state.order, status: event.target.innerText}
-    })
-  }
-  async setOrderStatus() {
-    // evt.preventDefault()
-    console.log('CLICk')
-    await axios.put(
-      `/api/orders/history/${this.props.match.params.id}`,
-      this.state.order
-    )
-    this.componentDidMount()
+    this.setState({status: event.target.innerText})
   }
   render() {
-    console.log(this.state.order)
+    console.log(this.state.status)
     return (
       <div>
         <Typography variant="h3" align="center" component="h1" gutterBottom>
           Order Details
         </Typography>
         <Typography variant="h5" align="center" component="h5" gutterBottom>
-          Order Status: {this.state.order.status}
+          {/* Order Status: {this.state.order.status} */}
         </Typography>
         <Typography variant="h5" align="center" component="h5" gutterBottom>
           Products in Order
@@ -65,22 +55,7 @@ export default class OrderItem extends React.Component {
             </ListItem>
           ))}
         </ul>
-        <div>
-          <InputLabel id="select-label">Category</InputLabel>
-          <Select
-            id="select-outlined"
-            variant="outlined"
-            name="orderCategory"
-            onChange={this.handleChange}
-            label="Category"
-            className="category"
-            fullWidth
-          >
-            {this.state.categories.map(category => (
-              <MenuItem key={category}>{category}</MenuItem>
-            ))}
-          </Select>
-        </div>
+        <div></div>
       </div>
     )
   }

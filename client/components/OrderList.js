@@ -61,7 +61,7 @@ export default class Orders extends React.Component {
                 variant="outlined"
                 name="orderCategory"
                 onChange={this.handleChange}
-                defaultValue={this.state.category}
+                value={this.state.category}
                 label="Category"
                 className="category"
                 fullWidth

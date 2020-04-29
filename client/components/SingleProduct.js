@@ -141,6 +141,7 @@ class SingleProduct extends Component {
                 handleSubmit={this.handleSubmit}
                 isLoggedIn={this.props.isLoggedIn}
                 product={product}
+                stateProduct={this.props.stateProduct}
                 showReviewForm={this.state.showReviewForm}
               />
             </div>

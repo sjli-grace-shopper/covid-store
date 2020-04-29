@@ -57,7 +57,6 @@ class TopBar extends Component {
       return (
         <div className="top-bar">
           <div className="top-bar-left">
-            <Link to="/">Home</Link>
             <SearchBar
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}

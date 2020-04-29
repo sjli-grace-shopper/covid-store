@@ -3,8 +3,6 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
-export {default as Account} from './Account'
-export {default as AccountDetail} from './AccountDetail'
 export {default as AddCartItemButton} from './AddCartItemButton'
 export {default as AddProduct} from './AddProduct'
 export {default as AddReview} from './AddReview'

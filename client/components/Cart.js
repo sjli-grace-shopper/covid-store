@@ -116,18 +116,26 @@ class Cart extends React.Component {
                 )
               })}
             </div>
-            <div id="cart-checkout">
-              <h3>
-                Subtotal: $
-                {this.props.cart.products
-                  .reduce((subtotal, product) => {
-                    return subtotal + product.price * product.line_item.quantity
-                  }, 0)
-                  .toFixed(2)}
-              </h3>
-              <Link to="/cart/checkout" onClick={this.handleCheckoutClick}>
-                Checkout
-              </Link>
+            <div>
+              <div id="cart-checkout">
+                <h3>
+                  Subtotal: $
+                  {this.props.cart.products
+                    .reduce((subtotal, product) => {
+                      return (
+                        subtotal + product.price * product.line_item.quantity
+                      )
+                    }, 0)
+                    .toFixed(2)}
+                </h3>
+                <Link
+                  to="/cart/checkout"
+                  onClick={this.handleCheckoutClick}
+                  id="checkout-button"
+                >
+                  Checkout
+                </Link>
+              </div>
               <button type="button" onClick={this.addProduct}>
                 Add Random Item
               </button>

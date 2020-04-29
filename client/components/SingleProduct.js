@@ -32,6 +32,7 @@ class SingleProduct extends Component {
     this.handleCloseCartClick = this.handleCloseCartClick.bind(this)
     this.handleFavoriteClick = this.handleFavoriteClick.bind(this)
     this.handleUnfavoriteClick = this.handleUnfavoriteClick.bind(this)
+    this.handleGoToCartClick = this.handleGoToCartClick.bind(this)
   }
 
   async componentDidMount() {
@@ -55,6 +56,11 @@ class SingleProduct extends Component {
   handleCancelReviewClick(evt) {
     evt.preventDefault()
     this.setState({showReviewForm: false})
+  }
+
+  handleGoToCartClick() {
+    this.setState({showCartPreview: false})
+    history.push('/cart')
   }
 
   handleAddCartClick() {
@@ -85,6 +91,7 @@ class SingleProduct extends Component {
             <CartPreview
               open={this.state.showCartPreview}
               handleCloseCartClick={this.handleCloseCartClick}
+              handleClick={this.handleGoToCartClick}
             />
             <div className="single-product-row-1">
               <Breadcrumbs

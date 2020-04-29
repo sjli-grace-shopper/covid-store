@@ -23,7 +23,8 @@ const ReviewList = props => {
     handleSubmit,
     isLoggedIn,
     product,
-    showReviewForm
+    showReviewForm,
+    stateProduct
   } = props
   const classes = useStyles()
 
@@ -38,7 +39,7 @@ const ReviewList = props => {
         ) / 2
       )
     : 0
-
+  console.log('stateProduct', stateProduct)
   return (
     <div className="review-list">
       <div className="review-list-row-1">

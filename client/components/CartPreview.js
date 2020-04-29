@@ -3,13 +3,11 @@ import {connect} from 'react-redux'
 
 import Button from '@material-ui/core/Button'
 import Snackbar from '@material-ui/core/Snackbar'
-import MuiAlert from '@material-ui/lab/Alert'
 import Divider from '@material-ui/core/divider'
 import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined'
 
 import {CartItem} from '.'
 import {fetchCart, editCart, removeCartItem} from '../store'
-import history from '../history'
 
 class CartPreview extends Component {
   constructor() {

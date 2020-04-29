@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {fetchCart, checkout} from '../store/reducers/cartReducer'
-import {Redirect} from 'react-router-dom'
 import CheckoutCartItem from './CheckoutCartItem'
-import Button from '@material-ui/core/Button'
 import axios from 'axios'
 
 import StripeCheckout from 'react-stripe-checkout'
@@ -36,9 +34,14 @@ class Checkout extends Component {
                     Confirmation will be emailed to: {this.props.user.email}
                   </p>
                   <p>Order will be shipped to: {this.props.user.address}</p>
+                  <StripeCheckout
+                    token={this.onToken}
+                    s
+                    stripeKey="pk_test_54bq4KHZTDzCzwuzinIyeOjJ00Q6DoO0gR"
+                  />
                 </div>
               ) : (
-                <p>not logged in</p>
+                <p>Login to Continue Checkout</p>
               )}
             </div>
             <div id="checkout-cart">
@@ -50,10 +53,14 @@ class Checkout extends Component {
                   </div>
                 )
               })}
-              <StripeCheckout
-                token={this.onToken}
-                stripeKey="pk_test_54bq4KHZTDzCzwuzinIyeOjJ00Q6DoO0gR"
-              />
+              <h2>
+                Total: $
+                {this.props.cart.products
+                  .reduce((subtotal, product) => {
+                    return subtotal + product.price * product.line_item.quantity
+                  }, 0)
+                  .toFixed(2)}
+              </h2>
             </div>
           </div>
         ) : (

@@ -30,7 +30,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Raphicerus campestris',
+    name: 'Raphi campes',
     description:
       'Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.',
     price: 48.15,
@@ -38,14 +38,14 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Sylvicapra grimma',
+    name: 'Sylvi grimma',
     description: 'Aenean sit amet justo.',
     price: 3.9,
     quantity: 264,
     categoryId: 3
   },
   {
-    name: 'Varanus sp.',
+    name: 'Varanus sp',
     description:
       'Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.',
     price: 38.32,
@@ -68,7 +68,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Bubo virginianus',
+    name: 'Bubo vianus',
     description:
       'Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.',
     price: 35.5,
@@ -76,7 +76,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Larus sp.',
+    name: 'Larus sp',
     description: 'Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.',
     price: 33.88,
     quantity: 111,
@@ -91,7 +91,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Nyctereutes procyonoides',
+    name: 'Nyctereutes',
     description:
       'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.',
     price: 25.59,
@@ -99,7 +99,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Cordylus giganteus',
+    name: 'Cordylus',
     description: 'Vivamus tortor. Duis mattis egestas metus. Aenean fermentum.',
     price: 18.49,
     quantity: 63,
@@ -113,7 +113,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Eolophus roseicapillus',
+    name: 'Eolophus rosei',
     description:
       'Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.',
     price: 2.42,
@@ -121,7 +121,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Chelodina longicollis',
+    name: 'Chelodina longis',
     description:
       'Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.',
     price: 25.08,
@@ -129,7 +129,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Paradoxurus hermaphroditus',
+    name: 'Paradoxurus hermas',
     description:
       'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.',
     price: 29.88,
@@ -137,14 +137,14 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'unavailable',
+    name: 'Phroditus',
     description: 'Nunc purus.',
     price: 49.92,
     quantity: 17,
     categoryId: 3
   },
   {
-    name: 'Eremophila alpestris',
+    name: 'Erema alpestris',
     description: 'Aliquam erat volutpat. In congue. Etiam justo.',
     price: 48.71,
     quantity: 179,
@@ -159,7 +159,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Nucifraga columbiana',
+    name: 'Nucifraga coluna',
     description:
       'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.',
     price: 11.34,
@@ -167,7 +167,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Delphinus delphis',
+    name: 'Delphinus delis',
     description:
       'Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.',
     price: 31.38,
@@ -182,7 +182,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Mazama gouazoubira',
+    name: 'Mazama goua',
     description:
       'Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.',
     price: 41.74,
@@ -212,7 +212,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Cereopsis novaehollandiae',
+    name: 'Cereopsis',
     description:
       'In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.',
     price: 24.34,
@@ -305,7 +305,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Pseudocheirus peregrinus',
+    name: 'Pseudocheirus',
     description: 'Proin eu mi.',
     price: 22.82,
     quantity: 130,
@@ -335,7 +335,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Chlamydosaurus kingii',
+    name: 'Chlamus kingii',
     description:
       'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.',
     price: 41.61,
@@ -351,7 +351,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Aegypius tracheliotus',
+    name: 'Aegypius tractus',
     description:
       'Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
     price: 18.56,
@@ -367,7 +367,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Porphyrio porphyrio',
+    name: 'Porphyrio pio',
     description:
       'Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.',
     price: 27.57,
@@ -414,7 +414,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Felis wiedi or Leopardus weidi',
+    name: 'Leopardus weidi',
     description: 'Etiam justo. Etiam pretium iaculis justo.',
     price: 3.68,
     quantity: 295,
@@ -428,7 +428,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Bradypus tridactylus',
+    name: 'Bradypus trus',
     description: 'Phasellus in felis.',
     price: 21.71,
     quantity: 106,
@@ -472,7 +472,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Cyrtodactylus louisiadensis',
+    name: 'Cyrtodactylus',
     description: 'Vivamus tortor. Duis mattis egestas metus.',
     price: 39.52,
     quantity: 296,
@@ -486,14 +486,14 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Crotaphytus collaris',
+    name: 'Crotaphytus',
     description: 'Curabitur gravida nisi at nibh.',
     price: 28.67,
     quantity: 11,
     categoryId: 3
   },
   {
-    name: 'Felis silvestris lybica',
+    name: 'Felis lybica',
     description:
       'In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.',
     price: 29.3,
@@ -525,7 +525,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Spermophilus richardsonii',
+    name: 'Spermophilus',
     description:
       'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique.',
     price: 43.32,
@@ -533,7 +533,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Callipepla gambelii',
+    name: 'Callipepla',
     description:
       'Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.',
     price: 43.25,
@@ -548,7 +548,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Tachyglossus aculeatus',
+    name: 'Tachyglus aculeatus',
     description: 'Etiam justo. Etiam pretium iaculis justo.',
     price: 35.07,
     quantity: 21,
@@ -578,7 +578,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Lasiodora parahybana',
+    name: 'Lasiodora parahana',
     description:
       'Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.',
     price: 48.71,
@@ -586,7 +586,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Cereopsis novaehollandiae',
+    name: 'Cereopsis noviae',
     description: 'Proin risus.',
     price: 6.26,
     quantity: 49,
@@ -664,7 +664,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Pseudocheirus peregrinus',
+    name: 'Pseudocheirus',
     description: 'Maecenas pulvinar lobortis est. Phasellus sit amet erat.',
     price: 20.89,
     quantity: 136,
@@ -687,7 +687,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Terathopius ecaudatus',
+    name: 'Terathopius',
     description:
       'Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat.',
     price: 2.42,
@@ -695,7 +695,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Rana sp.',
+    name: 'Rana sp',
     description:
       'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante.',
     price: 17.23,
@@ -734,7 +734,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Felis wiedi or Leopardus weidi',
+    name: 'Leopardus weidi',
     description:
       'Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.',
     price: 10.79,
@@ -750,7 +750,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Drymarchon corias couperi',
+    name: 'Drymarchon corias',
     description: 'Curabitur convallis.',
     price: 31.22,
     quantity: 151,
@@ -764,7 +764,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'unavailable',
+    name: 'Felis wiedi',
     description: 'Quisque porta volutpat erat.',
     price: 1.55,
     quantity: 7,
@@ -795,7 +795,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Bradypus tridactylus',
+    name: 'Bradypus tris',
     description:
       'Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.',
     price: 22.31,
@@ -827,7 +827,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Lorythaixoides concolor',
+    name: 'Lorythaixoides',
     description:
       'In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.',
     price: 48.28,
@@ -835,7 +835,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Vulpes cinereoargenteus',
+    name: 'Vulpes',
     description:
       'Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.',
     price: 37.9,
@@ -843,7 +843,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'unavailable',
+    name: 'Cinereoargenteus',
     description: 'Nulla mollis molestie lorem. Quisque ut erat.',
     price: 29.95,
     quantity: 140,
@@ -857,7 +857,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Dicrostonyx groenlandicus',
+    name: 'Dicrostonyx',
     description:
       'Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.',
     price: 30.09,
@@ -873,7 +873,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Aegypius occipitalis',
+    name: 'Aegypius occtalis',
     description:
       'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.',
     price: 47.79,
@@ -881,7 +881,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Coendou prehensilis',
+    name: 'Coendou prehilis',
     description:
       'Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.',
     price: 30.47,
@@ -889,7 +889,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Hydrochoerus hydrochaeris',
+    name: 'Hydrochoerus',
     description:
       'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.',
     price: 29.11,
@@ -905,7 +905,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Libellula quadrimaculata',
+    name: 'Libellula quadrimata',
     description:
       'Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.',
     price: 37.19,
@@ -921,7 +921,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Varanus sp.',
+    name: 'Varanus',
     description:
       'Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque.',
     price: 21.08,
@@ -981,7 +981,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Thamnolaea cinnmomeiventris',
+    name: 'Thamnolaea',
     description:
       'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.',
     price: 19.25,
@@ -1053,7 +1053,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Spermophilus lateralis',
+    name: 'Spermos lateralis',
     description:
       'Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.',
     price: 27.01,
@@ -1091,7 +1091,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Myrmecophaga tridactyla',
+    name: 'Myrmecophaga',
     description:
       'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum.',
     price: 38.03,
@@ -1106,7 +1106,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Limnocorax flavirostra',
+    name: 'Limnocorax',
     description:
       'Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst.',
     price: 13.4,
@@ -1175,7 +1175,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Charadrius tricollaris',
+    name: 'Charadrius',
     description:
       'Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.',
     price: 5.31,
@@ -1190,7 +1190,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Ammospermophilus nelsoni',
+    name: 'Ammosus nelsoni',
     description:
       'Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
     price: 28.37,
@@ -1221,7 +1221,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Spermophilus armatus',
+    name: 'Spermhilus armatus',
     description: 'Phasellus in felis. Donec semper sapien a libero. Nam dui.',
     price: 26.16,
     quantity: 80,
@@ -1251,7 +1251,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Tachyglossus aculeatus',
+    name: 'Tacsus aculeatus',
     description:
       'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.',
     price: 2.76,
@@ -1266,7 +1266,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Tyto novaehollandiae',
+    name: 'Tyto novaediae',
     description:
       'Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.',
     price: 47.5,
@@ -1298,14 +1298,14 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Agama sp.',
+    name: 'Agama',
     description: 'Aliquam non mauris. Morbi non lectus.',
     price: 12.15,
     quantity: 120,
     categoryId: 3
   },
   {
-    name: 'Conolophus subcristatus',
+    name: 'Conolophus',
     description:
       'Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.',
     price: 30.09,
@@ -1313,7 +1313,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Potorous tridactylus',
+    name: 'Potorous tridtylus',
     description:
       'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.',
     price: 40.54,
@@ -1321,7 +1321,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Morelia spilotes variegata',
+    name: 'Morelis variegata',
     description:
       'In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.',
     price: 22.2,
@@ -1337,7 +1337,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Lorythaixoides concolor',
+    name: 'Lorytides concolor',
     description: 'Donec dapibus. Duis at velit eu est congue elementum.',
     price: 20.33,
     quantity: 226,
@@ -1367,7 +1367,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Lamprotornis nitens',
+    name: 'Lamprotois nitens',
     description:
       'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.',
     price: 46.43,
@@ -1488,7 +1488,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Paradoxurus hermaphroditus',
+    name: 'Paradoxurus hermtus',
     description:
       'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.',
     price: 12.87,
@@ -1512,7 +1512,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Myiarchus tuberculifer',
+    name: 'Myiarchus tubeifer',
     description: 'Maecenas ut massa quis augue luctus tincidunt.',
     price: 45.85,
     quantity: 177,
@@ -1542,7 +1542,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Alcelaphus buselaphus caama',
+    name: 'Alcelaphus caama',
     description:
       'Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus.',
     price: 43.89,
@@ -1581,7 +1581,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'unavailable',
+    name: 'Cinnmomeiventris',
     description:
       'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.',
     price: 5.01,
@@ -1697,7 +1697,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Vulpes cinereoargenteus',
+    name: 'Vulpes cineteus',
     description: 'Sed accumsan felis. Ut at dolor quis odio consequat varius.',
     price: 26.44,
     quantity: 104,
@@ -1782,7 +1782,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Tauraco porphyrelophus',
+    name: 'Tauraco Paphus',
     description:
       'Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.',
     price: 41.85,
@@ -1790,7 +1790,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Centrocercus urophasianus',
+    name: 'Centrocercus urophasus',
     description:
       'In hac habitasse platea dictumst. Etiam faucibus cursus urna.',
     price: 29.69,
@@ -1798,7 +1798,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Hymenolaimus malacorhynchus',
+    name: 'Hymeimus malacorhynchus',
     description: 'Nulla facilisi.',
     price: 10.25,
     quantity: 202,
@@ -1828,7 +1828,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Recurvirostra avosetta',
+    name: 'Rectra avosetta',
     description:
       'Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus.',
     price: 47.11,
@@ -1836,7 +1836,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Lamprotornis nitens',
+    name: 'Lamprornis nitens',
     description:
       'Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.',
     price: 42.94,
@@ -1851,7 +1851,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Varanus sp.',
+    name: 'Varanus sp',
     description:
       'Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.',
     price: 4.49,
@@ -1882,7 +1882,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Uraeginthus angolensis',
+    name: 'Uraehus angolensis',
     description:
       'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.',
     price: 45.51,
@@ -1898,7 +1898,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Semnopithecus entellus',
+    name: 'Semnopcus entellus',
     description: 'Aliquam sit amet diam in magna bibendum imperdiet.',
     price: 27.94,
     quantity: 131,
@@ -1920,7 +1920,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Tachyglossus aculeatus',
+    name: 'Tachygsus aculeatus',
     description:
       'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.',
     price: 10.98,
@@ -1936,7 +1936,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Tachybaptus ruficollis',
+    name: 'Tachybus rufilis',
     description:
       'Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius.',
     price: 39.43,
@@ -1959,7 +1959,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Pelecans onocratalus',
+    name: 'Pelecans onocralus',
     description: 'Sed accumsan felis. Ut at dolor quis odio consequat varius.',
     price: 43.7,
     quantity: 194,
@@ -1988,7 +1988,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Centrocercus urophasianus',
+    name: 'Centrocercus uronus',
     description: 'Nunc purus. Phasellus in felis.',
     price: 34.34,
     quantity: 8,
@@ -2011,7 +2011,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Pelecans onocratalus',
+    name: 'Pelecans onocalus',
     description: 'Pellentesque ultrices mattis odio. Donec vitae nisi.',
     price: 31.11,
     quantity: 75,
@@ -2042,7 +2042,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Uraeginthus granatina',
+    name: 'Urainthus granina',
     description:
       'Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.',
     price: 3.06,
@@ -2050,7 +2050,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Lophoaetus occipitalis',
+    name: 'Lophoaetus occialis',
     description: 'Pellentesque viverra pede ac diam.',
     price: 34.99,
     quantity: 46,
@@ -2073,7 +2073,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Cebus nigrivittatus',
+    name: 'Cebus nigrivitus',
     description:
       'Duis at velit eu est congue elementum. In hac habitasse platea dictumst.',
     price: 7.55,
@@ -2089,7 +2089,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Pycnonotus nigricans',
+    name: 'Pycnotus nigricans',
     description:
       'Nulla justo. Aliquam quis turpis eget elit sodales scelerisque.',
     price: 49.79,
@@ -2097,21 +2097,21 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Didelphis virginiana',
+    name: 'Didelphis virgiana',
     description: 'Morbi quis tortor id nulla ultrices aliquet.',
     price: 47.13,
     quantity: 29,
     categoryId: 4
   },
   {
-    name: 'Tamiasciurus hudsonicus',
+    name: 'Tamiiurus huonicus',
     description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
     price: 33.58,
     quantity: 292,
     categoryId: 2
   },
   {
-    name: 'Eremophila alpestris',
+    name: 'Eremoila alpestris',
     description: 'Mauris sit amet eros.',
     price: 2.82,
     quantity: 52,
@@ -2177,7 +2177,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Lamprotornis superbus',
+    name: 'Lamprois superbus',
     description:
       'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.',
     price: 22.91,
@@ -2209,7 +2209,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Phalaropus fulicarius',
+    name: 'Phalaropus fulius',
     description:
       'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.',
     price: 26.93,
@@ -2217,7 +2217,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Phoenicopterus chilensis',
+    name: 'Phoerus chilensis',
     description: 'Proin risus. Praesent lectus.',
     price: 3.22,
     quantity: 166,
@@ -2239,7 +2239,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Phalacrocorax varius',
+    name: 'Phalarax varius',
     description:
       'Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.',
     price: 11.08,
@@ -2247,7 +2247,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Macropus fuliginosus',
+    name: 'Macropus fuligius',
     description:
       'Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.',
     price: 24.1,
@@ -2255,7 +2255,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Pseudalopex gymnocercus',
+    name: 'Psealopex gymnrcus',
     description: 'Nulla nisl.',
     price: 27.99,
     quantity: 163,
@@ -2270,7 +2270,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Eurocephalus anguitimens',
+    name: 'Eurocelus anguits',
     description:
       'In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.',
     price: 35.15,
@@ -2309,7 +2309,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Naja sp.',
+    name: 'Naja sp',
     description:
       'Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.',
     price: 40.56,
@@ -2325,7 +2325,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Streptopelia senegalensis',
+    name: 'Stlia senesis',
     description: 'Proin at turpis a pede posuere nonummy.',
     price: 49.93,
     quantity: 225,
@@ -2340,7 +2340,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Bassariscus astutus',
+    name: 'Basscus astutus',
     description:
       'Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.',
     price: 19.27,
@@ -2355,7 +2355,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Boselaphus tragocamelus',
+    name: 'Boselahus trelus',
     description:
       'Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.',
     price: 15.24,
@@ -2378,7 +2378,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Lamprotornis sp.',
+    name: 'Lamprotornis sp',
     description:
       'Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet.',
     price: 30.42,
@@ -2424,14 +2424,14 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Bugeranus caruncalatus',
+    name: 'Bugeranus carutus',
     description: 'Nulla facilisi.',
     price: 24.82,
     quantity: 202,
     categoryId: 1
   },
   {
-    name: 'Plectopterus gambensis',
+    name: 'Plrus gambensis',
     description:
       'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.',
     price: 22.01,
@@ -2446,7 +2446,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Microcavia australis',
+    name: 'Microvia ausalis',
     description:
       'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.',
     price: 12.25,
@@ -2462,7 +2462,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'unavailable',
+    name: 'Ammospermophilus',
     description: 'Aenean sit amet justo.',
     price: 42.25,
     quantity: 168,
@@ -2477,7 +2477,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Ammospermophilus nelsoni',
+    name: 'Nelsoni',
     description:
       'Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.',
     price: 28.34,
@@ -2485,7 +2485,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Lorythaixoides concolor',
+    name: 'Lorydes concolor',
     description:
       'Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor.',
     price: 44.08,
@@ -2493,14 +2493,14 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Callipepla gambelii',
+    name: 'Callepla gaelii',
     description: 'Fusce consequat.',
     price: 18.62,
     quantity: 28,
     categoryId: 2
   },
   {
-    name: 'Alopochen aegyptiacus',
+    name: 'Alopochen aegypacus',
     description:
       'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.',
     price: 25.87,
@@ -2508,7 +2508,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Lamprotornis nitens',
+    name: 'Lamprotois nitens',
     description:
       'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum.',
     price: 44.51,
@@ -2563,7 +2563,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Melanerpes erythrocephalus',
+    name: 'Melanerpes erytlus',
     description:
       'Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.',
     price: 9.71,
@@ -2602,7 +2602,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Elephas maximus bengalensis',
+    name: 'Elepha bengalensis',
     description:
       'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.',
     price: 21.27,
@@ -2610,7 +2610,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Epicrates cenchria maurus',
+    name: 'Epicrates maurus',
     description:
       'Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.',
     price: 49.63,
@@ -2634,7 +2634,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Bubo sp.',
+    name: 'Bubo sp',
     description:
       'Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque.',
     price: 18.11,
@@ -2650,7 +2650,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Cacatua tenuirostris',
+    name: 'Cacatua tenuiros',
     description:
       'Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.',
     price: 20.79,
@@ -2674,7 +2674,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Bettongia penicillata',
+    name: 'Bettongia peniciata',
     description:
       'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.',
     price: 4.78,
@@ -2682,7 +2682,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Ninox superciliaris',
+    name: 'Ninox supercaris',
     description:
       'Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus.',
     price: 11.09,
@@ -2697,7 +2697,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Canis lupus lycaon',
+    name: 'Canis lycaon',
     description:
       'Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.',
     price: 47.01,
@@ -2772,7 +2772,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'unavailable',
+    name: 'Hermaphroditus',
     description:
       'Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.',
     price: 30.21,
@@ -2780,7 +2780,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Paradoxurus hermaphroditus',
+    name: 'Paradoxurus',
     description: 'Pellentesque at nulla. Suspendisse potenti.',
     price: 32.22,
     quantity: 274,
@@ -2817,7 +2817,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'unavailable',
+    name: 'Eremophila',
     description:
       'Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim.',
     price: 7.33,
@@ -2825,7 +2825,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Eremophila alpestris',
+    name: 'Alpestris',
     description: 'Vestibulum sed magna at nunc commodo placerat.',
     price: 17.9,
     quantity: 94,
@@ -2840,7 +2840,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Spheniscus magellanicus',
+    name: 'Spheniscus mageanicus',
     description:
       'In hac habitasse platea dictumst. Etiam faucibus cursus urna.',
     price: 14.95,
@@ -2864,7 +2864,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Cereopsis novaehollandiae',
+    name: 'Cereopsis novaiae',
     description:
       'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.',
     price: 24.45,
@@ -2872,7 +2872,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Pseudoleistes virescens',
+    name: 'Psestes virescens',
     description: 'Donec semper sapien a libero. Nam dui.',
     price: 11.22,
     quantity: 140,
@@ -2886,7 +2886,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Ammospermophilus nelsoni',
+    name: 'Ammous nelsoni',
     description:
       'Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.',
     price: 27.43,
@@ -2894,7 +2894,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Pseudalopex gymnocercus',
+    name: 'Pseudalopex gymnocus',
     description:
       'Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.',
     price: 10.49,
@@ -2902,7 +2902,7 @@ const unformattedProducts = [
     categoryId: 2
   },
   {
-    name: 'Kobus vardonii vardoni',
+    name: 'Kobus vardoni',
     description: 'Morbi non lectus.',
     price: 12.01,
     quantity: 62,
@@ -2917,14 +2917,14 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Hydrochoerus hydrochaeris',
+    name: 'Hydroerus hydrocris',
     description: 'Sed sagittis.',
     price: 7.34,
     quantity: 127,
     categoryId: 3
   },
   {
-    name: 'Threskionis aethiopicus',
+    name: 'Thresonis aethiopicus',
     description: 'Quisque ut erat. Curabitur gravida nisi at nibh.',
     price: 33.38,
     quantity: 73,
@@ -2939,7 +2939,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Deroptyus accipitrinus',
+    name: 'Deroptyus accipnus',
     description:
       'Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.',
     price: 2.65,
@@ -2947,7 +2947,7 @@ const unformattedProducts = [
     categoryId: 3
   },
   {
-    name: 'Tockus erythrorhyncus',
+    name: 'Tockus erythrocus',
     description:
       'Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.',
     price: 47.28,
@@ -3029,7 +3029,7 @@ const unformattedProducts = [
     categoryId: 1
   },
   {
-    name: 'Spermophilus richardsonii',
+    name: 'Spelus ricnii',
     description: 'Nulla facilisi. Cras non velit nec nisi vulputate nonummy.',
     price: 44.97,
     quantity: 230,
@@ -3044,7 +3044,7 @@ const unformattedProducts = [
     categoryId: 4
   },
   {
-    name: 'Rana sp.',
+    name: 'Rana sp',
     description:
       'Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.',
     price: 2.26,
@@ -3069,11 +3069,17 @@ const unformattedProducts = [
 ]
 
 const products = unformattedProducts.map(el => {
+  el.name = el.name
+    .split(' ')
+    .map(i => i[0].toUpperCase() + i.slice(1))
+    .join(' ')
   if (el.categoryId === 1) el.imageUrl = '/images/cat1.png'
   if (el.categoryId === 2) el.imageUrl = '/images/cat2.png'
   if (el.categoryId === 3) el.imageUrl = '/images/cat3.png'
   if (el.categoryId === 4) el.imageUrl = '/images/cat4.png'
   return el
 })
+
+console.log(products)
 
 module.exports = products

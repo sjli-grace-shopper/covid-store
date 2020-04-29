@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+
 import {
   AddCartItemButton,
   Breadcrumbs,
@@ -18,13 +21,17 @@ class SingleProduct extends Component {
     this.state = {
       product: {},
       showReviewForm: false,
-      showCartPreview: false
+      showCartPreview: false,
+      showFavoritePreview: false,
+      favorited: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleReviewFormClick = this.handleReviewFormClick.bind(this)
     this.handleCancelReviewClick = this.handleCancelReviewClick.bind(this)
     this.handleAddCartClick = this.handleAddCartClick.bind(this)
     this.handleCloseCartClick = this.handleCloseCartClick.bind(this)
+    this.handleFavoriteClick = this.handleFavoriteClick.bind(this)
+    this.handleUnfavoriteClick = this.handleUnfavoriteClick.bind(this)
   }
 
   async componentDidMount() {
@@ -58,6 +65,14 @@ class SingleProduct extends Component {
     this.setState({showCartPreview: false})
   }
 
+  handleFavoriteClick() {
+    this.setState({showFavoritePreview: true, favorited: true})
+  }
+
+  handleUnfavoriteClick() {
+    this.setState({favorited: false})
+  }
+
   render() {
     const product = this.state.product
       ? this.state.product
@@ -87,6 +102,18 @@ class SingleProduct extends Component {
                 </div>
                 <div className="single-product-row-2-right-row-2">
                   <Rating product={product} />
+                  {this.props.isLoggedIn &&
+                    (this.state.favorited ? (
+                      <FavoriteIcon
+                        className="favorite-filled"
+                        onClick={this.handleUnfavoriteClick}
+                      />
+                    ) : (
+                      <FavoriteBorderIcon
+                        className="favorite-unfilled"
+                        onClick={this.handleFavoriteClick}
+                      />
+                    ))}
                 </div>
                 <div className="single-product-row-2-right-row-3">
                   <AddCartItemButton

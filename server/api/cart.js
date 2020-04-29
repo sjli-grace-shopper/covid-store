@@ -213,6 +213,7 @@ router.put('/', async (req, res, next) => {
 // DELETE /api/cart/:cartId
 router.delete('/:productId', async (req, res, next) => {
   try {
+    console.log('REQ', req)
     if (req.user) {
       const order = await Order.findOne({
         where: {userId: req.user.id, status: 'IN_CART'}

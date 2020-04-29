@@ -1,5 +1,6 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
+import secrets from '../../secrets'
 
 import algoliasearch from 'algoliasearch'
 import {
@@ -11,14 +12,10 @@ import {
 } from 'react-instantsearch-dom'
 import Rating from '@material-ui/lab/Rating'
 
-import history from 'history'
-
 const searchClient = algoliasearch(
-  '7XNVVHR5BR',
-  '8a9130d9c443dea3ae3d5177cba27d25'
+  secrets.ALGOLIA_CLIENT_ID,
+  secrets.ALGOLIA_SEARCH_API_KEY
 )
-
-// const searchClient = algoliasearch(process.env.ALGOLIA_CLIENT_ID, process.env.ALGOLIA_SEARCH_API_KEY);
 
 const Hit = ({hit}) => {
   let rating
@@ -38,7 +35,9 @@ const Hit = ({hit}) => {
   return (
     <div className="search-hit">
       <div className="search-hit-image">
-        <img src={hit.imageUrl} alt={hit.name} className="image" />
+        <a href={`/products/${hit.id}`}>
+          <img src={hit.imageUrl} alt={hit.name} className="image" />
+        </a>
       </div>
       <div className="search-hit-contents">
         <div attribute="name" hit={hit} className="search-hit-name">
@@ -70,11 +69,16 @@ const StateResults = ({searchResults}) => {
 }
 const CustomStateResults = connectStateResults(StateResults)
 
-export const Search = () => {
+export const Search = props => {
   return (
     <InstantSearch searchClient={searchClient} indexName="products_NAME">
       <Header />
-      <CustomStateResults />
+      <div className="search-body-top">
+        <div>
+          Showing results for {props.routeProps.location.pathname.slice(8)}
+        </div>
+        <CustomStateResults />
+      </div>
       <div className="search-body-content">
         <Content />
       </div>
@@ -101,7 +105,6 @@ export const SearchBar = withRouter(UnwrappedSearchBar)
 const UnwrappedHeader = props => {
   const {handleChange, handleSubmit, query} = props
   const refinement = props.location.pathname.slice(8)
-  console.log('HEADERPROPS', props, query)
   return (
     <header className="search-bar-header">
       <SearchBox
@@ -110,7 +113,7 @@ const UnwrappedHeader = props => {
         onSubmit={handleSubmit}
         onChange={handleChange}
         defaultRefinement={refinement}
-        value={query}
+        value={refinement}
       />
     </header>
   )

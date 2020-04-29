@@ -34,10 +34,12 @@ class CartPreview extends Component {
   }
 
   incrementQty(product) {
-    this.props.editCart({
-      quantity: product.line_item.quantity + 1,
-      productId: product.id
-    })
+    if (product.line_item.quantity < product.quantity) {
+      this.props.editCart({
+        quantity: product.line_item.quantity + 1,
+        productId: product.id
+      })
+    }
   }
 
   deleteProduct(product) {
@@ -58,6 +60,7 @@ class CartPreview extends Component {
       handleCloseCartClick()
     }
 
+    console.log('cart', cart)
     if (cart) {
       return (
         <div className="cart-preview">

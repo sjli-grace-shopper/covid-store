@@ -47,11 +47,7 @@ class CartPreview extends Component {
   }
 
   render() {
-    const {cart, handleCloseCartClick, open} = this.props
-
-    const handleClick = () => {
-      history.push('/cart')
-    }
+    const {cart, handleCloseCartClick, handleClick, open} = this.props
 
     const handleClose = (event, reason) => {
       if (reason === 'clickaway') {

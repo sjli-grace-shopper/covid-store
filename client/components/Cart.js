@@ -8,6 +8,7 @@ import {
 } from '../store/reducers/cartReducer'
 import {Link} from 'react-router-dom'
 import CartItem from './CartItem'
+import history from '../history'
 
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert'
@@ -69,6 +70,7 @@ class Cart extends React.Component {
   }
 
   handleCheckoutClick(e) {
+    history.push('/cart/checkout')
     if (this.props.user.id) {
       const enoughStock = this.props.cart.products.every(product => {
         return product.quantity >= product.line_item.quantity
@@ -90,7 +92,7 @@ class Cart extends React.Component {
   render() {
     return (
       <div className="cart">
-        <h1>SHOPPING CART</h1>
+        <h2>YOUR CART</h2>
         <Snackbar
           open={this.state.snackOpen}
           autoHideDuration={6000}
@@ -116,29 +118,38 @@ class Cart extends React.Component {
                 )
               })}
             </div>
+            <Divider className="cart-vertical-divider" />
             <div id="cart-checkout">
               <h3>
-                Subtotal: $
+                <b>Subtotal:</b> $
                 {this.props.cart.products
                   .reduce((subtotal, product) => {
                     return subtotal + product.price * product.line_item.quantity
                   }, 0)
                   .toFixed(2)}
               </h3>
-              <Link to="/cart/checkout" onClick={this.handleCheckoutClick}>
+              <Button
+                type="button"
+                variant="outlined"
+                onClick={this.handleCheckoutClick}
+              >
                 Checkout
-              </Link>
-              <button type="button" onClick={this.addProduct}>
+              </Button>
+              <Button
+                type="button"
+                variant="outlined"
+                onClick={this.addProduct}
+              >
                 Add Random Item
-              </button>
+              </Button>
             </div>
           </div>
         ) : (
           <div>
             <h3>Cart Is Empty</h3>
-            <button type="button" onClick={this.addProduct}>
+            <Button type="button" variant="outlined" onClick={this.addProduct}>
               Add Random Item
-            </button>
+            </Button>
           </div>
         )}
       </div>

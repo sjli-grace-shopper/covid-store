@@ -90,7 +90,7 @@ class CartPreview extends Component {
                 </Fragment>
               )}
               <Button id="cart" onClick={handleClick}>
-                Go to cart
+                <a href="/cart">Go to cart</a>
               </Button>
             </div>
           </Snackbar>

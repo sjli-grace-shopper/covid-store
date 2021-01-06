@@ -47,7 +47,7 @@
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.4.0",
     "algoliasearch": "^4.2.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^6.1.1",
     "dotenv": "^8.2.0",
